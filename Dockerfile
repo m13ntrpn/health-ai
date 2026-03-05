@@ -16,6 +16,9 @@ COPY . .
 # Generate Prisma client before build
 RUN npx prisma generate
 
+# DATABASE_URL is required by prisma.ts at import time during Next.js static analysis.
+# This value is never used at runtime — the real value comes from docker-compose env.
+ENV DATABASE_URL="postgresql://build:build@localhost:5432/build"
 RUN npm run build
 
 # Production image
