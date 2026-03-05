@@ -143,7 +143,33 @@ tRPC endpoint: `POST /api/trpc/healthLog.reportForTelegramUser`
 { "json": { "telegramUserId": "123456789", "fromDate": "2026-02-01", "toDate": "2026-02-28" } }
 ```
 
-Ответ: `{ "summary": "...", "advice": ["...", "..."] }`
+Ответ — агрегированный контекст, который нужно передать в LLM:
+
+```json
+{
+  "period": { "from": "2026-02-01", "to": "2026-02-28", "daysWithLogs": 10, "completedDays": 7 },
+  "nutrition": {
+    "totalCalories": 21000,
+    "avgCaloriesPerDay": 2100,
+    "totalProteinG": 700,
+    "totalFatG": 500,
+    "totalCarbsG": 2500,
+    "totalWaterMl": 18000,
+    "avgWaterMlPerDay": 1800
+  },
+  "sleep": { "avgHoursPerNight": 7.5 },
+  "activity": { "totalMinutes": 600, "avgMinPerDay": 60 },
+  "profile": {
+    "age": 35,
+    "sex": "male",
+    "heightCm": 180,
+    "weightKg": 80,
+    "goals": "похудеть на 5 кг",
+    "conditions": null,
+    "activityLevel": "medium"
+  }
+}
+```
 
 ---
 
@@ -202,8 +228,8 @@ tRPC endpoint: `POST /api/trpc/labResult.addForTelegramUser`
 - Если упоминает анализы — сохраняй через addLabResult.
 
 ОТЧЁТЫ:
-- Если пользователь просит отчёт / "как я за неделю?" / "что думаешь о моём питании?" — вызови getReport с нужным периодом и передай ответ пользователю.
-- Для быстрой статистики (без советов) — используй getSummary.
+- Если пользователь просит отчёт / "как я за неделю?" / "что думаешь о моём питании?" — вызови `getReport` с нужным периодом, передай полученный JSON-контекст в LLM и сформируй дружелюбный ответ с советами.
+- Для быстрой числовой статистики (без советов) — используй `getSummary`.
 
 ВАЖНО:
 - Всегда передавай telegramUserId пользователя в каждый вызов инструмента.
@@ -220,4 +246,3 @@ tRPC endpoint: `POST /api/trpc/labResult.addForTelegramUser`
 | `DATABASE_URL` | PostgreSQL connection string |
 | `SERVICE_API_TOKEN` | Токен, который OpenClaw передаёт в `X-Service-Token` |
 | `DEFAULT_TELEGRAM_USER_ID` | Telegram ID для веб-интерфейса (необязательно) |
-| `OPENROUTER_API_KEY` | Ключ OpenRouter для LLM-отчётов |

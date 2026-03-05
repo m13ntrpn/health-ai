@@ -7,7 +7,7 @@ import { trpcClient } from "@/shared/api/trpcClient";
 function formatDateRange(from: string, to: string): string {
   const f = new Date(from + "T12:00:00Z");
   const t = new Date(to + "T12:00:00Z");
-  return `${f.toLocaleDateString("en-GB", { day: "numeric", month: "short" })} – ${t.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}`;
+  return `${f.toLocaleDateString("ru-RU", { day: "numeric", month: "short" })} – ${t.toLocaleDateString("ru-RU", { day: "numeric", month: "short", year: "numeric" })}`;
 }
 
 export default function DashboardPage() {

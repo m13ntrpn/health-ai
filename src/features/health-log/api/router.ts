@@ -12,7 +12,7 @@ import {
   dailyLogPayloadSchema,
 } from "@/features/health-log/schemas/dailyLog";
 import { ensureUserByTelegramId } from "@/features/telegram-user/services/ensureUserByTelegramId";
-import { generateHealthReport } from "@/features/health-log/services/reportService";
+import { getReportContext } from "@/features/health-log/services/reportService";
 
 const paginationSchema = z.object({
   limit: z.number().int().min(1).max(100).default(20),
@@ -168,13 +168,10 @@ export const healthLogRouter = router({
     .mutation(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
       const user = await ensureUserByTelegramId(input.telegramUserId);
-      const profile = await import("@/features/telegram-user/services/userProfileService")
-        .then((m) => m.getUserProfile(user.id));
-      return generateHealthReport({
+      return getReportContext({
         userId: user.id,
         fromDate: input.fromDate,
         toDate: input.toDate,
-        goals: profile?.goals,
       });
     }),
 });

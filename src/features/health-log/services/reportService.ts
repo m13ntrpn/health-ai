@@ -1,21 +1,49 @@
 import { prisma } from "@/shared/lib/prisma";
-import { logger } from "@/shared/lib/logger";
 import { dateStringToDateTime } from "./dateUtils";
 
 export interface ReportInput {
   userId: string;
   fromDate: string; // YYYY-MM-DD
-  toDate: string;   // YYYY-MM-DD
-  goals?: string | null;
+  toDate: string; // YYYY-MM-DD
 }
 
-export interface HealthReport {
-  summary: string;
-  advice: string[];
+/** Aggregated health data for a period. Used as LLM context by OpenClaw. */
+export interface ReportContext {
+  period: {
+    from: string;
+    to: string;
+    daysWithLogs: number;
+    completedDays: number;
+  };
+  nutrition: {
+    totalCalories: number;
+    avgCaloriesPerDay: number;
+    totalProteinG: number;
+    totalFatG: number;
+    totalCarbsG: number;
+    totalWaterMl: number;
+    avgWaterMlPerDay: number;
+  };
+  sleep: {
+    avgHoursPerNight: number | null;
+  };
+  activity: {
+    totalMinutes: number;
+    avgMinPerDay: number;
+  };
+  profile: {
+    age: number | null;
+    sex: string | null;
+    heightCm: number | null;
+    weightKg: number | null;
+    goals: string | null;
+    conditions: string | null;
+    activityLevel: string | null;
+  } | null;
 }
 
-/** Aggregates health data for a period into a context object for the LLM. */
-async function buildReportContext(input: ReportInput) {
+/** Aggregates health data for a period into a context object. */
+export async function getReportContext(input: ReportInput): Promise<ReportContext> {
   const from = dateStringToDateTime(input.fromDate);
   const to = dateStringToDateTime(input.toDate);
 
@@ -47,7 +75,12 @@ async function buildReportContext(input: ReportInput) {
   const completedDays = logs.filter((l) => l.isCompleted).length;
 
   return {
-    period: { from: input.fromDate, to: input.toDate, daysWithLogs: daysCount, completedDays },
+    period: {
+      from: input.fromDate,
+      to: input.toDate,
+      daysWithLogs: daysCount,
+      completedDays,
+    },
     nutrition: {
       totalCalories,
       avgCaloriesPerDay: daysCount ? Math.round(totalCalories / daysCount) : 0,
@@ -71,77 +104,4 @@ async function buildReportContext(input: ReportInput) {
         }
       : null,
   };
-}
-
-function buildPrompt(ctx: Awaited<ReturnType<typeof buildReportContext>>): string {
-  const goal = ctx.profile?.goals ?? null;
-  const tone = goal
-    ? "Ты дружелюбный и заботливый помощник по здоровью. У пользователя есть цель. Оцени прогресс, дай конкретные советы по питанию, сну и активности. Будь поддерживающим, не осуждай."
-    : "Ты дружелюбный и заботливый помощник по здоровью. Цели пока нет. Оцени общее состояние, отметь позитивные моменты и мягко укажи, что стоит улучшить. Будь тёплым и поддерживающим.";
-
-  return `${tone}
-
-Данные за период ${ctx.period.from} — ${ctx.period.to}:
-- Дней с записями: ${ctx.period.daysWithLogs}, завершённых дней: ${ctx.period.completedDays}
-- Калории: всего ${ctx.nutrition.totalCalories} ккал, в среднем ${ctx.nutrition.avgCaloriesPerDay} ккал/день
-- Белки: ${ctx.nutrition.totalProteinG}г, жиры: ${ctx.nutrition.totalFatG}г, углеводы: ${ctx.nutrition.totalCarbsG}г
-- Вода: ${ctx.nutrition.totalWaterMl} мл, в среднем ${ctx.nutrition.avgWaterMlPerDay} мл/день
-- Сон: ${ctx.sleep.avgHoursPerNight != null ? ctx.sleep.avgHoursPerNight + " ч/ночь" : "нет данных"}
-- Активность: ${ctx.activity.totalMinutes} мин за период, ~${ctx.activity.avgMinPerDay} мин/день
-${ctx.profile ? `- Профиль: ${ctx.profile.age ?? "?"}л, ${ctx.profile.sex ?? "?"}, рост ${ctx.profile.heightCm ?? "?"}см, вес ${ctx.profile.weightKg ?? "?"}кг` : "- Профиль: не заполнен"}
-${goal ? `- Цель: ${goal}` : "- Цель: не задана"}
-${ctx.profile?.conditions ? `- Состояния здоровья: ${ctx.profile.conditions}` : ""}
-
-Ответь в формате JSON:
-{
-  "summary": "краткое резюме состояния (2-4 предложения)",
-  "advice": ["совет 1", "совет 2", "совет 3"]
-}`;
-}
-
-/** Calls OpenRouter and returns a HealthReport. */
-export async function generateHealthReport(input: ReportInput): Promise<HealthReport> {
-  const apiKey = process.env.OPENROUTER_API_KEY;
-  if (!apiKey?.trim()) {
-    throw new Error("OPENROUTER_API_KEY is not set");
-  }
-
-  const ctx = await buildReportContext(input);
-  const prompt = buildPrompt(ctx);
-
-  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: "openai/gpt-4o-mini",
-      messages: [{ role: "user", content: prompt }],
-      response_format: { type: "json_object" },
-    }),
-  });
-
-  if (!response.ok) {
-    const text = await response.text();
-    logger.error("OpenRouter error", { status: response.status, body: text });
-    throw new Error(`OpenRouter request failed: ${response.status}`);
-  }
-
-  const data = await response.json() as {
-    choices: Array<{ message: { content: string } }>;
-  };
-
-  const content = data.choices[0]?.message?.content ?? "{}";
-
-  try {
-    const parsed = JSON.parse(content) as { summary?: string; advice?: string[] };
-    return {
-      summary: parsed.summary ?? "Не удалось получить сводку.",
-      advice: Array.isArray(parsed.advice) ? parsed.advice : [],
-    };
-  } catch {
-    logger.error("Failed to parse OpenRouter response", { content });
-    return { summary: content, advice: [] };
-  }
 }
