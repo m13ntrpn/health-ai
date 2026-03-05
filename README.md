@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# nadin-health
 
-## Getting Started
+Health diary: daily logs, meals, sleep, activity. **Bot supports multiple users** (each identified by Telegram user id). Optional web UI shows one user (`DEFAULT_TELEGRAM_USER_ID`). No login/password — bot uses `X-Service-Token` + `telegramUserId`; web uses env default.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Frontend:** Next.js 16 (App Router) + TypeScript
+- **Backend:** tRPC, Prisma ORM
+- **Database:** PostgreSQL (Docker locally; Neon/Railway/Supabase in production)
+- **Auth:** `X-Service-Token` for bot; `DEFAULT_TELEGRAM_USER_ID` in env for web UI (single user). Bot: one token, many users — each request sends `telegramUserId` (e.g. from `message.from.id`).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting started (local)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Copy env and set variables**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   cp .env.example .env
+   # Set DEFAULT_TELEGRAM_USER_ID (Telegram user id for web Logs/Dashboard).
+   # Set SERVICE_API_TOKEN for OpenClaw. Adjust DATABASE_URL if needed.
+   ```
 
-## Learn More
+2. **Start Postgres (Docker)**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   docker compose up -d
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   Default: `postgres` / `postgres` @ `127.0.0.1:5434`, database `nadin_db`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Generate Prisma client and run migrations**
 
-## Deploy on Vercel
+   ```bash
+   npx prisma generate
+   npx prisma migrate dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Run the app**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm run dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000). Logs and Dashboard use the user identified by `DEFAULT_TELEGRAM_USER_ID`. Bot calls use `X-Service-Token` + `telegramUserId` in procedure input.
+
+## Environment variables
+
+| Variable                   | Required   | Description |
+|----------------------------|------------|-------------|
+| `DATABASE_URL`             | Yes        | PostgreSQL connection string. |
+| `DEFAULT_TELEGRAM_USER_ID` | For web UI | Telegram user id for the single user; used by Logs and Dashboard. |
+| `SERVICE_API_TOKEN`        | For bot    | Secret sent in `X-Service-Token` by OpenClaw; required for `*ForTelegramUser` procedures. |
+
+See `.env.example` for a template.
+
+## Deploy (MVP)
+
+- **App:** Deploy to [Vercel](https://vercel.com) or any Node host. Build: `npm run build`; start: `npm run start`.
+- **Database:** Create Postgres (Neon, Railway, Supabase), set `DATABASE_URL`.
+- **Env:** Set `DATABASE_URL`, `DEFAULT_TELEGRAM_USER_ID` (for web), `SERVICE_API_TOKEN` (for bot). Do not commit secrets.
+- **Migrations:** Run `npx prisma migrate deploy` after DB is created.
+
+## Scripts
+
+- `npm run dev` — Next.js dev server
+- `npm run build` — Production build
+- `npm run start` — Start production server
+- `npm run test` — Run Vitest tests
+- `npm run test:watch` — Vitest watch mode
+
+## API (tRPC)
+
+- **Web (no auth; server uses DEFAULT_TELEGRAM_USER_ID):** `healthLog.getDailyLog`, `healthLog.listDailyLogs`, `healthLog.upsertDailyLog`, `healthLog.summary`.
+- **Bot (X-Service-Token + telegramUserId in input):** `healthLog.getDailyLogForTelegramUser`, `healthLog.listDailyLogsForTelegramUser`, `healthLog.upsertDailyLogForTelegramUser`.  
+  **Multiple users:** send the Telegram user id of the person who sent the message (e.g. `message.from.id` from the Telegram update). Each user gets their own data. See [docs/MULTI-USER-BOT-PLAN.md](docs/MULTI-USER-BOT-PLAN.md) for details.
+
+Endpoint: `POST /api/trpc` (batch). Service calls send `X-Service-Token` header.

@@ -1,0 +1,1 @@
+{"sessionId":"f73f82","runId":"p1010-pre-fix","hypothesisId":"H1","location":"prisma.config.ts:agent-log","message":"Prisma DATABASE_URL meta","data":{"hasEnv":true,"meta":{"protocol":"postgresql:","hostname":"127.0.0.1","port":"5434","database":"/nadin_db","username":"postgres","hasPassword":true}},"timestamp":1772653562619}

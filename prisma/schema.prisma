@@ -1,0 +1,194 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id             String       @id @default(cuid())
+  role           String       @default("user")
+  telegramUserId String?      @unique
+
+  profile        UserProfile?
+  dailyLogs      DailyLog[]
+  labResults     LabResult[]
+  fileAssets     FileAsset[]
+
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model UserProfile {
+  id                 String   @id @default(cuid())
+  userId             String   @unique
+  user               User     @relation(fields: [userId], references: [id])
+
+  age                Int?
+  sex                String?  // e.g. "male" | "female" | "other"
+  heightCm           Int?
+  weightKg           Decimal? @db.Decimal(5, 2)
+  waistCm            Decimal? @db.Decimal(5, 2)
+  hipsCm             Decimal? @db.Decimal(5, 2)
+  bodyFatPercent     Decimal? @db.Decimal(5, 2)
+  muscleMassKg       Decimal? @db.Decimal(6, 2)
+  bodyWaterPercent   Decimal? @db.Decimal(5, 2)
+  activityLevel      String?  // e.g. "low" | "medium" | "high"
+  conditions         String?  // known diagnoses / pathologies (free text)
+  goals              String?  // health / weight goals (free text)
+
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model DailyLog {
+  id           String        @id @default(cuid())
+  userId       String
+  user         User          @relation(fields: [userId], references: [id])
+
+  date         DateTime
+  mood         String?       // subjective feeling
+  comment      String?
+  isCompleted  Boolean       @default(false)
+  waterMl      Int?          // total water consumed in ml
+
+  meals        Meal[]
+  intakes      IntakeItem[]
+  sleepLogs    SleepLog[]
+  activityLogs ActivityLog[]
+  summary      DailySummary?
+
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@unique([userId, date])
+}
+
+model Meal {
+  id          String      @id @default(cuid())
+  dailyLogId  String
+  dailyLog    DailyLog    @relation(fields: [dailyLogId], references: [id])
+
+  type        String?     // breakfast / lunch / dinner / snack / other
+  time        DateTime?
+  description String?     // raw text from user / LLM
+
+  calories    Int?        // optional rough estimates
+  proteinG    Decimal?    @db.Decimal(5, 2)
+  fatG        Decimal?    @db.Decimal(5, 2)
+  carbsG      Decimal?    @db.Decimal(5, 2)
+
+  files       FileAsset[] // photos of food
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model IntakeItem {
+  id          String    @id @default(cuid())
+  dailyLogId  String
+  dailyLog    DailyLog  @relation(fields: [dailyLogId], references: [id])
+
+  name        String    // vitamin / medicine name
+  dose        String?   // free text dose
+  time        DateTime?
+  category    String?   // vitamin / medicine / other
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model SleepLog {
+  id          String    @id @default(cuid())
+  dailyLogId  String
+  dailyLog    DailyLog  @relation(fields: [dailyLogId], references: [id])
+
+  start       DateTime?
+  end         DateTime?
+  quality     String?   // free text or simple scale
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model ActivityLog {
+  id          String    @id @default(cuid())
+  dailyLogId  String
+  dailyLog    DailyLog  @relation(fields: [dailyLogId], references: [id])
+
+  type        String?   // walking, gym, etc.
+  durationMin Int?      // duration in minutes
+  intensity   String?   // low / medium / high
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model LabResult {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+
+  type        String?     // blood / urine / other
+  date        DateTime?
+  title       String?     // short name
+  rawSummary  String?     // raw text or notes
+
+  files       FileAsset[]
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model FileAsset {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+
+  kind        String      // photo_food / lab / other
+  mimeType    String
+  sizeBytes   Int
+  path        String      // relative path in local storage
+
+  mealId      String?
+  meal        Meal?       @relation(fields: [mealId], references: [id])
+
+  labResultId String?
+  labResult   LabResult?  @relation(fields: [labResultId], references: [id])
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model DailySummary {
+  id             String    @id @default(cuid())
+  dailyLogId     String    @unique
+  dailyLog       DailyLog  @relation(fields: [dailyLogId], references: [id])
+
+  totalCalories  Int?
+  proteinG       Decimal?  @db.Decimal(6, 2)
+  fatG           Decimal?  @db.Decimal(6, 2)
+  carbsG         Decimal?  @db.Decimal(6, 2)
+  waterMl        Int?
+
+  // aggregated scores/flags
+  caloriesDelta  Int?      // difference from target calories
+  proteinDelta   Int?
+  fatDelta       Int?
+  carbsDelta     Int?
+  waterDelta     Int?
+
+  flags          String?   // JSON/text with simple flags (e.g. 'low_protein,low_water')
+  textSummary    String?   // final daily text summary
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
