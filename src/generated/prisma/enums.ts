@@ -9,7 +9,76 @@
 * 🟢 You can import this file directly.
 */
 
+export const Sex = {
+  male: 'male',
+  female: 'female',
+  other: 'other'
+} as const
+
+export type Sex = (typeof Sex)[keyof typeof Sex]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const ActivityLevel = {
+  low: 'low',
+  medium: 'medium',
+  high: 'high'
+} as const
+
+export type ActivityLevel = (typeof ActivityLevel)[keyof typeof ActivityLevel]
+
+
+export const SmokingStatus = {
+  never: 'never',
+  former: 'former',
+  current: 'current'
+} as const
+
+export type SmokingStatus = (typeof SmokingStatus)[keyof typeof SmokingStatus]
+
+
+export const AlcoholUse = {
+  none: 'none',
+  rare: 'rare',
+  moderate: 'moderate',
+  high: 'high'
+} as const
+
+export type AlcoholUse = (typeof AlcoholUse)[keyof typeof AlcoholUse]
+
+
+export const MealType = {
+  breakfast: 'breakfast',
+  lunch: 'lunch',
+  dinner: 'dinner',
+  snack: 'snack',
+  other: 'other'
+} as const
+
+export type MealType = (typeof MealType)[keyof typeof MealType]
+
+
+export const IntakeCategory = {
+  vitamin: 'vitamin',
+  medicine: 'medicine',
+  other: 'other'
+} as const
+
+export type IntakeCategory = (typeof IntakeCategory)[keyof typeof IntakeCategory]
+
+
+export const ActivityIntensity = {
+  low: 'low',
+  medium: 'medium',
+  high: 'high'
+} as const
+
+export type ActivityIntensity = (typeof ActivityIntensity)[keyof typeof ActivityIntensity]
+
+
+export const FileKind = {
+  photo_food: 'photo_food',
+  lab: 'lab',
+  other: 'other'
+} as const
+
+export type FileKind = (typeof FileKind)[keyof typeof FileKind]

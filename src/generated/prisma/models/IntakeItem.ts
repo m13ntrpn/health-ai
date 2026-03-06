@@ -30,7 +30,7 @@ export type IntakeItemMinAggregateOutputType = {
   name: string | null
   dose: string | null
   time: Date | null
-  category: string | null
+  category: $Enums.IntakeCategory | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -41,7 +41,7 @@ export type IntakeItemMaxAggregateOutputType = {
   name: string | null
   dose: string | null
   time: Date | null
-  category: string | null
+  category: $Enums.IntakeCategory | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -171,7 +171,7 @@ export type IntakeItemGroupByOutputType = {
   name: string
   dose: string | null
   time: Date | null
-  category: string | null
+  category: $Enums.IntakeCategory | null
   createdAt: Date
   updatedAt: Date
   _count: IntakeItemCountAggregateOutputType | null
@@ -203,7 +203,7 @@ export type IntakeItemWhereInput = {
   name?: Prisma.StringFilter<"IntakeItem"> | string
   dose?: Prisma.StringNullableFilter<"IntakeItem"> | string | null
   time?: Prisma.DateTimeNullableFilter<"IntakeItem"> | Date | string | null
-  category?: Prisma.StringNullableFilter<"IntakeItem"> | string | null
+  category?: Prisma.EnumIntakeCategoryNullableFilter<"IntakeItem"> | $Enums.IntakeCategory | null
   createdAt?: Prisma.DateTimeFilter<"IntakeItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"IntakeItem"> | Date | string
   dailyLog?: Prisma.XOR<Prisma.DailyLogScalarRelationFilter, Prisma.DailyLogWhereInput>
@@ -230,7 +230,7 @@ export type IntakeItemWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"IntakeItem"> | string
   dose?: Prisma.StringNullableFilter<"IntakeItem"> | string | null
   time?: Prisma.DateTimeNullableFilter<"IntakeItem"> | Date | string | null
-  category?: Prisma.StringNullableFilter<"IntakeItem"> | string | null
+  category?: Prisma.EnumIntakeCategoryNullableFilter<"IntakeItem"> | $Enums.IntakeCategory | null
   createdAt?: Prisma.DateTimeFilter<"IntakeItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"IntakeItem"> | Date | string
   dailyLog?: Prisma.XOR<Prisma.DailyLogScalarRelationFilter, Prisma.DailyLogWhereInput>
@@ -259,7 +259,7 @@ export type IntakeItemScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"IntakeItem"> | string
   dose?: Prisma.StringNullableWithAggregatesFilter<"IntakeItem"> | string | null
   time?: Prisma.DateTimeNullableWithAggregatesFilter<"IntakeItem"> | Date | string | null
-  category?: Prisma.StringNullableWithAggregatesFilter<"IntakeItem"> | string | null
+  category?: Prisma.EnumIntakeCategoryNullableWithAggregatesFilter<"IntakeItem"> | $Enums.IntakeCategory | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"IntakeItem"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"IntakeItem"> | Date | string
 }
@@ -269,7 +269,7 @@ export type IntakeItemCreateInput = {
   name: string
   dose?: string | null
   time?: Date | string | null
-  category?: string | null
+  category?: $Enums.IntakeCategory | null
   createdAt?: Date | string
   updatedAt?: Date | string
   dailyLog: Prisma.DailyLogCreateNestedOneWithoutIntakesInput
@@ -281,7 +281,7 @@ export type IntakeItemUncheckedCreateInput = {
   name: string
   dose?: string | null
   time?: Date | string | null
-  category?: string | null
+  category?: $Enums.IntakeCategory | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -291,7 +291,7 @@ export type IntakeItemUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   dose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableEnumIntakeCategoryFieldUpdateOperationsInput | $Enums.IntakeCategory | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dailyLog?: Prisma.DailyLogUpdateOneRequiredWithoutIntakesNestedInput
@@ -303,7 +303,7 @@ export type IntakeItemUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   dose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableEnumIntakeCategoryFieldUpdateOperationsInput | $Enums.IntakeCategory | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -314,7 +314,7 @@ export type IntakeItemCreateManyInput = {
   name: string
   dose?: string | null
   time?: Date | string | null
-  category?: string | null
+  category?: $Enums.IntakeCategory | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -324,7 +324,7 @@ export type IntakeItemUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   dose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableEnumIntakeCategoryFieldUpdateOperationsInput | $Enums.IntakeCategory | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -335,7 +335,7 @@ export type IntakeItemUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   dose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableEnumIntakeCategoryFieldUpdateOperationsInput | $Enums.IntakeCategory | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -425,12 +425,16 @@ export type IntakeItemUncheckedUpdateManyWithoutDailyLogNestedInput = {
   deleteMany?: Prisma.IntakeItemScalarWhereInput | Prisma.IntakeItemScalarWhereInput[]
 }
 
+export type NullableEnumIntakeCategoryFieldUpdateOperationsInput = {
+  set?: $Enums.IntakeCategory | null
+}
+
 export type IntakeItemCreateWithoutDailyLogInput = {
   id?: string
   name: string
   dose?: string | null
   time?: Date | string | null
-  category?: string | null
+  category?: $Enums.IntakeCategory | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -440,7 +444,7 @@ export type IntakeItemUncheckedCreateWithoutDailyLogInput = {
   name: string
   dose?: string | null
   time?: Date | string | null
-  category?: string | null
+  category?: $Enums.IntakeCategory | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -480,7 +484,7 @@ export type IntakeItemScalarWhereInput = {
   name?: Prisma.StringFilter<"IntakeItem"> | string
   dose?: Prisma.StringNullableFilter<"IntakeItem"> | string | null
   time?: Prisma.DateTimeNullableFilter<"IntakeItem"> | Date | string | null
-  category?: Prisma.StringNullableFilter<"IntakeItem"> | string | null
+  category?: Prisma.EnumIntakeCategoryNullableFilter<"IntakeItem"> | $Enums.IntakeCategory | null
   createdAt?: Prisma.DateTimeFilter<"IntakeItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"IntakeItem"> | Date | string
 }
@@ -490,7 +494,7 @@ export type IntakeItemCreateManyDailyLogInput = {
   name: string
   dose?: string | null
   time?: Date | string | null
-  category?: string | null
+  category?: $Enums.IntakeCategory | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -500,7 +504,7 @@ export type IntakeItemUpdateWithoutDailyLogInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   dose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableEnumIntakeCategoryFieldUpdateOperationsInput | $Enums.IntakeCategory | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -510,7 +514,7 @@ export type IntakeItemUncheckedUpdateWithoutDailyLogInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   dose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableEnumIntakeCategoryFieldUpdateOperationsInput | $Enums.IntakeCategory | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -520,7 +524,7 @@ export type IntakeItemUncheckedUpdateManyWithoutDailyLogInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   dose?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableEnumIntakeCategoryFieldUpdateOperationsInput | $Enums.IntakeCategory | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -596,7 +600,7 @@ export type $IntakeItemPayload<ExtArgs extends runtime.Types.Extensions.Internal
     name: string
     dose: string | null
     time: Date | null
-    category: string | null
+    category: $Enums.IntakeCategory | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["intakeItem"]>
@@ -1028,7 +1032,7 @@ export interface IntakeItemFieldRefs {
   readonly name: Prisma.FieldRef<"IntakeItem", 'String'>
   readonly dose: Prisma.FieldRef<"IntakeItem", 'String'>
   readonly time: Prisma.FieldRef<"IntakeItem", 'DateTime'>
-  readonly category: Prisma.FieldRef<"IntakeItem", 'String'>
+  readonly category: Prisma.FieldRef<"IntakeItem", 'IntakeCategory'>
   readonly createdAt: Prisma.FieldRef<"IntakeItem", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"IntakeItem", 'DateTime'>
 }

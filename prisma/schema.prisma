@@ -13,77 +13,129 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Sex {
+  male
+  female
+  other
+}
+
+enum ActivityLevel {
+  low
+  medium
+  high
+}
+
+enum SmokingStatus {
+  never
+  former
+  current
+}
+
+enum AlcoholUse {
+  none
+  rare
+  moderate
+  high
+}
+
+enum MealType {
+  breakfast
+  lunch
+  dinner
+  snack
+  other
+}
+
+enum IntakeCategory {
+  vitamin
+  medicine
+  other
+}
+
+enum ActivityIntensity {
+  low
+  medium
+  high
+}
+
+enum FileKind {
+  photo_food
+  lab
+  other
+}
+
 model User {
-  id             String       @id @default(cuid())
-  role           String       @default("user")
-  telegramUserId String?      @unique
+  id              String          @id @default(cuid())
+  role            String          @default("user")
+  telegramUserId  String?         @unique
 
-  profile        UserProfile?
-  measurements   BodyMeasurement[]
+  profile         UserProfile?
+  measurements    BodyMeasurement[]
   medicationPlans MedicationPlan[]
-  dailyLogs      DailyLog[]
-  labResults     LabResult[]
-  fileAssets     FileAsset[]
+  dailyLogs       DailyLog[]
+  labResults      LabResult[]
+  labPanels       LabPanel[]
+  fileAssets      FileAsset[]
 
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
 }
 
 model UserProfile {
-  id                 String   @id @default(cuid())
-  userId             String   @unique
-  user               User     @relation(fields: [userId], references: [id])
+  id                  String         @id @default(cuid())
+  userId              String         @unique
+  user                User           @relation(fields: [userId], references: [id])
 
-  birthDate          DateTime?
-  sex                String?  // e.g. "male" | "female" | "other"
-  heightCm           Int?
-  activityLevel      String?  // e.g. "low" | "medium" | "high"
+  birthDate           DateTime?
+  sex                 Sex?
+  heightCm            Int?
+  activityLevel       ActivityLevel?
 
   // Current body metrics (latest known). Full history in BodyMeasurement.
-  weightKg           Decimal? @db.Decimal(6, 2)
-  waistCm            Decimal? @db.Decimal(6, 2)
-  hipsCm             Decimal? @db.Decimal(6, 2)
-  bodyFatPercent     Decimal? @db.Decimal(5, 2)
-  muscleMassKg       Decimal? @db.Decimal(6, 2)
-  bodyWaterPercent   Decimal? @db.Decimal(5, 2)
+  weightKg            Decimal?       @db.Decimal(6, 2)
+  waistCm             Decimal?       @db.Decimal(6, 2)
+  hipsCm              Decimal?       @db.Decimal(6, 2)
+  bodyFatPercent      Decimal?       @db.Decimal(5, 2)
+  muscleMassKg        Decimal?       @db.Decimal(6, 2)
+  bodyWaterPercent    Decimal?       @db.Decimal(5, 2)
 
   // Locale / context
-  countryCode        String?  // ISO country code, e.g. "RU"
-  timezone           String?  // IANA tz, e.g. "Europe/Moscow"
+  countryCode         String?        // ISO country code, e.g. "RU"
+  timezone            String?        // IANA tz, e.g. "Europe/Moscow"
 
   // Medical baseline
-  bloodType          String?  // e.g. "A" | "B" | "AB" | "O"
-  rhFactor           String?  // e.g. "+" | "-"
+  bloodType           String?        // e.g. "A" | "B" | "AB" | "O"
+  rhFactor            String?        // e.g. "+" | "-"
   restingHeartRateBpm Int?
-  bloodPressureSys   Int?     // systolic
-  bloodPressureDia   Int?     // diastolic
-  smokingStatus      String?  // e.g. "never" | "former" | "current"
-  alcoholUse         String?  // e.g. "none" | "rare" | "moderate" | "high"
+  bloodPressureSys    Int?           // systolic
+  bloodPressureDia    Int?           // diastolic
+  smokingStatus       SmokingStatus?
+  alcoholUse          AlcoholUse?
 
   // Constraints / preferences
-  conditions         String?  // known diagnoses / pathologies (free text)
-  allergies          String?  // food allergies (free text)
-  intolerances       String?  // e.g. lactose, gluten (free text)
-  dietType           String?  // e.g. vegan, keto (free text)
+  conditions          String?        // known diagnoses / pathologies (free text)
+  allergies           String?        // food allergies (free text)
+  intolerances        String?        // e.g. lactose, gluten (free text)
+  dietType            String?        // e.g. vegan, keto (free text)
 
   // Goal (keep free text for LLM tone) + structured targets for analytics
-  goals              String?  // free text goal
-  targetWeightKg     Decimal? @db.Decimal(6, 2)
-  targetCalories     Int?
-  targetProteinG     Decimal? @db.Decimal(6, 2)
-  targetFatG         Decimal? @db.Decimal(6, 2)
-  targetCarbsG       Decimal? @db.Decimal(6, 2)
-  targetWaterMl      Int?
-  targetSteps        Int?
+  goals               String?        // free text goal
+  targetWeightKg      Decimal?       @db.Decimal(6, 2)
+  targetCalories      Int?
+  targetProteinG      Decimal?       @db.Decimal(6, 2)
+  targetFatG          Decimal?       @db.Decimal(6, 2)
+  targetCarbsG        Decimal?       @db.Decimal(6, 2)
+  targetWaterMl       Int?
+  targetSteps         Int?
 
   // Metabolism (optional; can be computed)
-  bmrCalories        Int?
-  tdeeCalories       Int?
+  bmrCalories         Int?
+  tdeeCalories        Int?
 
-  onboardingCompleted Boolean @default(false)
+  onboardingCompleted Boolean        @default(false)
 
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
 }
 
 model BodyMeasurement {
@@ -97,6 +149,7 @@ model BodyMeasurement {
   hipsCm         Decimal? @db.Decimal(6, 2)
   bodyFatPercent Decimal? @db.Decimal(5, 2)
   muscleMassKg   Decimal? @db.Decimal(6, 2)
+  bodyWaterPercent Decimal? @db.Decimal(5, 2)
 
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
@@ -122,15 +175,17 @@ model MedicationPlan {
 }
 
 model DailyLog {
-  id           String        @id @default(cuid())
+  id           String       @id @default(cuid())
   userId       String
-  user         User          @relation(fields: [userId], references: [id])
+  user         User         @relation(fields: [userId], references: [id])
 
   date         DateTime
-  mood         String?       // subjective feeling
+  mood         String?      // subjective feeling
   comment      String?
-  isCompleted  Boolean       @default(false)
-  waterMl      Int?          // total water consumed in ml
+  isCompleted  Boolean      @default(false)
+  waterMl      Int?         // total water consumed in ml
+  energyLevel  Int?         // 1–5
+  stressLevel  Int?         // 1–5
 
   meals        Meal[]
   intakes      IntakeItem[]
@@ -138,30 +193,31 @@ model DailyLog {
   activityLogs ActivityLog[]
   summary      DailySummary?
 
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
 
   @@unique([userId, date])
 }
 
 model Meal {
-  id          String      @id @default(cuid())
-  dailyLogId  String
-  dailyLog    DailyLog    @relation(fields: [dailyLogId], references: [id])
+  id              String      @id @default(cuid())
+  dailyLogId      String
+  dailyLog        DailyLog    @relation(fields: [dailyLogId], references: [id])
 
-  type        String?     // breakfast / lunch / dinner / snack / other
-  time        DateTime?
-  description String?     // raw text from user / LLM
+  type            MealType?
+  time            DateTime?
+  description     String?     // raw text from user / LLM
 
-  calories    Int?        // optional rough estimates
-  proteinG    Decimal?    @db.Decimal(5, 2)
-  fatG        Decimal?    @db.Decimal(5, 2)
-  carbsG      Decimal?    @db.Decimal(5, 2)
+  calories        Int?        // optional rough estimates
+  proteinG        Decimal?    @db.Decimal(5, 2)
+  fatG            Decimal?    @db.Decimal(5, 2)
+  carbsG          Decimal?    @db.Decimal(5, 2)
+  confidenceScore Decimal?    @db.Decimal(3, 2) // 0–1 confidence from LLM
 
-  files       FileAsset[] // photos of food
+  files           FileAsset[] // photos of food
 
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
 }
 
 model IntakeItem {
@@ -172,7 +228,7 @@ model IntakeItem {
   name        String    // vitamin / medicine name
   dose        String?   // free text dose
   time        DateTime?
-  category    String?   // vitamin / medicine / other
+  category    IntakeCategory?
 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -202,9 +258,9 @@ model ActivityLog {
 
   type        String?   // walking, gym, etc.
   durationMin Int?      // duration in minutes
-  intensity   String?   // low / medium / high
+  intensity   ActivityIntensity?
   steps       Int?
-  distanceM   Int?
+  distanceM   Decimal?  @db.Decimal(10, 2)
   calories    Int?
 
   createdAt   DateTime  @default(now())
@@ -222,9 +278,52 @@ model LabResult {
   rawSummary  String?     // raw text or notes
 
   files       FileAsset[]
+  panels      LabPanel[]
 
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
+}
+
+model LabPanel {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+
+  labResultId String?     // optional link to raw upload / summary
+  labResult   LabResult?  @relation(fields: [labResultId], references: [id])
+
+  name        String      // e.g. "Общий анализ крови", "Липидный профиль"
+  type        String?     // e.g. "blood", "urine", "biochemistry"
+  date        DateTime?
+
+  metrics     LabMetric[]
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([userId, date])
+}
+
+model LabMetric {
+  id          String      @id @default(cuid())
+  panelId     String
+  panel       LabPanel    @relation(fields: [panelId], references: [id])
+
+  code        String?     // e.g. "HGB", "GLU"
+  name        String      // e.g. "Hemoglobin", "Glucose"
+  value       Decimal?    @db.Decimal(12, 4)
+  unit        String?     // e.g. "g/L", "mmol/L"
+
+  refLow      Decimal?    @db.Decimal(12, 4)
+  refHigh     Decimal?    @db.Decimal(12, 4)
+  flag        String?     // e.g. "low" | "high" | "normal"
+
+  meta        Json?       // extra structured data if needed
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([panelId, code])
 }
 
 model FileAsset {
@@ -232,7 +331,7 @@ model FileAsset {
   userId      String
   user        User        @relation(fields: [userId], references: [id])
 
-  kind        String      // photo_food / lab / other
+  kind        FileKind
   mimeType    String
   sizeBytes   Int
   path        String      // relative path in local storage
@@ -265,7 +364,7 @@ model DailySummary {
   carbsDelta     Int?
   waterDelta     Int?
 
-  flags          String?   // JSON/text with simple flags (e.g. 'low_protein,low_water')
+  flags          Json?     // JSON with simple flags (e.g. ['low_protein','low_water'])
   textSummary    String?   // final daily text summary
 
   createdAt      DateTime  @default(now())

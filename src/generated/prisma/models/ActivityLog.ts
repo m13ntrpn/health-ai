@@ -29,14 +29,14 @@ export type AggregateActivityLog = {
 export type ActivityLogAvgAggregateOutputType = {
   durationMin: number | null
   steps: number | null
-  distanceM: number | null
+  distanceM: runtime.Decimal | null
   calories: number | null
 }
 
 export type ActivityLogSumAggregateOutputType = {
   durationMin: number | null
   steps: number | null
-  distanceM: number | null
+  distanceM: runtime.Decimal | null
   calories: number | null
 }
 
@@ -45,9 +45,9 @@ export type ActivityLogMinAggregateOutputType = {
   dailyLogId: string | null
   type: string | null
   durationMin: number | null
-  intensity: string | null
+  intensity: $Enums.ActivityIntensity | null
   steps: number | null
-  distanceM: number | null
+  distanceM: runtime.Decimal | null
   calories: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -58,9 +58,9 @@ export type ActivityLogMaxAggregateOutputType = {
   dailyLogId: string | null
   type: string | null
   durationMin: number | null
-  intensity: string | null
+  intensity: $Enums.ActivityIntensity | null
   steps: number | null
-  distanceM: number | null
+  distanceM: runtime.Decimal | null
   calories: number | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -226,9 +226,9 @@ export type ActivityLogGroupByOutputType = {
   dailyLogId: string
   type: string | null
   durationMin: number | null
-  intensity: string | null
+  intensity: $Enums.ActivityIntensity | null
   steps: number | null
-  distanceM: number | null
+  distanceM: runtime.Decimal | null
   calories: number | null
   createdAt: Date
   updatedAt: Date
@@ -262,9 +262,9 @@ export type ActivityLogWhereInput = {
   dailyLogId?: Prisma.StringFilter<"ActivityLog"> | string
   type?: Prisma.StringNullableFilter<"ActivityLog"> | string | null
   durationMin?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
-  intensity?: Prisma.StringNullableFilter<"ActivityLog"> | string | null
+  intensity?: Prisma.EnumActivityIntensityNullableFilter<"ActivityLog"> | $Enums.ActivityIntensity | null
   steps?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
-  distanceM?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
+  distanceM?: Prisma.DecimalNullableFilter<"ActivityLog"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
   createdAt?: Prisma.DateTimeFilter<"ActivityLog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ActivityLog"> | Date | string
@@ -293,9 +293,9 @@ export type ActivityLogWhereUniqueInput = Prisma.AtLeast<{
   dailyLogId?: Prisma.StringFilter<"ActivityLog"> | string
   type?: Prisma.StringNullableFilter<"ActivityLog"> | string | null
   durationMin?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
-  intensity?: Prisma.StringNullableFilter<"ActivityLog"> | string | null
+  intensity?: Prisma.EnumActivityIntensityNullableFilter<"ActivityLog"> | $Enums.ActivityIntensity | null
   steps?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
-  distanceM?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
+  distanceM?: Prisma.DecimalNullableFilter<"ActivityLog"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
   createdAt?: Prisma.DateTimeFilter<"ActivityLog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ActivityLog"> | Date | string
@@ -328,9 +328,9 @@ export type ActivityLogScalarWhereWithAggregatesInput = {
   dailyLogId?: Prisma.StringWithAggregatesFilter<"ActivityLog"> | string
   type?: Prisma.StringNullableWithAggregatesFilter<"ActivityLog"> | string | null
   durationMin?: Prisma.IntNullableWithAggregatesFilter<"ActivityLog"> | number | null
-  intensity?: Prisma.StringNullableWithAggregatesFilter<"ActivityLog"> | string | null
+  intensity?: Prisma.EnumActivityIntensityNullableWithAggregatesFilter<"ActivityLog"> | $Enums.ActivityIntensity | null
   steps?: Prisma.IntNullableWithAggregatesFilter<"ActivityLog"> | number | null
-  distanceM?: Prisma.IntNullableWithAggregatesFilter<"ActivityLog"> | number | null
+  distanceM?: Prisma.DecimalNullableWithAggregatesFilter<"ActivityLog"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: Prisma.IntNullableWithAggregatesFilter<"ActivityLog"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ActivityLog"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ActivityLog"> | Date | string
@@ -340,9 +340,9 @@ export type ActivityLogCreateInput = {
   id?: string
   type?: string | null
   durationMin?: number | null
-  intensity?: string | null
+  intensity?: $Enums.ActivityIntensity | null
   steps?: number | null
-  distanceM?: number | null
+  distanceM?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -354,9 +354,9 @@ export type ActivityLogUncheckedCreateInput = {
   dailyLogId: string
   type?: string | null
   durationMin?: number | null
-  intensity?: string | null
+  intensity?: $Enums.ActivityIntensity | null
   steps?: number | null
-  distanceM?: number | null
+  distanceM?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -366,9 +366,9 @@ export type ActivityLogUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intensity?: Prisma.NullableEnumActivityIntensityFieldUpdateOperationsInput | $Enums.ActivityIntensity | null
   steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -380,9 +380,9 @@ export type ActivityLogUncheckedUpdateInput = {
   dailyLogId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intensity?: Prisma.NullableEnumActivityIntensityFieldUpdateOperationsInput | $Enums.ActivityIntensity | null
   steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -393,9 +393,9 @@ export type ActivityLogCreateManyInput = {
   dailyLogId: string
   type?: string | null
   durationMin?: number | null
-  intensity?: string | null
+  intensity?: $Enums.ActivityIntensity | null
   steps?: number | null
-  distanceM?: number | null
+  distanceM?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -405,9 +405,9 @@ export type ActivityLogUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intensity?: Prisma.NullableEnumActivityIntensityFieldUpdateOperationsInput | $Enums.ActivityIntensity | null
   steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -418,9 +418,9 @@ export type ActivityLogUncheckedUpdateManyInput = {
   dailyLogId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intensity?: Prisma.NullableEnumActivityIntensityFieldUpdateOperationsInput | $Enums.ActivityIntensity | null
   steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -531,13 +531,17 @@ export type ActivityLogUncheckedUpdateManyWithoutDailyLogNestedInput = {
   deleteMany?: Prisma.ActivityLogScalarWhereInput | Prisma.ActivityLogScalarWhereInput[]
 }
 
+export type NullableEnumActivityIntensityFieldUpdateOperationsInput = {
+  set?: $Enums.ActivityIntensity | null
+}
+
 export type ActivityLogCreateWithoutDailyLogInput = {
   id?: string
   type?: string | null
   durationMin?: number | null
-  intensity?: string | null
+  intensity?: $Enums.ActivityIntensity | null
   steps?: number | null
-  distanceM?: number | null
+  distanceM?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -547,9 +551,9 @@ export type ActivityLogUncheckedCreateWithoutDailyLogInput = {
   id?: string
   type?: string | null
   durationMin?: number | null
-  intensity?: string | null
+  intensity?: $Enums.ActivityIntensity | null
   steps?: number | null
-  distanceM?: number | null
+  distanceM?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -589,9 +593,9 @@ export type ActivityLogScalarWhereInput = {
   dailyLogId?: Prisma.StringFilter<"ActivityLog"> | string
   type?: Prisma.StringNullableFilter<"ActivityLog"> | string | null
   durationMin?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
-  intensity?: Prisma.StringNullableFilter<"ActivityLog"> | string | null
+  intensity?: Prisma.EnumActivityIntensityNullableFilter<"ActivityLog"> | $Enums.ActivityIntensity | null
   steps?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
-  distanceM?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
+  distanceM?: Prisma.DecimalNullableFilter<"ActivityLog"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
   createdAt?: Prisma.DateTimeFilter<"ActivityLog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ActivityLog"> | Date | string
@@ -601,9 +605,9 @@ export type ActivityLogCreateManyDailyLogInput = {
   id?: string
   type?: string | null
   durationMin?: number | null
-  intensity?: string | null
+  intensity?: $Enums.ActivityIntensity | null
   steps?: number | null
-  distanceM?: number | null
+  distanceM?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -613,9 +617,9 @@ export type ActivityLogUpdateWithoutDailyLogInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intensity?: Prisma.NullableEnumActivityIntensityFieldUpdateOperationsInput | $Enums.ActivityIntensity | null
   steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -625,9 +629,9 @@ export type ActivityLogUncheckedUpdateWithoutDailyLogInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intensity?: Prisma.NullableEnumActivityIntensityFieldUpdateOperationsInput | $Enums.ActivityIntensity | null
   steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -637,9 +641,9 @@ export type ActivityLogUncheckedUpdateManyWithoutDailyLogInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intensity?: Prisma.NullableEnumActivityIntensityFieldUpdateOperationsInput | $Enums.ActivityIntensity | null
   steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -723,9 +727,9 @@ export type $ActivityLogPayload<ExtArgs extends runtime.Types.Extensions.Interna
     dailyLogId: string
     type: string | null
     durationMin: number | null
-    intensity: string | null
+    intensity: $Enums.ActivityIntensity | null
     steps: number | null
-    distanceM: number | null
+    distanceM: runtime.Decimal | null
     calories: number | null
     createdAt: Date
     updatedAt: Date
@@ -1157,9 +1161,9 @@ export interface ActivityLogFieldRefs {
   readonly dailyLogId: Prisma.FieldRef<"ActivityLog", 'String'>
   readonly type: Prisma.FieldRef<"ActivityLog", 'String'>
   readonly durationMin: Prisma.FieldRef<"ActivityLog", 'Int'>
-  readonly intensity: Prisma.FieldRef<"ActivityLog", 'String'>
+  readonly intensity: Prisma.FieldRef<"ActivityLog", 'ActivityIntensity'>
   readonly steps: Prisma.FieldRef<"ActivityLog", 'Int'>
-  readonly distanceM: Prisma.FieldRef<"ActivityLog", 'Int'>
+  readonly distanceM: Prisma.FieldRef<"ActivityLog", 'Decimal'>
   readonly calories: Prisma.FieldRef<"ActivityLog", 'Int'>
   readonly createdAt: Prisma.FieldRef<"ActivityLog", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ActivityLog", 'DateTime'>

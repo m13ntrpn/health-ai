@@ -92,6 +92,16 @@ export type ActivityLog = Prisma.ActivityLogModel
  */
 export type LabResult = Prisma.LabResultModel
 /**
+ * Model LabPanel
+ * 
+ */
+export type LabPanel = Prisma.LabPanelModel
+/**
+ * Model LabMetric
+ * 
+ */
+export type LabMetric = Prisma.LabMetricModel
+/**
  * Model FileAsset
  * 
  */

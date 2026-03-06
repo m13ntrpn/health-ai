@@ -74,9 +74,9 @@ export type UserProfileMinAggregateOutputType = {
   id: string | null
   userId: string | null
   birthDate: Date | null
-  sex: string | null
+  sex: $Enums.Sex | null
   heightCm: number | null
-  activityLevel: string | null
+  activityLevel: $Enums.ActivityLevel | null
   weightKg: runtime.Decimal | null
   waistCm: runtime.Decimal | null
   hipsCm: runtime.Decimal | null
@@ -90,8 +90,8 @@ export type UserProfileMinAggregateOutputType = {
   restingHeartRateBpm: number | null
   bloodPressureSys: number | null
   bloodPressureDia: number | null
-  smokingStatus: string | null
-  alcoholUse: string | null
+  smokingStatus: $Enums.SmokingStatus | null
+  alcoholUse: $Enums.AlcoholUse | null
   conditions: string | null
   allergies: string | null
   intolerances: string | null
@@ -115,9 +115,9 @@ export type UserProfileMaxAggregateOutputType = {
   id: string | null
   userId: string | null
   birthDate: Date | null
-  sex: string | null
+  sex: $Enums.Sex | null
   heightCm: number | null
-  activityLevel: string | null
+  activityLevel: $Enums.ActivityLevel | null
   weightKg: runtime.Decimal | null
   waistCm: runtime.Decimal | null
   hipsCm: runtime.Decimal | null
@@ -131,8 +131,8 @@ export type UserProfileMaxAggregateOutputType = {
   restingHeartRateBpm: number | null
   bloodPressureSys: number | null
   bloodPressureDia: number | null
-  smokingStatus: string | null
-  alcoholUse: string | null
+  smokingStatus: $Enums.SmokingStatus | null
+  alcoholUse: $Enums.AlcoholUse | null
   conditions: string | null
   allergies: string | null
   intolerances: string | null
@@ -453,9 +453,9 @@ export type UserProfileGroupByOutputType = {
   id: string
   userId: string
   birthDate: Date | null
-  sex: string | null
+  sex: $Enums.Sex | null
   heightCm: number | null
-  activityLevel: string | null
+  activityLevel: $Enums.ActivityLevel | null
   weightKg: runtime.Decimal | null
   waistCm: runtime.Decimal | null
   hipsCm: runtime.Decimal | null
@@ -469,8 +469,8 @@ export type UserProfileGroupByOutputType = {
   restingHeartRateBpm: number | null
   bloodPressureSys: number | null
   bloodPressureDia: number | null
-  smokingStatus: string | null
-  alcoholUse: string | null
+  smokingStatus: $Enums.SmokingStatus | null
+  alcoholUse: $Enums.AlcoholUse | null
   conditions: string | null
   allergies: string | null
   intolerances: string | null
@@ -517,9 +517,9 @@ export type UserProfileWhereInput = {
   id?: Prisma.StringFilter<"UserProfile"> | string
   userId?: Prisma.StringFilter<"UserProfile"> | string
   birthDate?: Prisma.DateTimeNullableFilter<"UserProfile"> | Date | string | null
-  sex?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  sex?: Prisma.EnumSexNullableFilter<"UserProfile"> | $Enums.Sex | null
   heightCm?: Prisma.IntNullableFilter<"UserProfile"> | number | null
-  activityLevel?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  activityLevel?: Prisma.EnumActivityLevelNullableFilter<"UserProfile"> | $Enums.ActivityLevel | null
   weightKg?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -533,8 +533,8 @@ export type UserProfileWhereInput = {
   restingHeartRateBpm?: Prisma.IntNullableFilter<"UserProfile"> | number | null
   bloodPressureSys?: Prisma.IntNullableFilter<"UserProfile"> | number | null
   bloodPressureDia?: Prisma.IntNullableFilter<"UserProfile"> | number | null
-  smokingStatus?: Prisma.StringNullableFilter<"UserProfile"> | string | null
-  alcoholUse?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  smokingStatus?: Prisma.EnumSmokingStatusNullableFilter<"UserProfile"> | $Enums.SmokingStatus | null
+  alcoholUse?: Prisma.EnumAlcoholUseNullableFilter<"UserProfile"> | $Enums.AlcoholUse | null
   conditions?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   allergies?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   intolerances?: Prisma.StringNullableFilter<"UserProfile"> | string | null
@@ -604,9 +604,9 @@ export type UserProfileWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.UserProfileWhereInput[]
   NOT?: Prisma.UserProfileWhereInput | Prisma.UserProfileWhereInput[]
   birthDate?: Prisma.DateTimeNullableFilter<"UserProfile"> | Date | string | null
-  sex?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  sex?: Prisma.EnumSexNullableFilter<"UserProfile"> | $Enums.Sex | null
   heightCm?: Prisma.IntNullableFilter<"UserProfile"> | number | null
-  activityLevel?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  activityLevel?: Prisma.EnumActivityLevelNullableFilter<"UserProfile"> | $Enums.ActivityLevel | null
   weightKg?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -620,8 +620,8 @@ export type UserProfileWhereUniqueInput = Prisma.AtLeast<{
   restingHeartRateBpm?: Prisma.IntNullableFilter<"UserProfile"> | number | null
   bloodPressureSys?: Prisma.IntNullableFilter<"UserProfile"> | number | null
   bloodPressureDia?: Prisma.IntNullableFilter<"UserProfile"> | number | null
-  smokingStatus?: Prisma.StringNullableFilter<"UserProfile"> | string | null
-  alcoholUse?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  smokingStatus?: Prisma.EnumSmokingStatusNullableFilter<"UserProfile"> | $Enums.SmokingStatus | null
+  alcoholUse?: Prisma.EnumAlcoholUseNullableFilter<"UserProfile"> | $Enums.AlcoholUse | null
   conditions?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   allergies?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   intolerances?: Prisma.StringNullableFilter<"UserProfile"> | string | null
@@ -695,9 +695,9 @@ export type UserProfileScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"UserProfile"> | string
   userId?: Prisma.StringWithAggregatesFilter<"UserProfile"> | string
   birthDate?: Prisma.DateTimeNullableWithAggregatesFilter<"UserProfile"> | Date | string | null
-  sex?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  sex?: Prisma.EnumSexNullableWithAggregatesFilter<"UserProfile"> | $Enums.Sex | null
   heightCm?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
-  activityLevel?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  activityLevel?: Prisma.EnumActivityLevelNullableWithAggregatesFilter<"UserProfile"> | $Enums.ActivityLevel | null
   weightKg?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -711,8 +711,8 @@ export type UserProfileScalarWhereWithAggregatesInput = {
   restingHeartRateBpm?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
   bloodPressureSys?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
   bloodPressureDia?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
-  smokingStatus?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
-  alcoholUse?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  smokingStatus?: Prisma.EnumSmokingStatusNullableWithAggregatesFilter<"UserProfile"> | $Enums.SmokingStatus | null
+  alcoholUse?: Prisma.EnumAlcoholUseNullableWithAggregatesFilter<"UserProfile"> | $Enums.AlcoholUse | null
   conditions?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
   allergies?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
   intolerances?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
@@ -735,9 +735,9 @@ export type UserProfileScalarWhereWithAggregatesInput = {
 export type UserProfileCreateInput = {
   id?: string
   birthDate?: Date | string | null
-  sex?: string | null
+  sex?: $Enums.Sex | null
   heightCm?: number | null
-  activityLevel?: string | null
+  activityLevel?: $Enums.ActivityLevel | null
   weightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -751,8 +751,8 @@ export type UserProfileCreateInput = {
   restingHeartRateBpm?: number | null
   bloodPressureSys?: number | null
   bloodPressureDia?: number | null
-  smokingStatus?: string | null
-  alcoholUse?: string | null
+  smokingStatus?: $Enums.SmokingStatus | null
+  alcoholUse?: $Enums.AlcoholUse | null
   conditions?: string | null
   allergies?: string | null
   intolerances?: string | null
@@ -777,9 +777,9 @@ export type UserProfileUncheckedCreateInput = {
   id?: string
   userId: string
   birthDate?: Date | string | null
-  sex?: string | null
+  sex?: $Enums.Sex | null
   heightCm?: number | null
-  activityLevel?: string | null
+  activityLevel?: $Enums.ActivityLevel | null
   weightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -793,8 +793,8 @@ export type UserProfileUncheckedCreateInput = {
   restingHeartRateBpm?: number | null
   bloodPressureSys?: number | null
   bloodPressureDia?: number | null
-  smokingStatus?: string | null
-  alcoholUse?: string | null
+  smokingStatus?: $Enums.SmokingStatus | null
+  alcoholUse?: $Enums.AlcoholUse | null
   conditions?: string | null
   allergies?: string | null
   intolerances?: string | null
@@ -817,9 +817,9 @@ export type UserProfileUncheckedCreateInput = {
 export type UserProfileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableEnumSexFieldUpdateOperationsInput | $Enums.Sex | null
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activityLevel?: Prisma.NullableEnumActivityLevelFieldUpdateOperationsInput | $Enums.ActivityLevel | null
   weightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -833,8 +833,8 @@ export type UserProfileUpdateInput = {
   restingHeartRateBpm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bloodPressureSys?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bloodPressureDia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smokingStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  alcoholUse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smokingStatus?: Prisma.NullableEnumSmokingStatusFieldUpdateOperationsInput | $Enums.SmokingStatus | null
+  alcoholUse?: Prisma.NullableEnumAlcoholUseFieldUpdateOperationsInput | $Enums.AlcoholUse | null
   conditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   allergies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   intolerances?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -859,9 +859,9 @@ export type UserProfileUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableEnumSexFieldUpdateOperationsInput | $Enums.Sex | null
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activityLevel?: Prisma.NullableEnumActivityLevelFieldUpdateOperationsInput | $Enums.ActivityLevel | null
   weightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -875,8 +875,8 @@ export type UserProfileUncheckedUpdateInput = {
   restingHeartRateBpm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bloodPressureSys?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bloodPressureDia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smokingStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  alcoholUse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smokingStatus?: Prisma.NullableEnumSmokingStatusFieldUpdateOperationsInput | $Enums.SmokingStatus | null
+  alcoholUse?: Prisma.NullableEnumAlcoholUseFieldUpdateOperationsInput | $Enums.AlcoholUse | null
   conditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   allergies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   intolerances?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -900,9 +900,9 @@ export type UserProfileCreateManyInput = {
   id?: string
   userId: string
   birthDate?: Date | string | null
-  sex?: string | null
+  sex?: $Enums.Sex | null
   heightCm?: number | null
-  activityLevel?: string | null
+  activityLevel?: $Enums.ActivityLevel | null
   weightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -916,8 +916,8 @@ export type UserProfileCreateManyInput = {
   restingHeartRateBpm?: number | null
   bloodPressureSys?: number | null
   bloodPressureDia?: number | null
-  smokingStatus?: string | null
-  alcoholUse?: string | null
+  smokingStatus?: $Enums.SmokingStatus | null
+  alcoholUse?: $Enums.AlcoholUse | null
   conditions?: string | null
   allergies?: string | null
   intolerances?: string | null
@@ -940,9 +940,9 @@ export type UserProfileCreateManyInput = {
 export type UserProfileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableEnumSexFieldUpdateOperationsInput | $Enums.Sex | null
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activityLevel?: Prisma.NullableEnumActivityLevelFieldUpdateOperationsInput | $Enums.ActivityLevel | null
   weightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -956,8 +956,8 @@ export type UserProfileUpdateManyMutationInput = {
   restingHeartRateBpm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bloodPressureSys?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bloodPressureDia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smokingStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  alcoholUse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smokingStatus?: Prisma.NullableEnumSmokingStatusFieldUpdateOperationsInput | $Enums.SmokingStatus | null
+  alcoholUse?: Prisma.NullableEnumAlcoholUseFieldUpdateOperationsInput | $Enums.AlcoholUse | null
   conditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   allergies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   intolerances?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -981,9 +981,9 @@ export type UserProfileUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableEnumSexFieldUpdateOperationsInput | $Enums.Sex | null
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activityLevel?: Prisma.NullableEnumActivityLevelFieldUpdateOperationsInput | $Enums.ActivityLevel | null
   weightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -997,8 +997,8 @@ export type UserProfileUncheckedUpdateManyInput = {
   restingHeartRateBpm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bloodPressureSys?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bloodPressureDia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smokingStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  alcoholUse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smokingStatus?: Prisma.NullableEnumSmokingStatusFieldUpdateOperationsInput | $Enums.SmokingStatus | null
+  alcoholUse?: Prisma.NullableEnumAlcoholUseFieldUpdateOperationsInput | $Enums.AlcoholUse | null
   conditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   allergies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   intolerances?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1226,12 +1226,20 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
+export type NullableEnumSexFieldUpdateOperationsInput = {
+  set?: $Enums.Sex | null
+}
+
 export type NullableIntFieldUpdateOperationsInput = {
   set?: number | null
   increment?: number
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type NullableEnumActivityLevelFieldUpdateOperationsInput = {
+  set?: $Enums.ActivityLevel | null
 }
 
 export type NullableDecimalFieldUpdateOperationsInput = {
@@ -1242,6 +1250,14 @@ export type NullableDecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type NullableEnumSmokingStatusFieldUpdateOperationsInput = {
+  set?: $Enums.SmokingStatus | null
+}
+
+export type NullableEnumAlcoholUseFieldUpdateOperationsInput = {
+  set?: $Enums.AlcoholUse | null
+}
+
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
@@ -1249,9 +1265,9 @@ export type BoolFieldUpdateOperationsInput = {
 export type UserProfileCreateWithoutUserInput = {
   id?: string
   birthDate?: Date | string | null
-  sex?: string | null
+  sex?: $Enums.Sex | null
   heightCm?: number | null
-  activityLevel?: string | null
+  activityLevel?: $Enums.ActivityLevel | null
   weightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1265,8 +1281,8 @@ export type UserProfileCreateWithoutUserInput = {
   restingHeartRateBpm?: number | null
   bloodPressureSys?: number | null
   bloodPressureDia?: number | null
-  smokingStatus?: string | null
-  alcoholUse?: string | null
+  smokingStatus?: $Enums.SmokingStatus | null
+  alcoholUse?: $Enums.AlcoholUse | null
   conditions?: string | null
   allergies?: string | null
   intolerances?: string | null
@@ -1289,9 +1305,9 @@ export type UserProfileCreateWithoutUserInput = {
 export type UserProfileUncheckedCreateWithoutUserInput = {
   id?: string
   birthDate?: Date | string | null
-  sex?: string | null
+  sex?: $Enums.Sex | null
   heightCm?: number | null
-  activityLevel?: string | null
+  activityLevel?: $Enums.ActivityLevel | null
   weightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1305,8 +1321,8 @@ export type UserProfileUncheckedCreateWithoutUserInput = {
   restingHeartRateBpm?: number | null
   bloodPressureSys?: number | null
   bloodPressureDia?: number | null
-  smokingStatus?: string | null
-  alcoholUse?: string | null
+  smokingStatus?: $Enums.SmokingStatus | null
+  alcoholUse?: $Enums.AlcoholUse | null
   conditions?: string | null
   allergies?: string | null
   intolerances?: string | null
@@ -1345,9 +1361,9 @@ export type UserProfileUpdateToOneWithWhereWithoutUserInput = {
 export type UserProfileUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableEnumSexFieldUpdateOperationsInput | $Enums.Sex | null
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activityLevel?: Prisma.NullableEnumActivityLevelFieldUpdateOperationsInput | $Enums.ActivityLevel | null
   weightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1361,8 +1377,8 @@ export type UserProfileUpdateWithoutUserInput = {
   restingHeartRateBpm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bloodPressureSys?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bloodPressureDia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smokingStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  alcoholUse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smokingStatus?: Prisma.NullableEnumSmokingStatusFieldUpdateOperationsInput | $Enums.SmokingStatus | null
+  alcoholUse?: Prisma.NullableEnumAlcoholUseFieldUpdateOperationsInput | $Enums.AlcoholUse | null
   conditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   allergies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   intolerances?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1385,9 +1401,9 @@ export type UserProfileUpdateWithoutUserInput = {
 export type UserProfileUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sex?: Prisma.NullableEnumSexFieldUpdateOperationsInput | $Enums.Sex | null
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activityLevel?: Prisma.NullableEnumActivityLevelFieldUpdateOperationsInput | $Enums.ActivityLevel | null
   weightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1401,8 +1417,8 @@ export type UserProfileUncheckedUpdateWithoutUserInput = {
   restingHeartRateBpm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bloodPressureSys?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bloodPressureDia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  smokingStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  alcoholUse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  smokingStatus?: Prisma.NullableEnumSmokingStatusFieldUpdateOperationsInput | $Enums.SmokingStatus | null
+  alcoholUse?: Prisma.NullableEnumAlcoholUseFieldUpdateOperationsInput | $Enums.AlcoholUse | null
   conditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   allergies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   intolerances?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1611,9 +1627,9 @@ export type $UserProfilePayload<ExtArgs extends runtime.Types.Extensions.Interna
     id: string
     userId: string
     birthDate: Date | null
-    sex: string | null
+    sex: $Enums.Sex | null
     heightCm: number | null
-    activityLevel: string | null
+    activityLevel: $Enums.ActivityLevel | null
     weightKg: runtime.Decimal | null
     waistCm: runtime.Decimal | null
     hipsCm: runtime.Decimal | null
@@ -1627,8 +1643,8 @@ export type $UserProfilePayload<ExtArgs extends runtime.Types.Extensions.Interna
     restingHeartRateBpm: number | null
     bloodPressureSys: number | null
     bloodPressureDia: number | null
-    smokingStatus: string | null
-    alcoholUse: string | null
+    smokingStatus: $Enums.SmokingStatus | null
+    alcoholUse: $Enums.AlcoholUse | null
     conditions: string | null
     allergies: string | null
     intolerances: string | null
@@ -2073,9 +2089,9 @@ export interface UserProfileFieldRefs {
   readonly id: Prisma.FieldRef<"UserProfile", 'String'>
   readonly userId: Prisma.FieldRef<"UserProfile", 'String'>
   readonly birthDate: Prisma.FieldRef<"UserProfile", 'DateTime'>
-  readonly sex: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly sex: Prisma.FieldRef<"UserProfile", 'Sex'>
   readonly heightCm: Prisma.FieldRef<"UserProfile", 'Int'>
-  readonly activityLevel: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly activityLevel: Prisma.FieldRef<"UserProfile", 'ActivityLevel'>
   readonly weightKg: Prisma.FieldRef<"UserProfile", 'Decimal'>
   readonly waistCm: Prisma.FieldRef<"UserProfile", 'Decimal'>
   readonly hipsCm: Prisma.FieldRef<"UserProfile", 'Decimal'>
@@ -2089,8 +2105,8 @@ export interface UserProfileFieldRefs {
   readonly restingHeartRateBpm: Prisma.FieldRef<"UserProfile", 'Int'>
   readonly bloodPressureSys: Prisma.FieldRef<"UserProfile", 'Int'>
   readonly bloodPressureDia: Prisma.FieldRef<"UserProfile", 'Int'>
-  readonly smokingStatus: Prisma.FieldRef<"UserProfile", 'String'>
-  readonly alcoholUse: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly smokingStatus: Prisma.FieldRef<"UserProfile", 'SmokingStatus'>
+  readonly alcoholUse: Prisma.FieldRef<"UserProfile", 'AlcoholUse'>
   readonly conditions: Prisma.FieldRef<"UserProfile", 'String'>
   readonly allergies: Prisma.FieldRef<"UserProfile", 'String'>
   readonly intolerances: Prisma.FieldRef<"UserProfile", 'String'>

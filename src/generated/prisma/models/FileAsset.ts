@@ -37,7 +37,7 @@ export type FileAssetSumAggregateOutputType = {
 export type FileAssetMinAggregateOutputType = {
   id: string | null
   userId: string | null
-  kind: string | null
+  kind: $Enums.FileKind | null
   mimeType: string | null
   sizeBytes: number | null
   path: string | null
@@ -50,7 +50,7 @@ export type FileAssetMinAggregateOutputType = {
 export type FileAssetMaxAggregateOutputType = {
   id: string | null
   userId: string | null
-  kind: string | null
+  kind: $Enums.FileKind | null
   mimeType: string | null
   sizeBytes: number | null
   path: string | null
@@ -212,7 +212,7 @@ export type FileAssetGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 export type FileAssetGroupByOutputType = {
   id: string
   userId: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -248,7 +248,7 @@ export type FileAssetWhereInput = {
   NOT?: Prisma.FileAssetWhereInput | Prisma.FileAssetWhereInput[]
   id?: Prisma.StringFilter<"FileAsset"> | string
   userId?: Prisma.StringFilter<"FileAsset"> | string
-  kind?: Prisma.StringFilter<"FileAsset"> | string
+  kind?: Prisma.EnumFileKindFilter<"FileAsset"> | $Enums.FileKind
   mimeType?: Prisma.StringFilter<"FileAsset"> | string
   sizeBytes?: Prisma.IntFilter<"FileAsset"> | number
   path?: Prisma.StringFilter<"FileAsset"> | string
@@ -283,7 +283,7 @@ export type FileAssetWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.FileAssetWhereInput[]
   NOT?: Prisma.FileAssetWhereInput | Prisma.FileAssetWhereInput[]
   userId?: Prisma.StringFilter<"FileAsset"> | string
-  kind?: Prisma.StringFilter<"FileAsset"> | string
+  kind?: Prisma.EnumFileKindFilter<"FileAsset"> | $Enums.FileKind
   mimeType?: Prisma.StringFilter<"FileAsset"> | string
   sizeBytes?: Prisma.IntFilter<"FileAsset"> | number
   path?: Prisma.StringFilter<"FileAsset"> | string
@@ -320,7 +320,7 @@ export type FileAssetScalarWhereWithAggregatesInput = {
   NOT?: Prisma.FileAssetScalarWhereWithAggregatesInput | Prisma.FileAssetScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"FileAsset"> | string
   userId?: Prisma.StringWithAggregatesFilter<"FileAsset"> | string
-  kind?: Prisma.StringWithAggregatesFilter<"FileAsset"> | string
+  kind?: Prisma.EnumFileKindWithAggregatesFilter<"FileAsset"> | $Enums.FileKind
   mimeType?: Prisma.StringWithAggregatesFilter<"FileAsset"> | string
   sizeBytes?: Prisma.IntWithAggregatesFilter<"FileAsset"> | number
   path?: Prisma.StringWithAggregatesFilter<"FileAsset"> | string
@@ -332,7 +332,7 @@ export type FileAssetScalarWhereWithAggregatesInput = {
 
 export type FileAssetCreateInput = {
   id?: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -346,7 +346,7 @@ export type FileAssetCreateInput = {
 export type FileAssetUncheckedCreateInput = {
   id?: string
   userId: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -358,7 +358,7 @@ export type FileAssetUncheckedCreateInput = {
 
 export type FileAssetUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -372,7 +372,7 @@ export type FileAssetUpdateInput = {
 export type FileAssetUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -385,7 +385,7 @@ export type FileAssetUncheckedUpdateInput = {
 export type FileAssetCreateManyInput = {
   id?: string
   userId: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -397,7 +397,7 @@ export type FileAssetCreateManyInput = {
 
 export type FileAssetUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -408,7 +408,7 @@ export type FileAssetUpdateManyMutationInput = {
 export type FileAssetUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -601,6 +601,10 @@ export type FileAssetUncheckedUpdateManyWithoutLabResultNestedInput = {
   deleteMany?: Prisma.FileAssetScalarWhereInput | Prisma.FileAssetScalarWhereInput[]
 }
 
+export type EnumFileKindFieldUpdateOperationsInput = {
+  set?: $Enums.FileKind
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -611,7 +615,7 @@ export type IntFieldUpdateOperationsInput = {
 
 export type FileAssetCreateWithoutUserInput = {
   id?: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -623,7 +627,7 @@ export type FileAssetCreateWithoutUserInput = {
 
 export type FileAssetUncheckedCreateWithoutUserInput = {
   id?: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -665,7 +669,7 @@ export type FileAssetScalarWhereInput = {
   NOT?: Prisma.FileAssetScalarWhereInput | Prisma.FileAssetScalarWhereInput[]
   id?: Prisma.StringFilter<"FileAsset"> | string
   userId?: Prisma.StringFilter<"FileAsset"> | string
-  kind?: Prisma.StringFilter<"FileAsset"> | string
+  kind?: Prisma.EnumFileKindFilter<"FileAsset"> | $Enums.FileKind
   mimeType?: Prisma.StringFilter<"FileAsset"> | string
   sizeBytes?: Prisma.IntFilter<"FileAsset"> | number
   path?: Prisma.StringFilter<"FileAsset"> | string
@@ -677,7 +681,7 @@ export type FileAssetScalarWhereInput = {
 
 export type FileAssetCreateWithoutMealInput = {
   id?: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -690,7 +694,7 @@ export type FileAssetCreateWithoutMealInput = {
 export type FileAssetUncheckedCreateWithoutMealInput = {
   id?: string
   userId: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -727,7 +731,7 @@ export type FileAssetUpdateManyWithWhereWithoutMealInput = {
 
 export type FileAssetCreateWithoutLabResultInput = {
   id?: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -740,7 +744,7 @@ export type FileAssetCreateWithoutLabResultInput = {
 export type FileAssetUncheckedCreateWithoutLabResultInput = {
   id?: string
   userId: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -777,7 +781,7 @@ export type FileAssetUpdateManyWithWhereWithoutLabResultInput = {
 
 export type FileAssetCreateManyUserInput = {
   id?: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -789,7 +793,7 @@ export type FileAssetCreateManyUserInput = {
 
 export type FileAssetUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -801,7 +805,7 @@ export type FileAssetUpdateWithoutUserInput = {
 
 export type FileAssetUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -813,7 +817,7 @@ export type FileAssetUncheckedUpdateWithoutUserInput = {
 
 export type FileAssetUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -826,7 +830,7 @@ export type FileAssetUncheckedUpdateManyWithoutUserInput = {
 export type FileAssetCreateManyMealInput = {
   id?: string
   userId: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -837,7 +841,7 @@ export type FileAssetCreateManyMealInput = {
 
 export type FileAssetUpdateWithoutMealInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -850,7 +854,7 @@ export type FileAssetUpdateWithoutMealInput = {
 export type FileAssetUncheckedUpdateWithoutMealInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -862,7 +866,7 @@ export type FileAssetUncheckedUpdateWithoutMealInput = {
 export type FileAssetUncheckedUpdateManyWithoutMealInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -874,7 +878,7 @@ export type FileAssetUncheckedUpdateManyWithoutMealInput = {
 export type FileAssetCreateManyLabResultInput = {
   id?: string
   userId: string
-  kind: string
+  kind: $Enums.FileKind
   mimeType: string
   sizeBytes: number
   path: string
@@ -885,7 +889,7 @@ export type FileAssetCreateManyLabResultInput = {
 
 export type FileAssetUpdateWithoutLabResultInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -898,7 +902,7 @@ export type FileAssetUpdateWithoutLabResultInput = {
 export type FileAssetUncheckedUpdateWithoutLabResultInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -910,7 +914,7 @@ export type FileAssetUncheckedUpdateWithoutLabResultInput = {
 export type FileAssetUncheckedUpdateManyWithoutLabResultInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumFileKindFieldUpdateOperationsInput | $Enums.FileKind
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
   sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
   path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1009,7 +1013,7 @@ export type $FileAssetPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
-    kind: string
+    kind: $Enums.FileKind
     mimeType: string
     sizeBytes: number
     path: string
@@ -1445,7 +1449,7 @@ export interface Prisma__FileAssetClient<T, Null = never, ExtArgs extends runtim
 export interface FileAssetFieldRefs {
   readonly id: Prisma.FieldRef<"FileAsset", 'String'>
   readonly userId: Prisma.FieldRef<"FileAsset", 'String'>
-  readonly kind: Prisma.FieldRef<"FileAsset", 'String'>
+  readonly kind: Prisma.FieldRef<"FileAsset", 'FileKind'>
   readonly mimeType: Prisma.FieldRef<"FileAsset", 'String'>
   readonly sizeBytes: Prisma.FieldRef<"FileAsset", 'Int'>
   readonly path: Prisma.FieldRef<"FileAsset", 'String'>

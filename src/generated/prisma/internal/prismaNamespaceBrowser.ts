@@ -61,6 +61,8 @@ export const ModelName = {
   SleepLog: 'SleepLog',
   ActivityLog: 'ActivityLog',
   LabResult: 'LabResult',
+  LabPanel: 'LabPanel',
+  LabMetric: 'LabMetric',
   FileAsset: 'FileAsset',
   DailySummary: 'DailySummary'
 } as const
@@ -145,6 +147,7 @@ export const BodyMeasurementScalarFieldEnum = {
   hipsCm: 'hipsCm',
   bodyFatPercent: 'bodyFatPercent',
   muscleMassKg: 'muscleMassKg',
+  bodyWaterPercent: 'bodyWaterPercent',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -175,6 +178,8 @@ export const DailyLogScalarFieldEnum = {
   comment: 'comment',
   isCompleted: 'isCompleted',
   waterMl: 'waterMl',
+  energyLevel: 'energyLevel',
+  stressLevel: 'stressLevel',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -192,6 +197,7 @@ export const MealScalarFieldEnum = {
   proteinG: 'proteinG',
   fatG: 'fatG',
   carbsG: 'carbsG',
+  confidenceScore: 'confidenceScore',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -260,6 +266,38 @@ export const LabResultScalarFieldEnum = {
 export type LabResultScalarFieldEnum = (typeof LabResultScalarFieldEnum)[keyof typeof LabResultScalarFieldEnum]
 
 
+export const LabPanelScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  labResultId: 'labResultId',
+  name: 'name',
+  type: 'type',
+  date: 'date',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LabPanelScalarFieldEnum = (typeof LabPanelScalarFieldEnum)[keyof typeof LabPanelScalarFieldEnum]
+
+
+export const LabMetricScalarFieldEnum = {
+  id: 'id',
+  panelId: 'panelId',
+  code: 'code',
+  name: 'name',
+  value: 'value',
+  unit: 'unit',
+  refLow: 'refLow',
+  refHigh: 'refHigh',
+  flag: 'flag',
+  meta: 'meta',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LabMetricScalarFieldEnum = (typeof LabMetricScalarFieldEnum)[keyof typeof LabMetricScalarFieldEnum]
+
+
 export const FileAssetScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -306,6 +344,14 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -320,4 +366,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

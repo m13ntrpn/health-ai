@@ -394,6 +394,8 @@ export const ModelName = {
   SleepLog: 'SleepLog',
   ActivityLog: 'ActivityLog',
   LabResult: 'LabResult',
+  LabPanel: 'LabPanel',
+  LabMetric: 'LabMetric',
   FileAsset: 'FileAsset',
   DailySummary: 'DailySummary'
 } as const
@@ -411,7 +413,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "userProfile" | "bodyMeasurement" | "medicationPlan" | "dailyLog" | "meal" | "intakeItem" | "sleepLog" | "activityLog" | "labResult" | "fileAsset" | "dailySummary"
+    modelProps: "user" | "userProfile" | "bodyMeasurement" | "medicationPlan" | "dailyLog" | "meal" | "intakeItem" | "sleepLog" | "activityLog" | "labResult" | "labPanel" | "labMetric" | "fileAsset" | "dailySummary"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1155,6 +1157,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    LabPanel: {
+      payload: Prisma.$LabPanelPayload<ExtArgs>
+      fields: Prisma.LabPanelFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LabPanelFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabPanelPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LabPanelFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabPanelPayload>
+        }
+        findFirst: {
+          args: Prisma.LabPanelFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabPanelPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LabPanelFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabPanelPayload>
+        }
+        findMany: {
+          args: Prisma.LabPanelFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabPanelPayload>[]
+        }
+        create: {
+          args: Prisma.LabPanelCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabPanelPayload>
+        }
+        createMany: {
+          args: Prisma.LabPanelCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LabPanelCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabPanelPayload>[]
+        }
+        delete: {
+          args: Prisma.LabPanelDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabPanelPayload>
+        }
+        update: {
+          args: Prisma.LabPanelUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabPanelPayload>
+        }
+        deleteMany: {
+          args: Prisma.LabPanelDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LabPanelUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LabPanelUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabPanelPayload>[]
+        }
+        upsert: {
+          args: Prisma.LabPanelUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabPanelPayload>
+        }
+        aggregate: {
+          args: Prisma.LabPanelAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLabPanel>
+        }
+        groupBy: {
+          args: Prisma.LabPanelGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LabPanelGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LabPanelCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LabPanelCountAggregateOutputType> | number
+        }
+      }
+    }
+    LabMetric: {
+      payload: Prisma.$LabMetricPayload<ExtArgs>
+      fields: Prisma.LabMetricFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LabMetricFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabMetricPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LabMetricFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabMetricPayload>
+        }
+        findFirst: {
+          args: Prisma.LabMetricFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabMetricPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LabMetricFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabMetricPayload>
+        }
+        findMany: {
+          args: Prisma.LabMetricFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabMetricPayload>[]
+        }
+        create: {
+          args: Prisma.LabMetricCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabMetricPayload>
+        }
+        createMany: {
+          args: Prisma.LabMetricCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LabMetricCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabMetricPayload>[]
+        }
+        delete: {
+          args: Prisma.LabMetricDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabMetricPayload>
+        }
+        update: {
+          args: Prisma.LabMetricUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabMetricPayload>
+        }
+        deleteMany: {
+          args: Prisma.LabMetricDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LabMetricUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LabMetricUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabMetricPayload>[]
+        }
+        upsert: {
+          args: Prisma.LabMetricUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabMetricPayload>
+        }
+        aggregate: {
+          args: Prisma.LabMetricAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLabMetric>
+        }
+        groupBy: {
+          args: Prisma.LabMetricGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LabMetricGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LabMetricCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LabMetricCountAggregateOutputType> | number
+        }
+      }
+    }
     FileAsset: {
       payload: Prisma.$FileAssetPayload<ExtArgs>
       fields: Prisma.FileAssetFieldRefs
@@ -1406,6 +1556,7 @@ export const BodyMeasurementScalarFieldEnum = {
   hipsCm: 'hipsCm',
   bodyFatPercent: 'bodyFatPercent',
   muscleMassKg: 'muscleMassKg',
+  bodyWaterPercent: 'bodyWaterPercent',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1436,6 +1587,8 @@ export const DailyLogScalarFieldEnum = {
   comment: 'comment',
   isCompleted: 'isCompleted',
   waterMl: 'waterMl',
+  energyLevel: 'energyLevel',
+  stressLevel: 'stressLevel',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1453,6 +1606,7 @@ export const MealScalarFieldEnum = {
   proteinG: 'proteinG',
   fatG: 'fatG',
   carbsG: 'carbsG',
+  confidenceScore: 'confidenceScore',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1521,6 +1675,38 @@ export const LabResultScalarFieldEnum = {
 export type LabResultScalarFieldEnum = (typeof LabResultScalarFieldEnum)[keyof typeof LabResultScalarFieldEnum]
 
 
+export const LabPanelScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  labResultId: 'labResultId',
+  name: 'name',
+  type: 'type',
+  date: 'date',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LabPanelScalarFieldEnum = (typeof LabPanelScalarFieldEnum)[keyof typeof LabPanelScalarFieldEnum]
+
+
+export const LabMetricScalarFieldEnum = {
+  id: 'id',
+  panelId: 'panelId',
+  code: 'code',
+  name: 'name',
+  value: 'value',
+  unit: 'unit',
+  refLow: 'refLow',
+  refHigh: 'refHigh',
+  flag: 'flag',
+  meta: 'meta',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LabMetricScalarFieldEnum = (typeof LabMetricScalarFieldEnum)[keyof typeof LabMetricScalarFieldEnum]
+
+
 export const FileAssetScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -1567,6 +1753,14 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -1581,6 +1775,15 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -1618,6 +1821,20 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'Sex'
+ */
+export type EnumSexFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Sex'>
+    
+
+
+/**
+ * Reference to a field of type 'Sex[]'
+ */
+export type ListEnumSexFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Sex[]'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1628,6 +1845,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ActivityLevel'
+ */
+export type EnumActivityLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ActivityLevel'>
+    
+
+
+/**
+ * Reference to a field of type 'ActivityLevel[]'
+ */
+export type ListEnumActivityLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ActivityLevel[]'>
     
 
 
@@ -1646,9 +1877,107 @@ export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMo
 
 
 /**
+ * Reference to a field of type 'SmokingStatus'
+ */
+export type EnumSmokingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SmokingStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'SmokingStatus[]'
+ */
+export type ListEnumSmokingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SmokingStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AlcoholUse'
+ */
+export type EnumAlcoholUseFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AlcoholUse'>
+    
+
+
+/**
+ * Reference to a field of type 'AlcoholUse[]'
+ */
+export type ListEnumAlcoholUseFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AlcoholUse[]'>
+    
+
+
+/**
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'MealType'
+ */
+export type EnumMealTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MealType'>
+    
+
+
+/**
+ * Reference to a field of type 'MealType[]'
+ */
+export type ListEnumMealTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MealType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'IntakeCategory'
+ */
+export type EnumIntakeCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IntakeCategory'>
+    
+
+
+/**
+ * Reference to a field of type 'IntakeCategory[]'
+ */
+export type ListEnumIntakeCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IntakeCategory[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ActivityIntensity'
+ */
+export type EnumActivityIntensityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ActivityIntensity'>
+    
+
+
+/**
+ * Reference to a field of type 'ActivityIntensity[]'
+ */
+export type ListEnumActivityIntensityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ActivityIntensity[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'FileKind'
+ */
+export type EnumFileKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FileKind'>
+    
+
+
+/**
+ * Reference to a field of type 'FileKind[]'
+ */
+export type ListEnumFileKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FileKind[]'>
     
 
 
@@ -1770,6 +2099,8 @@ export type GlobalOmitConfig = {
   sleepLog?: Prisma.SleepLogOmit
   activityLog?: Prisma.ActivityLogOmit
   labResult?: Prisma.LabResultOmit
+  labPanel?: Prisma.LabPanelOmit
+  labMetric?: Prisma.LabMetricOmit
   fileAsset?: Prisma.FileAssetOmit
   dailySummary?: Prisma.DailySummaryOmit
 }

@@ -65,7 +65,6 @@ export type DailySummaryMinAggregateOutputType = {
   fatDelta: number | null
   carbsDelta: number | null
   waterDelta: number | null
-  flags: string | null
   textSummary: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -84,7 +83,6 @@ export type DailySummaryMaxAggregateOutputType = {
   fatDelta: number | null
   carbsDelta: number | null
   waterDelta: number | null
-  flags: string | null
   textSummary: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -150,7 +148,6 @@ export type DailySummaryMinAggregateInputType = {
   fatDelta?: true
   carbsDelta?: true
   waterDelta?: true
-  flags?: true
   textSummary?: true
   createdAt?: true
   updatedAt?: true
@@ -169,7 +166,6 @@ export type DailySummaryMaxAggregateInputType = {
   fatDelta?: true
   carbsDelta?: true
   waterDelta?: true
-  flags?: true
   textSummary?: true
   createdAt?: true
   updatedAt?: true
@@ -294,7 +290,7 @@ export type DailySummaryGroupByOutputType = {
   fatDelta: number | null
   carbsDelta: number | null
   waterDelta: number | null
-  flags: string | null
+  flags: runtime.JsonValue | null
   textSummary: string | null
   createdAt: Date
   updatedAt: Date
@@ -336,7 +332,7 @@ export type DailySummaryWhereInput = {
   fatDelta?: Prisma.IntNullableFilter<"DailySummary"> | number | null
   carbsDelta?: Prisma.IntNullableFilter<"DailySummary"> | number | null
   waterDelta?: Prisma.IntNullableFilter<"DailySummary"> | number | null
-  flags?: Prisma.StringNullableFilter<"DailySummary"> | string | null
+  flags?: Prisma.JsonNullableFilter<"DailySummary">
   textSummary?: Prisma.StringNullableFilter<"DailySummary"> | string | null
   createdAt?: Prisma.DateTimeFilter<"DailySummary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DailySummary"> | Date | string
@@ -379,7 +375,7 @@ export type DailySummaryWhereUniqueInput = Prisma.AtLeast<{
   fatDelta?: Prisma.IntNullableFilter<"DailySummary"> | number | null
   carbsDelta?: Prisma.IntNullableFilter<"DailySummary"> | number | null
   waterDelta?: Prisma.IntNullableFilter<"DailySummary"> | number | null
-  flags?: Prisma.StringNullableFilter<"DailySummary"> | string | null
+  flags?: Prisma.JsonNullableFilter<"DailySummary">
   textSummary?: Prisma.StringNullableFilter<"DailySummary"> | string | null
   createdAt?: Prisma.DateTimeFilter<"DailySummary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DailySummary"> | Date | string
@@ -426,7 +422,7 @@ export type DailySummaryScalarWhereWithAggregatesInput = {
   fatDelta?: Prisma.IntNullableWithAggregatesFilter<"DailySummary"> | number | null
   carbsDelta?: Prisma.IntNullableWithAggregatesFilter<"DailySummary"> | number | null
   waterDelta?: Prisma.IntNullableWithAggregatesFilter<"DailySummary"> | number | null
-  flags?: Prisma.StringNullableWithAggregatesFilter<"DailySummary"> | string | null
+  flags?: Prisma.JsonNullableWithAggregatesFilter<"DailySummary">
   textSummary?: Prisma.StringNullableWithAggregatesFilter<"DailySummary"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"DailySummary"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"DailySummary"> | Date | string
@@ -444,7 +440,7 @@ export type DailySummaryCreateInput = {
   fatDelta?: number | null
   carbsDelta?: number | null
   waterDelta?: number | null
-  flags?: string | null
+  flags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   textSummary?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -464,7 +460,7 @@ export type DailySummaryUncheckedCreateInput = {
   fatDelta?: number | null
   carbsDelta?: number | null
   waterDelta?: number | null
-  flags?: string | null
+  flags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   textSummary?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -482,7 +478,7 @@ export type DailySummaryUpdateInput = {
   fatDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   carbsDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   waterDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  flags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   textSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -502,7 +498,7 @@ export type DailySummaryUncheckedUpdateInput = {
   fatDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   carbsDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   waterDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  flags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   textSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -521,7 +517,7 @@ export type DailySummaryCreateManyInput = {
   fatDelta?: number | null
   carbsDelta?: number | null
   waterDelta?: number | null
-  flags?: string | null
+  flags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   textSummary?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -539,7 +535,7 @@ export type DailySummaryUpdateManyMutationInput = {
   fatDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   carbsDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   waterDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  flags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   textSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -558,7 +554,7 @@ export type DailySummaryUncheckedUpdateManyInput = {
   fatDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   carbsDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   waterDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  flags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   textSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -614,7 +610,6 @@ export type DailySummaryMaxOrderByAggregateInput = {
   fatDelta?: Prisma.SortOrder
   carbsDelta?: Prisma.SortOrder
   waterDelta?: Prisma.SortOrder
-  flags?: Prisma.SortOrder
   textSummary?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -633,7 +628,6 @@ export type DailySummaryMinOrderByAggregateInput = {
   fatDelta?: Prisma.SortOrder
   carbsDelta?: Prisma.SortOrder
   waterDelta?: Prisma.SortOrder
-  flags?: Prisma.SortOrder
   textSummary?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -696,7 +690,7 @@ export type DailySummaryCreateWithoutDailyLogInput = {
   fatDelta?: number | null
   carbsDelta?: number | null
   waterDelta?: number | null
-  flags?: string | null
+  flags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   textSummary?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -714,7 +708,7 @@ export type DailySummaryUncheckedCreateWithoutDailyLogInput = {
   fatDelta?: number | null
   carbsDelta?: number | null
   waterDelta?: number | null
-  flags?: string | null
+  flags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   textSummary?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -748,7 +742,7 @@ export type DailySummaryUpdateWithoutDailyLogInput = {
   fatDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   carbsDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   waterDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  flags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   textSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -766,7 +760,7 @@ export type DailySummaryUncheckedUpdateWithoutDailyLogInput = {
   fatDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   carbsDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   waterDelta?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  flags?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  flags?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   textSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -882,7 +876,7 @@ export type $DailySummaryPayload<ExtArgs extends runtime.Types.Extensions.Intern
     fatDelta: number | null
     carbsDelta: number | null
     waterDelta: number | null
-    flags: string | null
+    flags: runtime.JsonValue | null
     textSummary: string | null
     createdAt: Date
     updatedAt: Date
@@ -1322,7 +1316,7 @@ export interface DailySummaryFieldRefs {
   readonly fatDelta: Prisma.FieldRef<"DailySummary", 'Int'>
   readonly carbsDelta: Prisma.FieldRef<"DailySummary", 'Int'>
   readonly waterDelta: Prisma.FieldRef<"DailySummary", 'Int'>
-  readonly flags: Prisma.FieldRef<"DailySummary", 'String'>
+  readonly flags: Prisma.FieldRef<"DailySummary", 'Json'>
   readonly textSummary: Prisma.FieldRef<"DailySummary", 'String'>
   readonly createdAt: Prisma.FieldRef<"DailySummary", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"DailySummary", 'DateTime'>

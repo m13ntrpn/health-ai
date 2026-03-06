@@ -30,6 +30,25 @@ export interface ReportContext {
   activity: {
     totalMinutes: number;
     avgMinPerDay: number;
+    avgEnergyLevel: number | null;
+    avgStressLevel: number | null;
+  };
+  labs: {
+    panels: {
+      id: string;
+      name: string;
+      type: string | null;
+      date: string | null;
+      metrics: {
+        code: string | null;
+        name: string;
+        value: number | null;
+        unit: string | null;
+        refLow: number | null;
+        refHigh: number | null;
+        flag: string | null;
+      }[];
+    }[];
   };
   profile: {
     birthDate: string | null;
@@ -87,12 +106,17 @@ export async function getReportContext(input: ReportInput): Promise<ReportContex
   const from = dateStringToDateTime(input.fromDate);
   const to = dateStringToDateTime(input.toDate);
 
-  const [logs, profile] = await Promise.all([
+  const [logs, profile, labPanels] = await Promise.all([
     prisma.dailyLog.findMany({
       where: { userId: input.userId, date: { gte: from, lte: to } },
       include: { meals: true, sleepLogs: true, activityLogs: true },
     }),
     prisma.userProfile.findUnique({ where: { userId: input.userId } }),
+    prisma.labPanel.findMany({
+      where: { userId: input.userId, date: { gte: from, lte: to } },
+      orderBy: [{ date: "desc" }, { createdAt: "desc" }],
+      include: { metrics: true },
+    }),
   ]);
 
   const totalCalories = logs.flatMap((l) => l.meals).reduce((s, m) => s + (m.calories ?? 0), 0);
@@ -111,6 +135,16 @@ export async function getReportContext(input: ReportInput): Promise<ReportContex
     : null;
 
   const totalActivityMin = logs.flatMap((l) => l.activityLogs).reduce((s, a) => s + (a.durationMin ?? 0), 0);
+  const energyValues = logs.map((l) => l.energyLevel).filter((v): v is number => v != null);
+  const stressValues = logs.map((l) => l.stressLevel).filter((v): v is number => v != null);
+  const avgEnergy =
+    energyValues.length > 0
+      ? Math.round((energyValues.reduce((a, b) => a + b, 0) / energyValues.length) * 10) / 10
+      : null;
+  const avgStress =
+    stressValues.length > 0
+      ? Math.round((stressValues.reduce((a, b) => a + b, 0) / stressValues.length) * 10) / 10
+      : null;
   const daysCount = logs.length;
   const completedDays = logs.filter((l) => l.isCompleted).length;
 
@@ -131,7 +165,29 @@ export async function getReportContext(input: ReportInput): Promise<ReportContex
       avgWaterMlPerDay: daysCount ? Math.round(totalWaterMl / daysCount) : 0,
     },
     sleep: { avgHoursPerNight: avgSleepH != null ? Math.round(avgSleepH * 10) / 10 : null },
-    activity: { totalMinutes: totalActivityMin, avgMinPerDay: daysCount ? Math.round(totalActivityMin / daysCount) : 0 },
+    activity: {
+      totalMinutes: totalActivityMin,
+      avgMinPerDay: daysCount ? Math.round(totalActivityMin / daysCount) : 0,
+      avgEnergyLevel: avgEnergy,
+      avgStressLevel: avgStress,
+    },
+    labs: {
+      panels: labPanels.map((p) => ({
+        id: p.id,
+        name: p.name,
+        type: p.type ?? null,
+        date: p.date ? toIsoDate(p.date) : null,
+        metrics: p.metrics.map((m) => ({
+          code: m.code ?? null,
+          name: m.name,
+          value: m.value != null ? Number(m.value) : null,
+          unit: m.unit ?? null,
+          refLow: m.refLow != null ? Number(m.refLow) : null,
+          refHigh: m.refHigh != null ? Number(m.refHigh) : null,
+          flag: m.flag ?? null,
+        })),
+      })),
+    },
     profile: profile
       ? {
           birthDate: profile.birthDate ? toIsoDate(profile.birthDate) : null,

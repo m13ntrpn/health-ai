@@ -208,6 +208,7 @@ export type LabResultWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"LabResult"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   files?: Prisma.FileAssetListRelationFilter
+  panels?: Prisma.LabPanelListRelationFilter
 }
 
 export type LabResultOrderByWithRelationInput = {
@@ -221,6 +222,7 @@ export type LabResultOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   files?: Prisma.FileAssetOrderByRelationAggregateInput
+  panels?: Prisma.LabPanelOrderByRelationAggregateInput
 }
 
 export type LabResultWhereUniqueInput = Prisma.AtLeast<{
@@ -237,6 +239,7 @@ export type LabResultWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"LabResult"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   files?: Prisma.FileAssetListRelationFilter
+  panels?: Prisma.LabPanelListRelationFilter
 }, "id">
 
 export type LabResultOrderByWithAggregationInput = {
@@ -277,6 +280,7 @@ export type LabResultCreateInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutLabResultsInput
   files?: Prisma.FileAssetCreateNestedManyWithoutLabResultInput
+  panels?: Prisma.LabPanelCreateNestedManyWithoutLabResultInput
 }
 
 export type LabResultUncheckedCreateInput = {
@@ -289,6 +293,7 @@ export type LabResultUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   files?: Prisma.FileAssetUncheckedCreateNestedManyWithoutLabResultInput
+  panels?: Prisma.LabPanelUncheckedCreateNestedManyWithoutLabResultInput
 }
 
 export type LabResultUpdateInput = {
@@ -301,6 +306,7 @@ export type LabResultUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutLabResultsNestedInput
   files?: Prisma.FileAssetUpdateManyWithoutLabResultNestedInput
+  panels?: Prisma.LabPanelUpdateManyWithoutLabResultNestedInput
 }
 
 export type LabResultUncheckedUpdateInput = {
@@ -313,6 +319,7 @@ export type LabResultUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   files?: Prisma.FileAssetUncheckedUpdateManyWithoutLabResultNestedInput
+  panels?: Prisma.LabPanelUncheckedUpdateManyWithoutLabResultNestedInput
 }
 
 export type LabResultCreateManyInput = {
@@ -437,6 +444,22 @@ export type LabResultUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.LabResultScalarWhereInput | Prisma.LabResultScalarWhereInput[]
 }
 
+export type LabResultCreateNestedOneWithoutPanelsInput = {
+  create?: Prisma.XOR<Prisma.LabResultCreateWithoutPanelsInput, Prisma.LabResultUncheckedCreateWithoutPanelsInput>
+  connectOrCreate?: Prisma.LabResultCreateOrConnectWithoutPanelsInput
+  connect?: Prisma.LabResultWhereUniqueInput
+}
+
+export type LabResultUpdateOneWithoutPanelsNestedInput = {
+  create?: Prisma.XOR<Prisma.LabResultCreateWithoutPanelsInput, Prisma.LabResultUncheckedCreateWithoutPanelsInput>
+  connectOrCreate?: Prisma.LabResultCreateOrConnectWithoutPanelsInput
+  upsert?: Prisma.LabResultUpsertWithoutPanelsInput
+  disconnect?: Prisma.LabResultWhereInput | boolean
+  delete?: Prisma.LabResultWhereInput | boolean
+  connect?: Prisma.LabResultWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LabResultUpdateToOneWithWhereWithoutPanelsInput, Prisma.LabResultUpdateWithoutPanelsInput>, Prisma.LabResultUncheckedUpdateWithoutPanelsInput>
+}
+
 export type LabResultCreateNestedOneWithoutFilesInput = {
   create?: Prisma.XOR<Prisma.LabResultCreateWithoutFilesInput, Prisma.LabResultUncheckedCreateWithoutFilesInput>
   connectOrCreate?: Prisma.LabResultCreateOrConnectWithoutFilesInput
@@ -462,6 +485,7 @@ export type LabResultCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   files?: Prisma.FileAssetCreateNestedManyWithoutLabResultInput
+  panels?: Prisma.LabPanelCreateNestedManyWithoutLabResultInput
 }
 
 export type LabResultUncheckedCreateWithoutUserInput = {
@@ -473,6 +497,7 @@ export type LabResultUncheckedCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   files?: Prisma.FileAssetUncheckedCreateNestedManyWithoutLabResultInput
+  panels?: Prisma.LabPanelUncheckedCreateNestedManyWithoutLabResultInput
 }
 
 export type LabResultCreateOrConnectWithoutUserInput = {
@@ -515,6 +540,70 @@ export type LabResultScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"LabResult"> | Date | string
 }
 
+export type LabResultCreateWithoutPanelsInput = {
+  id?: string
+  type?: string | null
+  date?: Date | string | null
+  title?: string | null
+  rawSummary?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutLabResultsInput
+  files?: Prisma.FileAssetCreateNestedManyWithoutLabResultInput
+}
+
+export type LabResultUncheckedCreateWithoutPanelsInput = {
+  id?: string
+  userId: string
+  type?: string | null
+  date?: Date | string | null
+  title?: string | null
+  rawSummary?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  files?: Prisma.FileAssetUncheckedCreateNestedManyWithoutLabResultInput
+}
+
+export type LabResultCreateOrConnectWithoutPanelsInput = {
+  where: Prisma.LabResultWhereUniqueInput
+  create: Prisma.XOR<Prisma.LabResultCreateWithoutPanelsInput, Prisma.LabResultUncheckedCreateWithoutPanelsInput>
+}
+
+export type LabResultUpsertWithoutPanelsInput = {
+  update: Prisma.XOR<Prisma.LabResultUpdateWithoutPanelsInput, Prisma.LabResultUncheckedUpdateWithoutPanelsInput>
+  create: Prisma.XOR<Prisma.LabResultCreateWithoutPanelsInput, Prisma.LabResultUncheckedCreateWithoutPanelsInput>
+  where?: Prisma.LabResultWhereInput
+}
+
+export type LabResultUpdateToOneWithWhereWithoutPanelsInput = {
+  where?: Prisma.LabResultWhereInput
+  data: Prisma.XOR<Prisma.LabResultUpdateWithoutPanelsInput, Prisma.LabResultUncheckedUpdateWithoutPanelsInput>
+}
+
+export type LabResultUpdateWithoutPanelsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rawSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutLabResultsNestedInput
+  files?: Prisma.FileAssetUpdateManyWithoutLabResultNestedInput
+}
+
+export type LabResultUncheckedUpdateWithoutPanelsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rawSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  files?: Prisma.FileAssetUncheckedUpdateManyWithoutLabResultNestedInput
+}
+
 export type LabResultCreateWithoutFilesInput = {
   id?: string
   type?: string | null
@@ -524,6 +613,7 @@ export type LabResultCreateWithoutFilesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutLabResultsInput
+  panels?: Prisma.LabPanelCreateNestedManyWithoutLabResultInput
 }
 
 export type LabResultUncheckedCreateWithoutFilesInput = {
@@ -535,6 +625,7 @@ export type LabResultUncheckedCreateWithoutFilesInput = {
   rawSummary?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  panels?: Prisma.LabPanelUncheckedCreateNestedManyWithoutLabResultInput
 }
 
 export type LabResultCreateOrConnectWithoutFilesInput = {
@@ -562,6 +653,7 @@ export type LabResultUpdateWithoutFilesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutLabResultsNestedInput
+  panels?: Prisma.LabPanelUpdateManyWithoutLabResultNestedInput
 }
 
 export type LabResultUncheckedUpdateWithoutFilesInput = {
@@ -573,6 +665,7 @@ export type LabResultUncheckedUpdateWithoutFilesInput = {
   rawSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  panels?: Prisma.LabPanelUncheckedUpdateManyWithoutLabResultNestedInput
 }
 
 export type LabResultCreateManyUserInput = {
@@ -594,6 +687,7 @@ export type LabResultUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   files?: Prisma.FileAssetUpdateManyWithoutLabResultNestedInput
+  panels?: Prisma.LabPanelUpdateManyWithoutLabResultNestedInput
 }
 
 export type LabResultUncheckedUpdateWithoutUserInput = {
@@ -605,6 +699,7 @@ export type LabResultUncheckedUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   files?: Prisma.FileAssetUncheckedUpdateManyWithoutLabResultNestedInput
+  panels?: Prisma.LabPanelUncheckedUpdateManyWithoutLabResultNestedInput
 }
 
 export type LabResultUncheckedUpdateManyWithoutUserInput = {
@@ -624,10 +719,12 @@ export type LabResultUncheckedUpdateManyWithoutUserInput = {
 
 export type LabResultCountOutputType = {
   files: number
+  panels: number
 }
 
 export type LabResultCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   files?: boolean | LabResultCountOutputTypeCountFilesArgs
+  panels?: boolean | LabResultCountOutputTypeCountPanelsArgs
 }
 
 /**
@@ -647,6 +744,13 @@ export type LabResultCountOutputTypeCountFilesArgs<ExtArgs extends runtime.Types
   where?: Prisma.FileAssetWhereInput
 }
 
+/**
+ * LabResultCountOutputType without action
+ */
+export type LabResultCountOutputTypeCountPanelsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LabPanelWhereInput
+}
+
 
 export type LabResultSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -659,6 +763,7 @@ export type LabResultSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   files?: boolean | Prisma.LabResult$filesArgs<ExtArgs>
+  panels?: boolean | Prisma.LabResult$panelsArgs<ExtArgs>
   _count?: boolean | Prisma.LabResultCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["labResult"]>
 
@@ -701,6 +806,7 @@ export type LabResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type LabResultInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   files?: boolean | Prisma.LabResult$filesArgs<ExtArgs>
+  panels?: boolean | Prisma.LabResult$panelsArgs<ExtArgs>
   _count?: boolean | Prisma.LabResultCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LabResultIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -715,6 +821,7 @@ export type $LabResultPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     files: Prisma.$FileAssetPayload<ExtArgs>[]
+    panels: Prisma.$LabPanelPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1121,6 +1228,7 @@ export interface Prisma__LabResultClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   files<T extends Prisma.LabResult$filesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LabResult$filesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FileAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  panels<T extends Prisma.LabResult$panelsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LabResult$panelsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LabPanelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1575,6 +1683,30 @@ export type LabResult$filesArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.FileAssetScalarFieldEnum | Prisma.FileAssetScalarFieldEnum[]
+}
+
+/**
+ * LabResult.panels
+ */
+export type LabResult$panelsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LabPanel
+   */
+  select?: Prisma.LabPanelSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LabPanel
+   */
+  omit?: Prisma.LabPanelOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LabPanelInclude<ExtArgs> | null
+  where?: Prisma.LabPanelWhereInput
+  orderBy?: Prisma.LabPanelOrderByWithRelationInput | Prisma.LabPanelOrderByWithRelationInput[]
+  cursor?: Prisma.LabPanelWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LabPanelScalarFieldEnum | Prisma.LabPanelScalarFieldEnum[]
 }
 
 /**

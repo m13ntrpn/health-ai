@@ -187,6 +187,7 @@ export type UserWhereInput = {
   medicationPlans?: Prisma.MedicationPlanListRelationFilter
   dailyLogs?: Prisma.DailyLogListRelationFilter
   labResults?: Prisma.LabResultListRelationFilter
+  labPanels?: Prisma.LabPanelListRelationFilter
   fileAssets?: Prisma.FileAssetListRelationFilter
 }
 
@@ -201,6 +202,7 @@ export type UserOrderByWithRelationInput = {
   medicationPlans?: Prisma.MedicationPlanOrderByRelationAggregateInput
   dailyLogs?: Prisma.DailyLogOrderByRelationAggregateInput
   labResults?: Prisma.LabResultOrderByRelationAggregateInput
+  labPanels?: Prisma.LabPanelOrderByRelationAggregateInput
   fileAssets?: Prisma.FileAssetOrderByRelationAggregateInput
 }
 
@@ -218,6 +220,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   medicationPlans?: Prisma.MedicationPlanListRelationFilter
   dailyLogs?: Prisma.DailyLogListRelationFilter
   labResults?: Prisma.LabResultListRelationFilter
+  labPanels?: Prisma.LabPanelListRelationFilter
   fileAssets?: Prisma.FileAssetListRelationFilter
 }, "id" | "telegramUserId">
 
@@ -254,6 +257,7 @@ export type UserCreateInput = {
   medicationPlans?: Prisma.MedicationPlanCreateNestedManyWithoutUserInput
   dailyLogs?: Prisma.DailyLogCreateNestedManyWithoutUserInput
   labResults?: Prisma.LabResultCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelCreateNestedManyWithoutUserInput
   fileAssets?: Prisma.FileAssetCreateNestedManyWithoutUserInput
 }
 
@@ -268,6 +272,7 @@ export type UserUncheckedCreateInput = {
   medicationPlans?: Prisma.MedicationPlanUncheckedCreateNestedManyWithoutUserInput
   dailyLogs?: Prisma.DailyLogUncheckedCreateNestedManyWithoutUserInput
   labResults?: Prisma.LabResultUncheckedCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelUncheckedCreateNestedManyWithoutUserInput
   fileAssets?: Prisma.FileAssetUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -282,6 +287,7 @@ export type UserUpdateInput = {
   medicationPlans?: Prisma.MedicationPlanUpdateManyWithoutUserNestedInput
   dailyLogs?: Prisma.DailyLogUpdateManyWithoutUserNestedInput
   labResults?: Prisma.LabResultUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUpdateManyWithoutUserNestedInput
   fileAssets?: Prisma.FileAssetUpdateManyWithoutUserNestedInput
 }
 
@@ -296,6 +302,7 @@ export type UserUncheckedUpdateInput = {
   medicationPlans?: Prisma.MedicationPlanUncheckedUpdateManyWithoutUserNestedInput
   dailyLogs?: Prisma.DailyLogUncheckedUpdateManyWithoutUserNestedInput
   labResults?: Prisma.LabResultUncheckedUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUncheckedUpdateManyWithoutUserNestedInput
   fileAssets?: Prisma.FileAssetUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -434,6 +441,20 @@ export type UserUpdateOneRequiredWithoutLabResultsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLabResultsInput, Prisma.UserUpdateWithoutLabResultsInput>, Prisma.UserUncheckedUpdateWithoutLabResultsInput>
 }
 
+export type UserCreateNestedOneWithoutLabPanelsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLabPanelsInput, Prisma.UserUncheckedCreateWithoutLabPanelsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLabPanelsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutLabPanelsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLabPanelsInput, Prisma.UserUncheckedCreateWithoutLabPanelsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLabPanelsInput
+  upsert?: Prisma.UserUpsertWithoutLabPanelsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLabPanelsInput, Prisma.UserUpdateWithoutLabPanelsInput>, Prisma.UserUncheckedUpdateWithoutLabPanelsInput>
+}
+
 export type UserCreateNestedOneWithoutFileAssetsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutFileAssetsInput, Prisma.UserUncheckedCreateWithoutFileAssetsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutFileAssetsInput
@@ -458,6 +479,7 @@ export type UserCreateWithoutProfileInput = {
   medicationPlans?: Prisma.MedicationPlanCreateNestedManyWithoutUserInput
   dailyLogs?: Prisma.DailyLogCreateNestedManyWithoutUserInput
   labResults?: Prisma.LabResultCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelCreateNestedManyWithoutUserInput
   fileAssets?: Prisma.FileAssetCreateNestedManyWithoutUserInput
 }
 
@@ -471,6 +493,7 @@ export type UserUncheckedCreateWithoutProfileInput = {
   medicationPlans?: Prisma.MedicationPlanUncheckedCreateNestedManyWithoutUserInput
   dailyLogs?: Prisma.DailyLogUncheckedCreateNestedManyWithoutUserInput
   labResults?: Prisma.LabResultUncheckedCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelUncheckedCreateNestedManyWithoutUserInput
   fileAssets?: Prisma.FileAssetUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -500,6 +523,7 @@ export type UserUpdateWithoutProfileInput = {
   medicationPlans?: Prisma.MedicationPlanUpdateManyWithoutUserNestedInput
   dailyLogs?: Prisma.DailyLogUpdateManyWithoutUserNestedInput
   labResults?: Prisma.LabResultUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUpdateManyWithoutUserNestedInput
   fileAssets?: Prisma.FileAssetUpdateManyWithoutUserNestedInput
 }
 
@@ -513,6 +537,7 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   medicationPlans?: Prisma.MedicationPlanUncheckedUpdateManyWithoutUserNestedInput
   dailyLogs?: Prisma.DailyLogUncheckedUpdateManyWithoutUserNestedInput
   labResults?: Prisma.LabResultUncheckedUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUncheckedUpdateManyWithoutUserNestedInput
   fileAssets?: Prisma.FileAssetUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -526,6 +551,7 @@ export type UserCreateWithoutMeasurementsInput = {
   medicationPlans?: Prisma.MedicationPlanCreateNestedManyWithoutUserInput
   dailyLogs?: Prisma.DailyLogCreateNestedManyWithoutUserInput
   labResults?: Prisma.LabResultCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelCreateNestedManyWithoutUserInput
   fileAssets?: Prisma.FileAssetCreateNestedManyWithoutUserInput
 }
 
@@ -539,6 +565,7 @@ export type UserUncheckedCreateWithoutMeasurementsInput = {
   medicationPlans?: Prisma.MedicationPlanUncheckedCreateNestedManyWithoutUserInput
   dailyLogs?: Prisma.DailyLogUncheckedCreateNestedManyWithoutUserInput
   labResults?: Prisma.LabResultUncheckedCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelUncheckedCreateNestedManyWithoutUserInput
   fileAssets?: Prisma.FileAssetUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -568,6 +595,7 @@ export type UserUpdateWithoutMeasurementsInput = {
   medicationPlans?: Prisma.MedicationPlanUpdateManyWithoutUserNestedInput
   dailyLogs?: Prisma.DailyLogUpdateManyWithoutUserNestedInput
   labResults?: Prisma.LabResultUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUpdateManyWithoutUserNestedInput
   fileAssets?: Prisma.FileAssetUpdateManyWithoutUserNestedInput
 }
 
@@ -581,6 +609,7 @@ export type UserUncheckedUpdateWithoutMeasurementsInput = {
   medicationPlans?: Prisma.MedicationPlanUncheckedUpdateManyWithoutUserNestedInput
   dailyLogs?: Prisma.DailyLogUncheckedUpdateManyWithoutUserNestedInput
   labResults?: Prisma.LabResultUncheckedUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUncheckedUpdateManyWithoutUserNestedInput
   fileAssets?: Prisma.FileAssetUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -594,6 +623,7 @@ export type UserCreateWithoutMedicationPlansInput = {
   measurements?: Prisma.BodyMeasurementCreateNestedManyWithoutUserInput
   dailyLogs?: Prisma.DailyLogCreateNestedManyWithoutUserInput
   labResults?: Prisma.LabResultCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelCreateNestedManyWithoutUserInput
   fileAssets?: Prisma.FileAssetCreateNestedManyWithoutUserInput
 }
 
@@ -607,6 +637,7 @@ export type UserUncheckedCreateWithoutMedicationPlansInput = {
   measurements?: Prisma.BodyMeasurementUncheckedCreateNestedManyWithoutUserInput
   dailyLogs?: Prisma.DailyLogUncheckedCreateNestedManyWithoutUserInput
   labResults?: Prisma.LabResultUncheckedCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelUncheckedCreateNestedManyWithoutUserInput
   fileAssets?: Prisma.FileAssetUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -636,6 +667,7 @@ export type UserUpdateWithoutMedicationPlansInput = {
   measurements?: Prisma.BodyMeasurementUpdateManyWithoutUserNestedInput
   dailyLogs?: Prisma.DailyLogUpdateManyWithoutUserNestedInput
   labResults?: Prisma.LabResultUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUpdateManyWithoutUserNestedInput
   fileAssets?: Prisma.FileAssetUpdateManyWithoutUserNestedInput
 }
 
@@ -649,6 +681,7 @@ export type UserUncheckedUpdateWithoutMedicationPlansInput = {
   measurements?: Prisma.BodyMeasurementUncheckedUpdateManyWithoutUserNestedInput
   dailyLogs?: Prisma.DailyLogUncheckedUpdateManyWithoutUserNestedInput
   labResults?: Prisma.LabResultUncheckedUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUncheckedUpdateManyWithoutUserNestedInput
   fileAssets?: Prisma.FileAssetUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -662,6 +695,7 @@ export type UserCreateWithoutDailyLogsInput = {
   measurements?: Prisma.BodyMeasurementCreateNestedManyWithoutUserInput
   medicationPlans?: Prisma.MedicationPlanCreateNestedManyWithoutUserInput
   labResults?: Prisma.LabResultCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelCreateNestedManyWithoutUserInput
   fileAssets?: Prisma.FileAssetCreateNestedManyWithoutUserInput
 }
 
@@ -675,6 +709,7 @@ export type UserUncheckedCreateWithoutDailyLogsInput = {
   measurements?: Prisma.BodyMeasurementUncheckedCreateNestedManyWithoutUserInput
   medicationPlans?: Prisma.MedicationPlanUncheckedCreateNestedManyWithoutUserInput
   labResults?: Prisma.LabResultUncheckedCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelUncheckedCreateNestedManyWithoutUserInput
   fileAssets?: Prisma.FileAssetUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -704,6 +739,7 @@ export type UserUpdateWithoutDailyLogsInput = {
   measurements?: Prisma.BodyMeasurementUpdateManyWithoutUserNestedInput
   medicationPlans?: Prisma.MedicationPlanUpdateManyWithoutUserNestedInput
   labResults?: Prisma.LabResultUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUpdateManyWithoutUserNestedInput
   fileAssets?: Prisma.FileAssetUpdateManyWithoutUserNestedInput
 }
 
@@ -717,6 +753,7 @@ export type UserUncheckedUpdateWithoutDailyLogsInput = {
   measurements?: Prisma.BodyMeasurementUncheckedUpdateManyWithoutUserNestedInput
   medicationPlans?: Prisma.MedicationPlanUncheckedUpdateManyWithoutUserNestedInput
   labResults?: Prisma.LabResultUncheckedUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUncheckedUpdateManyWithoutUserNestedInput
   fileAssets?: Prisma.FileAssetUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -730,6 +767,7 @@ export type UserCreateWithoutLabResultsInput = {
   measurements?: Prisma.BodyMeasurementCreateNestedManyWithoutUserInput
   medicationPlans?: Prisma.MedicationPlanCreateNestedManyWithoutUserInput
   dailyLogs?: Prisma.DailyLogCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelCreateNestedManyWithoutUserInput
   fileAssets?: Prisma.FileAssetCreateNestedManyWithoutUserInput
 }
 
@@ -743,6 +781,7 @@ export type UserUncheckedCreateWithoutLabResultsInput = {
   measurements?: Prisma.BodyMeasurementUncheckedCreateNestedManyWithoutUserInput
   medicationPlans?: Prisma.MedicationPlanUncheckedCreateNestedManyWithoutUserInput
   dailyLogs?: Prisma.DailyLogUncheckedCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelUncheckedCreateNestedManyWithoutUserInput
   fileAssets?: Prisma.FileAssetUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -772,6 +811,7 @@ export type UserUpdateWithoutLabResultsInput = {
   measurements?: Prisma.BodyMeasurementUpdateManyWithoutUserNestedInput
   medicationPlans?: Prisma.MedicationPlanUpdateManyWithoutUserNestedInput
   dailyLogs?: Prisma.DailyLogUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUpdateManyWithoutUserNestedInput
   fileAssets?: Prisma.FileAssetUpdateManyWithoutUserNestedInput
 }
 
@@ -785,6 +825,79 @@ export type UserUncheckedUpdateWithoutLabResultsInput = {
   measurements?: Prisma.BodyMeasurementUncheckedUpdateManyWithoutUserNestedInput
   medicationPlans?: Prisma.MedicationPlanUncheckedUpdateManyWithoutUserNestedInput
   dailyLogs?: Prisma.DailyLogUncheckedUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUncheckedUpdateManyWithoutUserNestedInput
+  fileAssets?: Prisma.FileAssetUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutLabPanelsInput = {
+  id?: string
+  role?: string
+  telegramUserId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  measurements?: Prisma.BodyMeasurementCreateNestedManyWithoutUserInput
+  medicationPlans?: Prisma.MedicationPlanCreateNestedManyWithoutUserInput
+  dailyLogs?: Prisma.DailyLogCreateNestedManyWithoutUserInput
+  labResults?: Prisma.LabResultCreateNestedManyWithoutUserInput
+  fileAssets?: Prisma.FileAssetCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutLabPanelsInput = {
+  id?: string
+  role?: string
+  telegramUserId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  measurements?: Prisma.BodyMeasurementUncheckedCreateNestedManyWithoutUserInput
+  medicationPlans?: Prisma.MedicationPlanUncheckedCreateNestedManyWithoutUserInput
+  dailyLogs?: Prisma.DailyLogUncheckedCreateNestedManyWithoutUserInput
+  labResults?: Prisma.LabResultUncheckedCreateNestedManyWithoutUserInput
+  fileAssets?: Prisma.FileAssetUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutLabPanelsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutLabPanelsInput, Prisma.UserUncheckedCreateWithoutLabPanelsInput>
+}
+
+export type UserUpsertWithoutLabPanelsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutLabPanelsInput, Prisma.UserUncheckedUpdateWithoutLabPanelsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLabPanelsInput, Prisma.UserUncheckedCreateWithoutLabPanelsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutLabPanelsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutLabPanelsInput, Prisma.UserUncheckedUpdateWithoutLabPanelsInput>
+}
+
+export type UserUpdateWithoutLabPanelsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  telegramUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  measurements?: Prisma.BodyMeasurementUpdateManyWithoutUserNestedInput
+  medicationPlans?: Prisma.MedicationPlanUpdateManyWithoutUserNestedInput
+  dailyLogs?: Prisma.DailyLogUpdateManyWithoutUserNestedInput
+  labResults?: Prisma.LabResultUpdateManyWithoutUserNestedInput
+  fileAssets?: Prisma.FileAssetUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutLabPanelsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  telegramUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  measurements?: Prisma.BodyMeasurementUncheckedUpdateManyWithoutUserNestedInput
+  medicationPlans?: Prisma.MedicationPlanUncheckedUpdateManyWithoutUserNestedInput
+  dailyLogs?: Prisma.DailyLogUncheckedUpdateManyWithoutUserNestedInput
+  labResults?: Prisma.LabResultUncheckedUpdateManyWithoutUserNestedInput
   fileAssets?: Prisma.FileAssetUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -799,6 +912,7 @@ export type UserCreateWithoutFileAssetsInput = {
   medicationPlans?: Prisma.MedicationPlanCreateNestedManyWithoutUserInput
   dailyLogs?: Prisma.DailyLogCreateNestedManyWithoutUserInput
   labResults?: Prisma.LabResultCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutFileAssetsInput = {
@@ -812,6 +926,7 @@ export type UserUncheckedCreateWithoutFileAssetsInput = {
   medicationPlans?: Prisma.MedicationPlanUncheckedCreateNestedManyWithoutUserInput
   dailyLogs?: Prisma.DailyLogUncheckedCreateNestedManyWithoutUserInput
   labResults?: Prisma.LabResultUncheckedCreateNestedManyWithoutUserInput
+  labPanels?: Prisma.LabPanelUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutFileAssetsInput = {
@@ -841,6 +956,7 @@ export type UserUpdateWithoutFileAssetsInput = {
   medicationPlans?: Prisma.MedicationPlanUpdateManyWithoutUserNestedInput
   dailyLogs?: Prisma.DailyLogUpdateManyWithoutUserNestedInput
   labResults?: Prisma.LabResultUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFileAssetsInput = {
@@ -854,6 +970,7 @@ export type UserUncheckedUpdateWithoutFileAssetsInput = {
   medicationPlans?: Prisma.MedicationPlanUncheckedUpdateManyWithoutUserNestedInput
   dailyLogs?: Prisma.DailyLogUncheckedUpdateManyWithoutUserNestedInput
   labResults?: Prisma.LabResultUncheckedUpdateManyWithoutUserNestedInput
+  labPanels?: Prisma.LabPanelUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -866,6 +983,7 @@ export type UserCountOutputType = {
   medicationPlans: number
   dailyLogs: number
   labResults: number
+  labPanels: number
   fileAssets: number
 }
 
@@ -874,6 +992,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   medicationPlans?: boolean | UserCountOutputTypeCountMedicationPlansArgs
   dailyLogs?: boolean | UserCountOutputTypeCountDailyLogsArgs
   labResults?: boolean | UserCountOutputTypeCountLabResultsArgs
+  labPanels?: boolean | UserCountOutputTypeCountLabPanelsArgs
   fileAssets?: boolean | UserCountOutputTypeCountFileAssetsArgs
 }
 
@@ -918,6 +1037,13 @@ export type UserCountOutputTypeCountLabResultsArgs<ExtArgs extends runtime.Types
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountLabPanelsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LabPanelWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountFileAssetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.FileAssetWhereInput
 }
@@ -934,6 +1060,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   medicationPlans?: boolean | Prisma.User$medicationPlansArgs<ExtArgs>
   dailyLogs?: boolean | Prisma.User$dailyLogsArgs<ExtArgs>
   labResults?: boolean | Prisma.User$labResultsArgs<ExtArgs>
+  labPanels?: boolean | Prisma.User$labPanelsArgs<ExtArgs>
   fileAssets?: boolean | Prisma.User$fileAssetsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -969,6 +1096,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   medicationPlans?: boolean | Prisma.User$medicationPlansArgs<ExtArgs>
   dailyLogs?: boolean | Prisma.User$dailyLogsArgs<ExtArgs>
   labResults?: boolean | Prisma.User$labResultsArgs<ExtArgs>
+  labPanels?: boolean | Prisma.User$labPanelsArgs<ExtArgs>
   fileAssets?: boolean | Prisma.User$fileAssetsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -983,6 +1111,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     medicationPlans: Prisma.$MedicationPlanPayload<ExtArgs>[]
     dailyLogs: Prisma.$DailyLogPayload<ExtArgs>[]
     labResults: Prisma.$LabResultPayload<ExtArgs>[]
+    labPanels: Prisma.$LabPanelPayload<ExtArgs>[]
     fileAssets: Prisma.$FileAssetPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1390,6 +1519,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   medicationPlans<T extends Prisma.User$medicationPlansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$medicationPlansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MedicationPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dailyLogs<T extends Prisma.User$dailyLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$dailyLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   labResults<T extends Prisma.User$labResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$labResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LabResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  labPanels<T extends Prisma.User$labPanelsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$labPanelsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LabPanelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   fileAssets<T extends Prisma.User$fileAssetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$fileAssetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FileAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1925,6 +2055,30 @@ export type User$labResultsArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.LabResultScalarFieldEnum | Prisma.LabResultScalarFieldEnum[]
+}
+
+/**
+ * User.labPanels
+ */
+export type User$labPanelsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LabPanel
+   */
+  select?: Prisma.LabPanelSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LabPanel
+   */
+  omit?: Prisma.LabPanelOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LabPanelInclude<ExtArgs> | null
+  where?: Prisma.LabPanelWhereInput
+  orderBy?: Prisma.LabPanelOrderByWithRelationInput | Prisma.LabPanelOrderByWithRelationInput[]
+  cursor?: Prisma.LabPanelWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LabPanelScalarFieldEnum | Prisma.LabPanelScalarFieldEnum[]
 }
 
 /**

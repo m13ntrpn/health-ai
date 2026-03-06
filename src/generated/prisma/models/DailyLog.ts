@@ -28,10 +28,14 @@ export type AggregateDailyLog = {
 
 export type DailyLogAvgAggregateOutputType = {
   waterMl: number | null
+  energyLevel: number | null
+  stressLevel: number | null
 }
 
 export type DailyLogSumAggregateOutputType = {
   waterMl: number | null
+  energyLevel: number | null
+  stressLevel: number | null
 }
 
 export type DailyLogMinAggregateOutputType = {
@@ -42,6 +46,8 @@ export type DailyLogMinAggregateOutputType = {
   comment: string | null
   isCompleted: boolean | null
   waterMl: number | null
+  energyLevel: number | null
+  stressLevel: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -54,6 +60,8 @@ export type DailyLogMaxAggregateOutputType = {
   comment: string | null
   isCompleted: boolean | null
   waterMl: number | null
+  energyLevel: number | null
+  stressLevel: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -66,6 +74,8 @@ export type DailyLogCountAggregateOutputType = {
   comment: number
   isCompleted: number
   waterMl: number
+  energyLevel: number
+  stressLevel: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -74,10 +84,14 @@ export type DailyLogCountAggregateOutputType = {
 
 export type DailyLogAvgAggregateInputType = {
   waterMl?: true
+  energyLevel?: true
+  stressLevel?: true
 }
 
 export type DailyLogSumAggregateInputType = {
   waterMl?: true
+  energyLevel?: true
+  stressLevel?: true
 }
 
 export type DailyLogMinAggregateInputType = {
@@ -88,6 +102,8 @@ export type DailyLogMinAggregateInputType = {
   comment?: true
   isCompleted?: true
   waterMl?: true
+  energyLevel?: true
+  stressLevel?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -100,6 +116,8 @@ export type DailyLogMaxAggregateInputType = {
   comment?: true
   isCompleted?: true
   waterMl?: true
+  energyLevel?: true
+  stressLevel?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -112,6 +130,8 @@ export type DailyLogCountAggregateInputType = {
   comment?: true
   isCompleted?: true
   waterMl?: true
+  energyLevel?: true
+  stressLevel?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -211,6 +231,8 @@ export type DailyLogGroupByOutputType = {
   comment: string | null
   isCompleted: boolean
   waterMl: number | null
+  energyLevel: number | null
+  stressLevel: number | null
   createdAt: Date
   updatedAt: Date
   _count: DailyLogCountAggregateOutputType | null
@@ -246,6 +268,8 @@ export type DailyLogWhereInput = {
   comment?: Prisma.StringNullableFilter<"DailyLog"> | string | null
   isCompleted?: Prisma.BoolFilter<"DailyLog"> | boolean
   waterMl?: Prisma.IntNullableFilter<"DailyLog"> | number | null
+  energyLevel?: Prisma.IntNullableFilter<"DailyLog"> | number | null
+  stressLevel?: Prisma.IntNullableFilter<"DailyLog"> | number | null
   createdAt?: Prisma.DateTimeFilter<"DailyLog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DailyLog"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -264,6 +288,8 @@ export type DailyLogOrderByWithRelationInput = {
   comment?: Prisma.SortOrderInput | Prisma.SortOrder
   isCompleted?: Prisma.SortOrder
   waterMl?: Prisma.SortOrderInput | Prisma.SortOrder
+  energyLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  stressLevel?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -286,6 +312,8 @@ export type DailyLogWhereUniqueInput = Prisma.AtLeast<{
   comment?: Prisma.StringNullableFilter<"DailyLog"> | string | null
   isCompleted?: Prisma.BoolFilter<"DailyLog"> | boolean
   waterMl?: Prisma.IntNullableFilter<"DailyLog"> | number | null
+  energyLevel?: Prisma.IntNullableFilter<"DailyLog"> | number | null
+  stressLevel?: Prisma.IntNullableFilter<"DailyLog"> | number | null
   createdAt?: Prisma.DateTimeFilter<"DailyLog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DailyLog"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -304,6 +332,8 @@ export type DailyLogOrderByWithAggregationInput = {
   comment?: Prisma.SortOrderInput | Prisma.SortOrder
   isCompleted?: Prisma.SortOrder
   waterMl?: Prisma.SortOrderInput | Prisma.SortOrder
+  energyLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  stressLevel?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.DailyLogCountOrderByAggregateInput
@@ -324,6 +354,8 @@ export type DailyLogScalarWhereWithAggregatesInput = {
   comment?: Prisma.StringNullableWithAggregatesFilter<"DailyLog"> | string | null
   isCompleted?: Prisma.BoolWithAggregatesFilter<"DailyLog"> | boolean
   waterMl?: Prisma.IntNullableWithAggregatesFilter<"DailyLog"> | number | null
+  energyLevel?: Prisma.IntNullableWithAggregatesFilter<"DailyLog"> | number | null
+  stressLevel?: Prisma.IntNullableWithAggregatesFilter<"DailyLog"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"DailyLog"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"DailyLog"> | Date | string
 }
@@ -335,6 +367,8 @@ export type DailyLogCreateInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutDailyLogsInput
@@ -353,6 +387,8 @@ export type DailyLogUncheckedCreateInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutDailyLogInput
@@ -369,6 +405,8 @@ export type DailyLogUpdateInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutDailyLogsNestedInput
@@ -387,6 +425,8 @@ export type DailyLogUncheckedUpdateInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUncheckedUpdateManyWithoutDailyLogNestedInput
@@ -404,6 +444,8 @@ export type DailyLogCreateManyInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -415,6 +457,8 @@ export type DailyLogUpdateManyMutationInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -427,6 +471,8 @@ export type DailyLogUncheckedUpdateManyInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -454,12 +500,16 @@ export type DailyLogCountOrderByAggregateInput = {
   comment?: Prisma.SortOrder
   isCompleted?: Prisma.SortOrder
   waterMl?: Prisma.SortOrder
+  energyLevel?: Prisma.SortOrder
+  stressLevel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type DailyLogAvgOrderByAggregateInput = {
   waterMl?: Prisma.SortOrder
+  energyLevel?: Prisma.SortOrder
+  stressLevel?: Prisma.SortOrder
 }
 
 export type DailyLogMaxOrderByAggregateInput = {
@@ -470,6 +520,8 @@ export type DailyLogMaxOrderByAggregateInput = {
   comment?: Prisma.SortOrder
   isCompleted?: Prisma.SortOrder
   waterMl?: Prisma.SortOrder
+  energyLevel?: Prisma.SortOrder
+  stressLevel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -482,12 +534,16 @@ export type DailyLogMinOrderByAggregateInput = {
   comment?: Prisma.SortOrder
   isCompleted?: Prisma.SortOrder
   waterMl?: Prisma.SortOrder
+  energyLevel?: Prisma.SortOrder
+  stressLevel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type DailyLogSumOrderByAggregateInput = {
   waterMl?: Prisma.SortOrder
+  energyLevel?: Prisma.SortOrder
+  stressLevel?: Prisma.SortOrder
 }
 
 export type DailyLogScalarRelationFilter = {
@@ -614,6 +670,8 @@ export type DailyLogCreateWithoutUserInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealCreateNestedManyWithoutDailyLogInput
@@ -630,6 +688,8 @@ export type DailyLogUncheckedCreateWithoutUserInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutDailyLogInput
@@ -676,6 +736,8 @@ export type DailyLogScalarWhereInput = {
   comment?: Prisma.StringNullableFilter<"DailyLog"> | string | null
   isCompleted?: Prisma.BoolFilter<"DailyLog"> | boolean
   waterMl?: Prisma.IntNullableFilter<"DailyLog"> | number | null
+  energyLevel?: Prisma.IntNullableFilter<"DailyLog"> | number | null
+  stressLevel?: Prisma.IntNullableFilter<"DailyLog"> | number | null
   createdAt?: Prisma.DateTimeFilter<"DailyLog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DailyLog"> | Date | string
 }
@@ -687,6 +749,8 @@ export type DailyLogCreateWithoutMealsInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutDailyLogsInput
@@ -704,6 +768,8 @@ export type DailyLogUncheckedCreateWithoutMealsInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   intakes?: Prisma.IntakeItemUncheckedCreateNestedManyWithoutDailyLogInput
@@ -735,6 +801,8 @@ export type DailyLogUpdateWithoutMealsInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutDailyLogsNestedInput
@@ -752,6 +820,8 @@ export type DailyLogUncheckedUpdateWithoutMealsInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   intakes?: Prisma.IntakeItemUncheckedUpdateManyWithoutDailyLogNestedInput
@@ -767,6 +837,8 @@ export type DailyLogCreateWithoutIntakesInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutDailyLogsInput
@@ -784,6 +856,8 @@ export type DailyLogUncheckedCreateWithoutIntakesInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutDailyLogInput
@@ -815,6 +889,8 @@ export type DailyLogUpdateWithoutIntakesInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutDailyLogsNestedInput
@@ -832,6 +908,8 @@ export type DailyLogUncheckedUpdateWithoutIntakesInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUncheckedUpdateManyWithoutDailyLogNestedInput
@@ -847,6 +925,8 @@ export type DailyLogCreateWithoutSleepLogsInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutDailyLogsInput
@@ -864,6 +944,8 @@ export type DailyLogUncheckedCreateWithoutSleepLogsInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutDailyLogInput
@@ -895,6 +977,8 @@ export type DailyLogUpdateWithoutSleepLogsInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutDailyLogsNestedInput
@@ -912,6 +996,8 @@ export type DailyLogUncheckedUpdateWithoutSleepLogsInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUncheckedUpdateManyWithoutDailyLogNestedInput
@@ -927,6 +1013,8 @@ export type DailyLogCreateWithoutActivityLogsInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutDailyLogsInput
@@ -944,6 +1032,8 @@ export type DailyLogUncheckedCreateWithoutActivityLogsInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutDailyLogInput
@@ -975,6 +1065,8 @@ export type DailyLogUpdateWithoutActivityLogsInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutDailyLogsNestedInput
@@ -992,6 +1084,8 @@ export type DailyLogUncheckedUpdateWithoutActivityLogsInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUncheckedUpdateManyWithoutDailyLogNestedInput
@@ -1007,6 +1101,8 @@ export type DailyLogCreateWithoutSummaryInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutDailyLogsInput
@@ -1024,6 +1120,8 @@ export type DailyLogUncheckedCreateWithoutSummaryInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutDailyLogInput
@@ -1055,6 +1153,8 @@ export type DailyLogUpdateWithoutSummaryInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutDailyLogsNestedInput
@@ -1072,6 +1172,8 @@ export type DailyLogUncheckedUpdateWithoutSummaryInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUncheckedUpdateManyWithoutDailyLogNestedInput
@@ -1087,6 +1189,8 @@ export type DailyLogCreateManyUserInput = {
   comment?: string | null
   isCompleted?: boolean
   waterMl?: number | null
+  energyLevel?: number | null
+  stressLevel?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1098,6 +1202,8 @@ export type DailyLogUpdateWithoutUserInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUpdateManyWithoutDailyLogNestedInput
@@ -1114,6 +1220,8 @@ export type DailyLogUncheckedUpdateWithoutUserInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUncheckedUpdateManyWithoutDailyLogNestedInput
@@ -1130,6 +1238,8 @@ export type DailyLogUncheckedUpdateManyWithoutUserInput = {
   comment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   waterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  energyLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  stressLevel?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1200,6 +1310,8 @@ export type DailyLogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   comment?: boolean
   isCompleted?: boolean
   waterMl?: boolean
+  energyLevel?: boolean
+  stressLevel?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1219,6 +1331,8 @@ export type DailyLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   comment?: boolean
   isCompleted?: boolean
   waterMl?: boolean
+  energyLevel?: boolean
+  stressLevel?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1232,6 +1346,8 @@ export type DailyLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   comment?: boolean
   isCompleted?: boolean
   waterMl?: boolean
+  energyLevel?: boolean
+  stressLevel?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1245,11 +1361,13 @@ export type DailyLogSelectScalar = {
   comment?: boolean
   isCompleted?: boolean
   waterMl?: boolean
+  energyLevel?: boolean
+  stressLevel?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type DailyLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "date" | "mood" | "comment" | "isCompleted" | "waterMl" | "createdAt" | "updatedAt", ExtArgs["result"]["dailyLog"]>
+export type DailyLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "date" | "mood" | "comment" | "isCompleted" | "waterMl" | "energyLevel" | "stressLevel" | "createdAt" | "updatedAt", ExtArgs["result"]["dailyLog"]>
 export type DailyLogInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   meals?: boolean | Prisma.DailyLog$mealsArgs<ExtArgs>
@@ -1284,6 +1402,8 @@ export type $DailyLogPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     comment: string | null
     isCompleted: boolean
     waterMl: number | null
+    energyLevel: number | null
+    stressLevel: number | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["dailyLog"]>
@@ -1722,6 +1842,8 @@ export interface DailyLogFieldRefs {
   readonly comment: Prisma.FieldRef<"DailyLog", 'String'>
   readonly isCompleted: Prisma.FieldRef<"DailyLog", 'Boolean'>
   readonly waterMl: Prisma.FieldRef<"DailyLog", 'Int'>
+  readonly energyLevel: Prisma.FieldRef<"DailyLog", 'Int'>
+  readonly stressLevel: Prisma.FieldRef<"DailyLog", 'Int'>
   readonly createdAt: Prisma.FieldRef<"DailyLog", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"DailyLog", 'DateTime'>
 }

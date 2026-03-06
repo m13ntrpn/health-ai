@@ -31,6 +31,7 @@ export type MealAvgAggregateOutputType = {
   proteinG: runtime.Decimal | null
   fatG: runtime.Decimal | null
   carbsG: runtime.Decimal | null
+  confidenceScore: runtime.Decimal | null
 }
 
 export type MealSumAggregateOutputType = {
@@ -38,18 +39,20 @@ export type MealSumAggregateOutputType = {
   proteinG: runtime.Decimal | null
   fatG: runtime.Decimal | null
   carbsG: runtime.Decimal | null
+  confidenceScore: runtime.Decimal | null
 }
 
 export type MealMinAggregateOutputType = {
   id: string | null
   dailyLogId: string | null
-  type: string | null
+  type: $Enums.MealType | null
   time: Date | null
   description: string | null
   calories: number | null
   proteinG: runtime.Decimal | null
   fatG: runtime.Decimal | null
   carbsG: runtime.Decimal | null
+  confidenceScore: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -57,13 +60,14 @@ export type MealMinAggregateOutputType = {
 export type MealMaxAggregateOutputType = {
   id: string | null
   dailyLogId: string | null
-  type: string | null
+  type: $Enums.MealType | null
   time: Date | null
   description: string | null
   calories: number | null
   proteinG: runtime.Decimal | null
   fatG: runtime.Decimal | null
   carbsG: runtime.Decimal | null
+  confidenceScore: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -78,6 +82,7 @@ export type MealCountAggregateOutputType = {
   proteinG: number
   fatG: number
   carbsG: number
+  confidenceScore: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -89,6 +94,7 @@ export type MealAvgAggregateInputType = {
   proteinG?: true
   fatG?: true
   carbsG?: true
+  confidenceScore?: true
 }
 
 export type MealSumAggregateInputType = {
@@ -96,6 +102,7 @@ export type MealSumAggregateInputType = {
   proteinG?: true
   fatG?: true
   carbsG?: true
+  confidenceScore?: true
 }
 
 export type MealMinAggregateInputType = {
@@ -108,6 +115,7 @@ export type MealMinAggregateInputType = {
   proteinG?: true
   fatG?: true
   carbsG?: true
+  confidenceScore?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -122,6 +130,7 @@ export type MealMaxAggregateInputType = {
   proteinG?: true
   fatG?: true
   carbsG?: true
+  confidenceScore?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -136,6 +145,7 @@ export type MealCountAggregateInputType = {
   proteinG?: true
   fatG?: true
   carbsG?: true
+  confidenceScore?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -230,13 +240,14 @@ export type MealGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type MealGroupByOutputType = {
   id: string
   dailyLogId: string
-  type: string | null
+  type: $Enums.MealType | null
   time: Date | null
   description: string | null
   calories: number | null
   proteinG: runtime.Decimal | null
   fatG: runtime.Decimal | null
   carbsG: runtime.Decimal | null
+  confidenceScore: runtime.Decimal | null
   createdAt: Date
   updatedAt: Date
   _count: MealCountAggregateOutputType | null
@@ -267,13 +278,14 @@ export type MealWhereInput = {
   NOT?: Prisma.MealWhereInput | Prisma.MealWhereInput[]
   id?: Prisma.StringFilter<"Meal"> | string
   dailyLogId?: Prisma.StringFilter<"Meal"> | string
-  type?: Prisma.StringNullableFilter<"Meal"> | string | null
+  type?: Prisma.EnumMealTypeNullableFilter<"Meal"> | $Enums.MealType | null
   time?: Prisma.DateTimeNullableFilter<"Meal"> | Date | string | null
   description?: Prisma.StringNullableFilter<"Meal"> | string | null
   calories?: Prisma.IntNullableFilter<"Meal"> | number | null
   proteinG?: Prisma.DecimalNullableFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.DecimalNullableFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.DecimalNullableFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.DecimalNullableFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
   dailyLog?: Prisma.XOR<Prisma.DailyLogScalarRelationFilter, Prisma.DailyLogWhereInput>
@@ -290,6 +302,7 @@ export type MealOrderByWithRelationInput = {
   proteinG?: Prisma.SortOrderInput | Prisma.SortOrder
   fatG?: Prisma.SortOrderInput | Prisma.SortOrder
   carbsG?: Prisma.SortOrderInput | Prisma.SortOrder
+  confidenceScore?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   dailyLog?: Prisma.DailyLogOrderByWithRelationInput
@@ -302,13 +315,14 @@ export type MealWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.MealWhereInput[]
   NOT?: Prisma.MealWhereInput | Prisma.MealWhereInput[]
   dailyLogId?: Prisma.StringFilter<"Meal"> | string
-  type?: Prisma.StringNullableFilter<"Meal"> | string | null
+  type?: Prisma.EnumMealTypeNullableFilter<"Meal"> | $Enums.MealType | null
   time?: Prisma.DateTimeNullableFilter<"Meal"> | Date | string | null
   description?: Prisma.StringNullableFilter<"Meal"> | string | null
   calories?: Prisma.IntNullableFilter<"Meal"> | number | null
   proteinG?: Prisma.DecimalNullableFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.DecimalNullableFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.DecimalNullableFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.DecimalNullableFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
   dailyLog?: Prisma.XOR<Prisma.DailyLogScalarRelationFilter, Prisma.DailyLogWhereInput>
@@ -325,6 +339,7 @@ export type MealOrderByWithAggregationInput = {
   proteinG?: Prisma.SortOrderInput | Prisma.SortOrder
   fatG?: Prisma.SortOrderInput | Prisma.SortOrder
   carbsG?: Prisma.SortOrderInput | Prisma.SortOrder
+  confidenceScore?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.MealCountOrderByAggregateInput
@@ -340,26 +355,28 @@ export type MealScalarWhereWithAggregatesInput = {
   NOT?: Prisma.MealScalarWhereWithAggregatesInput | Prisma.MealScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Meal"> | string
   dailyLogId?: Prisma.StringWithAggregatesFilter<"Meal"> | string
-  type?: Prisma.StringNullableWithAggregatesFilter<"Meal"> | string | null
+  type?: Prisma.EnumMealTypeNullableWithAggregatesFilter<"Meal"> | $Enums.MealType | null
   time?: Prisma.DateTimeNullableWithAggregatesFilter<"Meal"> | Date | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Meal"> | string | null
   calories?: Prisma.IntNullableWithAggregatesFilter<"Meal"> | number | null
   proteinG?: Prisma.DecimalNullableWithAggregatesFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.DecimalNullableWithAggregatesFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.DecimalNullableWithAggregatesFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.DecimalNullableWithAggregatesFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Meal"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Meal"> | Date | string
 }
 
 export type MealCreateInput = {
   id?: string
-  type?: string | null
+  type?: $Enums.MealType | null
   time?: Date | string | null
   description?: string | null
   calories?: number | null
   proteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   dailyLog: Prisma.DailyLogCreateNestedOneWithoutMealsInput
@@ -369,13 +386,14 @@ export type MealCreateInput = {
 export type MealUncheckedCreateInput = {
   id?: string
   dailyLogId: string
-  type?: string | null
+  type?: $Enums.MealType | null
   time?: Date | string | null
   description?: string | null
   calories?: number | null
   proteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   files?: Prisma.FileAssetUncheckedCreateNestedManyWithoutMealInput
@@ -383,13 +401,14 @@ export type MealUncheckedCreateInput = {
 
 export type MealUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableEnumMealTypeFieldUpdateOperationsInput | $Enums.MealType | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   proteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dailyLog?: Prisma.DailyLogUpdateOneRequiredWithoutMealsNestedInput
@@ -399,13 +418,14 @@ export type MealUpdateInput = {
 export type MealUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dailyLogId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableEnumMealTypeFieldUpdateOperationsInput | $Enums.MealType | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   proteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   files?: Prisma.FileAssetUncheckedUpdateManyWithoutMealNestedInput
@@ -414,26 +434,28 @@ export type MealUncheckedUpdateInput = {
 export type MealCreateManyInput = {
   id?: string
   dailyLogId: string
-  type?: string | null
+  type?: $Enums.MealType | null
   time?: Date | string | null
   description?: string | null
   calories?: number | null
   proteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type MealUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableEnumMealTypeFieldUpdateOperationsInput | $Enums.MealType | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   proteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -441,13 +463,14 @@ export type MealUpdateManyMutationInput = {
 export type MealUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dailyLogId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableEnumMealTypeFieldUpdateOperationsInput | $Enums.MealType | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   proteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -472,6 +495,7 @@ export type MealCountOrderByAggregateInput = {
   proteinG?: Prisma.SortOrder
   fatG?: Prisma.SortOrder
   carbsG?: Prisma.SortOrder
+  confidenceScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -481,6 +505,7 @@ export type MealAvgOrderByAggregateInput = {
   proteinG?: Prisma.SortOrder
   fatG?: Prisma.SortOrder
   carbsG?: Prisma.SortOrder
+  confidenceScore?: Prisma.SortOrder
 }
 
 export type MealMaxOrderByAggregateInput = {
@@ -493,6 +518,7 @@ export type MealMaxOrderByAggregateInput = {
   proteinG?: Prisma.SortOrder
   fatG?: Prisma.SortOrder
   carbsG?: Prisma.SortOrder
+  confidenceScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -507,6 +533,7 @@ export type MealMinOrderByAggregateInput = {
   proteinG?: Prisma.SortOrder
   fatG?: Prisma.SortOrder
   carbsG?: Prisma.SortOrder
+  confidenceScore?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -516,6 +543,7 @@ export type MealSumOrderByAggregateInput = {
   proteinG?: Prisma.SortOrder
   fatG?: Prisma.SortOrder
   carbsG?: Prisma.SortOrder
+  confidenceScore?: Prisma.SortOrder
 }
 
 export type MealNullableScalarRelationFilter = {
@@ -565,6 +593,10 @@ export type MealUncheckedUpdateManyWithoutDailyLogNestedInput = {
   deleteMany?: Prisma.MealScalarWhereInput | Prisma.MealScalarWhereInput[]
 }
 
+export type NullableEnumMealTypeFieldUpdateOperationsInput = {
+  set?: $Enums.MealType | null
+}
+
 export type MealCreateNestedOneWithoutFilesInput = {
   create?: Prisma.XOR<Prisma.MealCreateWithoutFilesInput, Prisma.MealUncheckedCreateWithoutFilesInput>
   connectOrCreate?: Prisma.MealCreateOrConnectWithoutFilesInput
@@ -583,13 +615,14 @@ export type MealUpdateOneWithoutFilesNestedInput = {
 
 export type MealCreateWithoutDailyLogInput = {
   id?: string
-  type?: string | null
+  type?: $Enums.MealType | null
   time?: Date | string | null
   description?: string | null
   calories?: number | null
   proteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   files?: Prisma.FileAssetCreateNestedManyWithoutMealInput
@@ -597,13 +630,14 @@ export type MealCreateWithoutDailyLogInput = {
 
 export type MealUncheckedCreateWithoutDailyLogInput = {
   id?: string
-  type?: string | null
+  type?: $Enums.MealType | null
   time?: Date | string | null
   description?: string | null
   calories?: number | null
   proteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   files?: Prisma.FileAssetUncheckedCreateNestedManyWithoutMealInput
@@ -641,26 +675,28 @@ export type MealScalarWhereInput = {
   NOT?: Prisma.MealScalarWhereInput | Prisma.MealScalarWhereInput[]
   id?: Prisma.StringFilter<"Meal"> | string
   dailyLogId?: Prisma.StringFilter<"Meal"> | string
-  type?: Prisma.StringNullableFilter<"Meal"> | string | null
+  type?: Prisma.EnumMealTypeNullableFilter<"Meal"> | $Enums.MealType | null
   time?: Prisma.DateTimeNullableFilter<"Meal"> | Date | string | null
   description?: Prisma.StringNullableFilter<"Meal"> | string | null
   calories?: Prisma.IntNullableFilter<"Meal"> | number | null
   proteinG?: Prisma.DecimalNullableFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.DecimalNullableFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.DecimalNullableFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.DecimalNullableFilter<"Meal"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
 }
 
 export type MealCreateWithoutFilesInput = {
   id?: string
-  type?: string | null
+  type?: $Enums.MealType | null
   time?: Date | string | null
   description?: string | null
   calories?: number | null
   proteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   dailyLog: Prisma.DailyLogCreateNestedOneWithoutMealsInput
@@ -669,13 +705,14 @@ export type MealCreateWithoutFilesInput = {
 export type MealUncheckedCreateWithoutFilesInput = {
   id?: string
   dailyLogId: string
-  type?: string | null
+  type?: $Enums.MealType | null
   time?: Date | string | null
   description?: string | null
   calories?: number | null
   proteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -698,13 +735,14 @@ export type MealUpdateToOneWithWhereWithoutFilesInput = {
 
 export type MealUpdateWithoutFilesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableEnumMealTypeFieldUpdateOperationsInput | $Enums.MealType | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   proteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dailyLog?: Prisma.DailyLogUpdateOneRequiredWithoutMealsNestedInput
@@ -713,39 +751,42 @@ export type MealUpdateWithoutFilesInput = {
 export type MealUncheckedUpdateWithoutFilesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   dailyLogId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableEnumMealTypeFieldUpdateOperationsInput | $Enums.MealType | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   proteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MealCreateManyDailyLogInput = {
   id?: string
-  type?: string | null
+  type?: $Enums.MealType | null
   time?: Date | string | null
   description?: string | null
   calories?: number | null
   proteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type MealUpdateWithoutDailyLogInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableEnumMealTypeFieldUpdateOperationsInput | $Enums.MealType | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   proteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   files?: Prisma.FileAssetUpdateManyWithoutMealNestedInput
@@ -753,13 +794,14 @@ export type MealUpdateWithoutDailyLogInput = {
 
 export type MealUncheckedUpdateWithoutDailyLogInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableEnumMealTypeFieldUpdateOperationsInput | $Enums.MealType | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   proteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   files?: Prisma.FileAssetUncheckedUpdateManyWithoutMealNestedInput
@@ -767,13 +809,14 @@ export type MealUncheckedUpdateWithoutDailyLogInput = {
 
 export type MealUncheckedUpdateManyWithoutDailyLogInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableEnumMealTypeFieldUpdateOperationsInput | $Enums.MealType | null
   time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   proteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   fatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   carbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  confidenceScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -819,6 +862,7 @@ export type MealSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   proteinG?: boolean
   fatG?: boolean
   carbsG?: boolean
+  confidenceScore?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   dailyLog?: boolean | Prisma.DailyLogDefaultArgs<ExtArgs>
@@ -836,6 +880,7 @@ export type MealSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   proteinG?: boolean
   fatG?: boolean
   carbsG?: boolean
+  confidenceScore?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   dailyLog?: boolean | Prisma.DailyLogDefaultArgs<ExtArgs>
@@ -851,6 +896,7 @@ export type MealSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   proteinG?: boolean
   fatG?: boolean
   carbsG?: boolean
+  confidenceScore?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   dailyLog?: boolean | Prisma.DailyLogDefaultArgs<ExtArgs>
@@ -866,11 +912,12 @@ export type MealSelectScalar = {
   proteinG?: boolean
   fatG?: boolean
   carbsG?: boolean
+  confidenceScore?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type MealOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dailyLogId" | "type" | "time" | "description" | "calories" | "proteinG" | "fatG" | "carbsG" | "createdAt" | "updatedAt", ExtArgs["result"]["meal"]>
+export type MealOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dailyLogId" | "type" | "time" | "description" | "calories" | "proteinG" | "fatG" | "carbsG" | "confidenceScore" | "createdAt" | "updatedAt", ExtArgs["result"]["meal"]>
 export type MealInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   dailyLog?: boolean | Prisma.DailyLogDefaultArgs<ExtArgs>
   files?: boolean | Prisma.Meal$filesArgs<ExtArgs>
@@ -892,13 +939,14 @@ export type $MealPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     dailyLogId: string
-    type: string | null
+    type: $Enums.MealType | null
     time: Date | null
     description: string | null
     calories: number | null
     proteinG: runtime.Decimal | null
     fatG: runtime.Decimal | null
     carbsG: runtime.Decimal | null
+    confidenceScore: runtime.Decimal | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["meal"]>
@@ -1328,13 +1376,14 @@ export interface Prisma__MealClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface MealFieldRefs {
   readonly id: Prisma.FieldRef<"Meal", 'String'>
   readonly dailyLogId: Prisma.FieldRef<"Meal", 'String'>
-  readonly type: Prisma.FieldRef<"Meal", 'String'>
+  readonly type: Prisma.FieldRef<"Meal", 'MealType'>
   readonly time: Prisma.FieldRef<"Meal", 'DateTime'>
   readonly description: Prisma.FieldRef<"Meal", 'String'>
   readonly calories: Prisma.FieldRef<"Meal", 'Int'>
   readonly proteinG: Prisma.FieldRef<"Meal", 'Decimal'>
   readonly fatG: Prisma.FieldRef<"Meal", 'Decimal'>
   readonly carbsG: Prisma.FieldRef<"Meal", 'Decimal'>
+  readonly confidenceScore: Prisma.FieldRef<"Meal", 'Decimal'>
   readonly createdAt: Prisma.FieldRef<"Meal", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Meal", 'DateTime'>
 }
