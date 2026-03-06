@@ -19,6 +19,8 @@ model User {
   telegramUserId String?      @unique
 
   profile        UserProfile?
+  measurements   BodyMeasurement[]
+  medicationPlans MedicationPlan[]
   dailyLogs      DailyLog[]
   labResults     LabResult[]
   fileAssets     FileAsset[]
@@ -32,21 +34,91 @@ model UserProfile {
   userId             String   @unique
   user               User     @relation(fields: [userId], references: [id])
 
-  age                Int?
+  birthDate          DateTime?
   sex                String?  // e.g. "male" | "female" | "other"
   heightCm           Int?
-  weightKg           Decimal? @db.Decimal(5, 2)
-  waistCm            Decimal? @db.Decimal(5, 2)
-  hipsCm             Decimal? @db.Decimal(5, 2)
+  activityLevel      String?  // e.g. "low" | "medium" | "high"
+
+  // Current body metrics (latest known). Full history in BodyMeasurement.
+  weightKg           Decimal? @db.Decimal(6, 2)
+  waistCm            Decimal? @db.Decimal(6, 2)
+  hipsCm             Decimal? @db.Decimal(6, 2)
   bodyFatPercent     Decimal? @db.Decimal(5, 2)
   muscleMassKg       Decimal? @db.Decimal(6, 2)
   bodyWaterPercent   Decimal? @db.Decimal(5, 2)
-  activityLevel      String?  // e.g. "low" | "medium" | "high"
+
+  // Locale / context
+  countryCode        String?  // ISO country code, e.g. "RU"
+  timezone           String?  // IANA tz, e.g. "Europe/Moscow"
+
+  // Medical baseline
+  bloodType          String?  // e.g. "A" | "B" | "AB" | "O"
+  rhFactor           String?  // e.g. "+" | "-"
+  restingHeartRateBpm Int?
+  bloodPressureSys   Int?     // systolic
+  bloodPressureDia   Int?     // diastolic
+  smokingStatus      String?  // e.g. "never" | "former" | "current"
+  alcoholUse         String?  // e.g. "none" | "rare" | "moderate" | "high"
+
+  // Constraints / preferences
   conditions         String?  // known diagnoses / pathologies (free text)
-  goals              String?  // health / weight goals (free text)
+  allergies          String?  // food allergies (free text)
+  intolerances       String?  // e.g. lactose, gluten (free text)
+  dietType           String?  // e.g. vegan, keto (free text)
+
+  // Goal (keep free text for LLM tone) + structured targets for analytics
+  goals              String?  // free text goal
+  targetWeightKg     Decimal? @db.Decimal(6, 2)
+  targetCalories     Int?
+  targetProteinG     Decimal? @db.Decimal(6, 2)
+  targetFatG         Decimal? @db.Decimal(6, 2)
+  targetCarbsG       Decimal? @db.Decimal(6, 2)
+  targetWaterMl      Int?
+  targetSteps        Int?
+
+  // Metabolism (optional; can be computed)
+  bmrCalories        Int?
+  tdeeCalories       Int?
+
+  onboardingCompleted Boolean @default(false)
 
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
+}
+
+model BodyMeasurement {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id])
+
+  measuredAt     DateTime
+  weightKg       Decimal? @db.Decimal(6, 2)
+  waistCm        Decimal? @db.Decimal(6, 2)
+  hipsCm         Decimal? @db.Decimal(6, 2)
+  bodyFatPercent Decimal? @db.Decimal(5, 2)
+  muscleMassKg   Decimal? @db.Decimal(6, 2)
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([userId, measuredAt])
+}
+
+model MedicationPlan {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+
+  name       String
+  dose       String?  // free text
+  schedule   String?  // free text schedule (e.g. "1x утром", "каждые 8 часов")
+  startDate  DateTime?
+  endDate    DateTime?
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([userId])
 }
 
 model DailyLog {
@@ -114,6 +186,10 @@ model SleepLog {
   start       DateTime?
   end         DateTime?
   quality     String?   // free text or simple scale
+  durationMin Int?
+  deepMin     Int?
+  remMin      Int?
+  awakeMin    Int?
 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -127,6 +203,9 @@ model ActivityLog {
   type        String?   // walking, gym, etc.
   durationMin Int?      // duration in minutes
   intensity   String?   // low / medium / high
+  steps       Int?
+  distanceM   Int?
+  calories    Int?
 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt

@@ -28,10 +28,16 @@ export type AggregateActivityLog = {
 
 export type ActivityLogAvgAggregateOutputType = {
   durationMin: number | null
+  steps: number | null
+  distanceM: number | null
+  calories: number | null
 }
 
 export type ActivityLogSumAggregateOutputType = {
   durationMin: number | null
+  steps: number | null
+  distanceM: number | null
+  calories: number | null
 }
 
 export type ActivityLogMinAggregateOutputType = {
@@ -40,6 +46,9 @@ export type ActivityLogMinAggregateOutputType = {
   type: string | null
   durationMin: number | null
   intensity: string | null
+  steps: number | null
+  distanceM: number | null
+  calories: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,6 +59,9 @@ export type ActivityLogMaxAggregateOutputType = {
   type: string | null
   durationMin: number | null
   intensity: string | null
+  steps: number | null
+  distanceM: number | null
+  calories: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -60,6 +72,9 @@ export type ActivityLogCountAggregateOutputType = {
   type: number
   durationMin: number
   intensity: number
+  steps: number
+  distanceM: number
+  calories: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -68,10 +83,16 @@ export type ActivityLogCountAggregateOutputType = {
 
 export type ActivityLogAvgAggregateInputType = {
   durationMin?: true
+  steps?: true
+  distanceM?: true
+  calories?: true
 }
 
 export type ActivityLogSumAggregateInputType = {
   durationMin?: true
+  steps?: true
+  distanceM?: true
+  calories?: true
 }
 
 export type ActivityLogMinAggregateInputType = {
@@ -80,6 +101,9 @@ export type ActivityLogMinAggregateInputType = {
   type?: true
   durationMin?: true
   intensity?: true
+  steps?: true
+  distanceM?: true
+  calories?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -90,6 +114,9 @@ export type ActivityLogMaxAggregateInputType = {
   type?: true
   durationMin?: true
   intensity?: true
+  steps?: true
+  distanceM?: true
+  calories?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -100,6 +127,9 @@ export type ActivityLogCountAggregateInputType = {
   type?: true
   durationMin?: true
   intensity?: true
+  steps?: true
+  distanceM?: true
+  calories?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -197,6 +227,9 @@ export type ActivityLogGroupByOutputType = {
   type: string | null
   durationMin: number | null
   intensity: string | null
+  steps: number | null
+  distanceM: number | null
+  calories: number | null
   createdAt: Date
   updatedAt: Date
   _count: ActivityLogCountAggregateOutputType | null
@@ -230,6 +263,9 @@ export type ActivityLogWhereInput = {
   type?: Prisma.StringNullableFilter<"ActivityLog"> | string | null
   durationMin?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
   intensity?: Prisma.StringNullableFilter<"ActivityLog"> | string | null
+  steps?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
+  distanceM?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
+  calories?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
   createdAt?: Prisma.DateTimeFilter<"ActivityLog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ActivityLog"> | Date | string
   dailyLog?: Prisma.XOR<Prisma.DailyLogScalarRelationFilter, Prisma.DailyLogWhereInput>
@@ -241,6 +277,9 @@ export type ActivityLogOrderByWithRelationInput = {
   type?: Prisma.SortOrderInput | Prisma.SortOrder
   durationMin?: Prisma.SortOrderInput | Prisma.SortOrder
   intensity?: Prisma.SortOrderInput | Prisma.SortOrder
+  steps?: Prisma.SortOrderInput | Prisma.SortOrder
+  distanceM?: Prisma.SortOrderInput | Prisma.SortOrder
+  calories?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   dailyLog?: Prisma.DailyLogOrderByWithRelationInput
@@ -255,6 +294,9 @@ export type ActivityLogWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.StringNullableFilter<"ActivityLog"> | string | null
   durationMin?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
   intensity?: Prisma.StringNullableFilter<"ActivityLog"> | string | null
+  steps?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
+  distanceM?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
+  calories?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
   createdAt?: Prisma.DateTimeFilter<"ActivityLog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ActivityLog"> | Date | string
   dailyLog?: Prisma.XOR<Prisma.DailyLogScalarRelationFilter, Prisma.DailyLogWhereInput>
@@ -266,6 +308,9 @@ export type ActivityLogOrderByWithAggregationInput = {
   type?: Prisma.SortOrderInput | Prisma.SortOrder
   durationMin?: Prisma.SortOrderInput | Prisma.SortOrder
   intensity?: Prisma.SortOrderInput | Prisma.SortOrder
+  steps?: Prisma.SortOrderInput | Prisma.SortOrder
+  distanceM?: Prisma.SortOrderInput | Prisma.SortOrder
+  calories?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ActivityLogCountOrderByAggregateInput
@@ -284,6 +329,9 @@ export type ActivityLogScalarWhereWithAggregatesInput = {
   type?: Prisma.StringNullableWithAggregatesFilter<"ActivityLog"> | string | null
   durationMin?: Prisma.IntNullableWithAggregatesFilter<"ActivityLog"> | number | null
   intensity?: Prisma.StringNullableWithAggregatesFilter<"ActivityLog"> | string | null
+  steps?: Prisma.IntNullableWithAggregatesFilter<"ActivityLog"> | number | null
+  distanceM?: Prisma.IntNullableWithAggregatesFilter<"ActivityLog"> | number | null
+  calories?: Prisma.IntNullableWithAggregatesFilter<"ActivityLog"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ActivityLog"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ActivityLog"> | Date | string
 }
@@ -293,6 +341,9 @@ export type ActivityLogCreateInput = {
   type?: string | null
   durationMin?: number | null
   intensity?: string | null
+  steps?: number | null
+  distanceM?: number | null
+  calories?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   dailyLog: Prisma.DailyLogCreateNestedOneWithoutActivityLogsInput
@@ -304,6 +355,9 @@ export type ActivityLogUncheckedCreateInput = {
   type?: string | null
   durationMin?: number | null
   intensity?: string | null
+  steps?: number | null
+  distanceM?: number | null
+  calories?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -313,6 +367,9 @@ export type ActivityLogUpdateInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dailyLog?: Prisma.DailyLogUpdateOneRequiredWithoutActivityLogsNestedInput
@@ -324,6 +381,9 @@ export type ActivityLogUncheckedUpdateInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -334,6 +394,9 @@ export type ActivityLogCreateManyInput = {
   type?: string | null
   durationMin?: number | null
   intensity?: string | null
+  steps?: number | null
+  distanceM?: number | null
+  calories?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -343,6 +406,9 @@ export type ActivityLogUpdateManyMutationInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -353,6 +419,9 @@ export type ActivityLogUncheckedUpdateManyInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -373,12 +442,18 @@ export type ActivityLogCountOrderByAggregateInput = {
   type?: Prisma.SortOrder
   durationMin?: Prisma.SortOrder
   intensity?: Prisma.SortOrder
+  steps?: Prisma.SortOrder
+  distanceM?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ActivityLogAvgOrderByAggregateInput = {
   durationMin?: Prisma.SortOrder
+  steps?: Prisma.SortOrder
+  distanceM?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
 }
 
 export type ActivityLogMaxOrderByAggregateInput = {
@@ -387,6 +462,9 @@ export type ActivityLogMaxOrderByAggregateInput = {
   type?: Prisma.SortOrder
   durationMin?: Prisma.SortOrder
   intensity?: Prisma.SortOrder
+  steps?: Prisma.SortOrder
+  distanceM?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -397,12 +475,18 @@ export type ActivityLogMinOrderByAggregateInput = {
   type?: Prisma.SortOrder
   durationMin?: Prisma.SortOrder
   intensity?: Prisma.SortOrder
+  steps?: Prisma.SortOrder
+  distanceM?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ActivityLogSumOrderByAggregateInput = {
   durationMin?: Prisma.SortOrder
+  steps?: Prisma.SortOrder
+  distanceM?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
 }
 
 export type ActivityLogCreateNestedManyWithoutDailyLogInput = {
@@ -452,6 +536,9 @@ export type ActivityLogCreateWithoutDailyLogInput = {
   type?: string | null
   durationMin?: number | null
   intensity?: string | null
+  steps?: number | null
+  distanceM?: number | null
+  calories?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -461,6 +548,9 @@ export type ActivityLogUncheckedCreateWithoutDailyLogInput = {
   type?: string | null
   durationMin?: number | null
   intensity?: string | null
+  steps?: number | null
+  distanceM?: number | null
+  calories?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -500,6 +590,9 @@ export type ActivityLogScalarWhereInput = {
   type?: Prisma.StringNullableFilter<"ActivityLog"> | string | null
   durationMin?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
   intensity?: Prisma.StringNullableFilter<"ActivityLog"> | string | null
+  steps?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
+  distanceM?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
+  calories?: Prisma.IntNullableFilter<"ActivityLog"> | number | null
   createdAt?: Prisma.DateTimeFilter<"ActivityLog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ActivityLog"> | Date | string
 }
@@ -509,6 +602,9 @@ export type ActivityLogCreateManyDailyLogInput = {
   type?: string | null
   durationMin?: number | null
   intensity?: string | null
+  steps?: number | null
+  distanceM?: number | null
+  calories?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -518,6 +614,9 @@ export type ActivityLogUpdateWithoutDailyLogInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -527,6 +626,9 @@ export type ActivityLogUncheckedUpdateWithoutDailyLogInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -536,6 +638,9 @@ export type ActivityLogUncheckedUpdateManyWithoutDailyLogInput = {
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   intensity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  steps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  distanceM?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  calories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -548,6 +653,9 @@ export type ActivityLogSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   type?: boolean
   durationMin?: boolean
   intensity?: boolean
+  steps?: boolean
+  distanceM?: boolean
+  calories?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   dailyLog?: boolean | Prisma.DailyLogDefaultArgs<ExtArgs>
@@ -559,6 +667,9 @@ export type ActivityLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   type?: boolean
   durationMin?: boolean
   intensity?: boolean
+  steps?: boolean
+  distanceM?: boolean
+  calories?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   dailyLog?: boolean | Prisma.DailyLogDefaultArgs<ExtArgs>
@@ -570,6 +681,9 @@ export type ActivityLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   type?: boolean
   durationMin?: boolean
   intensity?: boolean
+  steps?: boolean
+  distanceM?: boolean
+  calories?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   dailyLog?: boolean | Prisma.DailyLogDefaultArgs<ExtArgs>
@@ -581,11 +695,14 @@ export type ActivityLogSelectScalar = {
   type?: boolean
   durationMin?: boolean
   intensity?: boolean
+  steps?: boolean
+  distanceM?: boolean
+  calories?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ActivityLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dailyLogId" | "type" | "durationMin" | "intensity" | "createdAt" | "updatedAt", ExtArgs["result"]["activityLog"]>
+export type ActivityLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dailyLogId" | "type" | "durationMin" | "intensity" | "steps" | "distanceM" | "calories" | "createdAt" | "updatedAt", ExtArgs["result"]["activityLog"]>
 export type ActivityLogInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   dailyLog?: boolean | Prisma.DailyLogDefaultArgs<ExtArgs>
 }
@@ -607,6 +724,9 @@ export type $ActivityLogPayload<ExtArgs extends runtime.Types.Extensions.Interna
     type: string | null
     durationMin: number | null
     intensity: string | null
+    steps: number | null
+    distanceM: number | null
+    calories: number | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["activityLog"]>
@@ -1038,6 +1158,9 @@ export interface ActivityLogFieldRefs {
   readonly type: Prisma.FieldRef<"ActivityLog", 'String'>
   readonly durationMin: Prisma.FieldRef<"ActivityLog", 'Int'>
   readonly intensity: Prisma.FieldRef<"ActivityLog", 'String'>
+  readonly steps: Prisma.FieldRef<"ActivityLog", 'Int'>
+  readonly distanceM: Prisma.FieldRef<"ActivityLog", 'Int'>
+  readonly calories: Prisma.FieldRef<"ActivityLog", 'Int'>
   readonly createdAt: Prisma.FieldRef<"ActivityLog", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ActivityLog", 'DateTime'>
 }

@@ -565,10 +565,6 @@ export type MealUncheckedUpdateManyWithoutDailyLogNestedInput = {
   deleteMany?: Prisma.MealScalarWhereInput | Prisma.MealScalarWhereInput[]
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type MealCreateNestedOneWithoutFilesInput = {
   create?: Prisma.XOR<Prisma.MealCreateWithoutFilesInput, Prisma.MealUncheckedCreateWithoutFilesInput>
   connectOrCreate?: Prisma.MealCreateOrConnectWithoutFilesInput

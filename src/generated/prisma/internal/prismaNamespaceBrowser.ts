@@ -53,6 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   UserProfile: 'UserProfile',
+  BodyMeasurement: 'BodyMeasurement',
+  MedicationPlan: 'MedicationPlan',
   DailyLog: 'DailyLog',
   Meal: 'Meal',
   IntakeItem: 'IntakeItem',
@@ -93,23 +95,76 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const UserProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  age: 'age',
+  birthDate: 'birthDate',
   sex: 'sex',
   heightCm: 'heightCm',
+  activityLevel: 'activityLevel',
   weightKg: 'weightKg',
   waistCm: 'waistCm',
   hipsCm: 'hipsCm',
   bodyFatPercent: 'bodyFatPercent',
   muscleMassKg: 'muscleMassKg',
   bodyWaterPercent: 'bodyWaterPercent',
-  activityLevel: 'activityLevel',
+  countryCode: 'countryCode',
+  timezone: 'timezone',
+  bloodType: 'bloodType',
+  rhFactor: 'rhFactor',
+  restingHeartRateBpm: 'restingHeartRateBpm',
+  bloodPressureSys: 'bloodPressureSys',
+  bloodPressureDia: 'bloodPressureDia',
+  smokingStatus: 'smokingStatus',
+  alcoholUse: 'alcoholUse',
   conditions: 'conditions',
+  allergies: 'allergies',
+  intolerances: 'intolerances',
+  dietType: 'dietType',
   goals: 'goals',
+  targetWeightKg: 'targetWeightKg',
+  targetCalories: 'targetCalories',
+  targetProteinG: 'targetProteinG',
+  targetFatG: 'targetFatG',
+  targetCarbsG: 'targetCarbsG',
+  targetWaterMl: 'targetWaterMl',
+  targetSteps: 'targetSteps',
+  bmrCalories: 'bmrCalories',
+  tdeeCalories: 'tdeeCalories',
+  onboardingCompleted: 'onboardingCompleted',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
+
+
+export const BodyMeasurementScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  measuredAt: 'measuredAt',
+  weightKg: 'weightKg',
+  waistCm: 'waistCm',
+  hipsCm: 'hipsCm',
+  bodyFatPercent: 'bodyFatPercent',
+  muscleMassKg: 'muscleMassKg',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BodyMeasurementScalarFieldEnum = (typeof BodyMeasurementScalarFieldEnum)[keyof typeof BodyMeasurementScalarFieldEnum]
+
+
+export const MedicationPlanScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  dose: 'dose',
+  schedule: 'schedule',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MedicationPlanScalarFieldEnum = (typeof MedicationPlanScalarFieldEnum)[keyof typeof MedicationPlanScalarFieldEnum]
 
 
 export const DailyLogScalarFieldEnum = {
@@ -164,6 +219,10 @@ export const SleepLogScalarFieldEnum = {
   start: 'start',
   end: 'end',
   quality: 'quality',
+  durationMin: 'durationMin',
+  deepMin: 'deepMin',
+  remMin: 'remMin',
+  awakeMin: 'awakeMin',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -177,6 +236,9 @@ export const ActivityLogScalarFieldEnum = {
   type: 'type',
   durationMin: 'durationMin',
   intensity: 'intensity',
+  steps: 'steps',
+  distanceM: 'distanceM',
+  calories: 'calories',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

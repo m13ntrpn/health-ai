@@ -32,14 +32,54 @@ export interface ReportContext {
     avgMinPerDay: number;
   };
   profile: {
-    age: number | null;
+    birthDate: string | null;
+    ageYears: number | null;
     sex: string | null;
     heightCm: number | null;
     weightKg: number | null;
     goals: string | null;
     conditions: string | null;
     activityLevel: string | null;
+    countryCode: string | null;
+    timezone: string | null;
+    bloodType: string | null;
+    rhFactor: string | null;
+    restingHeartRateBpm: number | null;
+    bloodPressureSys: number | null;
+    bloodPressureDia: number | null;
+    smokingStatus: string | null;
+    alcoholUse: string | null;
+    allergies: string | null;
+    intolerances: string | null;
+    dietType: string | null;
+    targets: {
+      targetWeightKg: number | null;
+      targetCalories: number | null;
+      targetProteinG: number | null;
+      targetFatG: number | null;
+      targetCarbsG: number | null;
+      targetWaterMl: number | null;
+      targetSteps: number | null;
+    };
+    metabolism: {
+      bmrCalories: number | null;
+      tdeeCalories: number | null;
+    };
+    onboardingCompleted: boolean;
   } | null;
+}
+
+function toIsoDate(d: Date): string {
+  return d.toISOString().slice(0, 10);
+}
+
+function computeAgeYears(birthDate: Date, now: Date = new Date()): number {
+  let years = now.getUTCFullYear() - birthDate.getUTCFullYear();
+  const m = now.getUTCMonth() - birthDate.getUTCMonth();
+  if (m < 0 || (m === 0 && now.getUTCDate() < birthDate.getUTCDate())) {
+    years -= 1;
+  }
+  return years;
 }
 
 /** Aggregates health data for a period into a context object. */
@@ -94,13 +134,40 @@ export async function getReportContext(input: ReportInput): Promise<ReportContex
     activity: { totalMinutes: totalActivityMin, avgMinPerDay: daysCount ? Math.round(totalActivityMin / daysCount) : 0 },
     profile: profile
       ? {
-          age: profile.age,
+          birthDate: profile.birthDate ? toIsoDate(profile.birthDate) : null,
+          ageYears: profile.birthDate ? computeAgeYears(profile.birthDate) : null,
           sex: profile.sex,
           heightCm: profile.heightCm,
           weightKg: profile.weightKg != null ? Number(profile.weightKg) : null,
           goals: profile.goals,
           conditions: profile.conditions,
           activityLevel: profile.activityLevel,
+          countryCode: profile.countryCode,
+          timezone: profile.timezone,
+          bloodType: profile.bloodType,
+          rhFactor: profile.rhFactor,
+          restingHeartRateBpm: profile.restingHeartRateBpm,
+          bloodPressureSys: profile.bloodPressureSys,
+          bloodPressureDia: profile.bloodPressureDia,
+          smokingStatus: profile.smokingStatus,
+          alcoholUse: profile.alcoholUse,
+          allergies: profile.allergies,
+          intolerances: profile.intolerances,
+          dietType: profile.dietType,
+          targets: {
+            targetWeightKg: profile.targetWeightKg != null ? Number(profile.targetWeightKg) : null,
+            targetCalories: profile.targetCalories,
+            targetProteinG: profile.targetProteinG != null ? Number(profile.targetProteinG) : null,
+            targetFatG: profile.targetFatG != null ? Number(profile.targetFatG) : null,
+            targetCarbsG: profile.targetCarbsG != null ? Number(profile.targetCarbsG) : null,
+            targetWaterMl: profile.targetWaterMl,
+            targetSteps: profile.targetSteps,
+          },
+          metabolism: {
+            bmrCalories: profile.bmrCalories,
+            tdeeCalories: profile.tdeeCalories,
+          },
+          onboardingCompleted: profile.onboardingCompleted,
         }
       : null,
   };

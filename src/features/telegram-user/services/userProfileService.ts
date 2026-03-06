@@ -10,19 +10,17 @@ export async function getUserProfile(
 
 /** Fields required for personalized reports and advice. */
 const REQUIRED_FIELDS: Array<keyof UserProfile> = [
-  "age",
+  "birthDate",
   "sex",
   "heightCm",
   "weightKg",
-  "goals",
 ];
 
 const FIELD_LABELS: Record<string, string> = {
-  age: "возраст",
+  birthDate: "дата рождения",
   sex: "пол",
   heightCm: "рост",
   weightKg: "вес",
-  goals: "цель",
 };
 
 export interface ProfileCompleteness {
@@ -62,11 +60,23 @@ export async function upsertUserProfile(
   payload: UserProfilePayload,
 ): Promise<UserProfile> {
   const data = {
-    age: payload.age,
+    birthDate: payload.birthDate ?? undefined,
     sex: payload.sex,
     heightCm: payload.heightCm,
     activityLevel: payload.activityLevel,
+    countryCode: payload.countryCode,
+    timezone: payload.timezone,
+    bloodType: payload.bloodType,
+    rhFactor: payload.rhFactor,
+    restingHeartRateBpm: payload.restingHeartRateBpm,
+    bloodPressureSys: payload.bloodPressureSys,
+    bloodPressureDia: payload.bloodPressureDia,
+    smokingStatus: payload.smokingStatus,
+    alcoholUse: payload.alcoholUse,
     conditions: payload.conditions,
+    allergies: payload.allergies,
+    intolerances: payload.intolerances,
+    dietType: payload.dietType,
     goals: payload.goals,
     weightKg: toDecimalString(payload.weightKg),
     waistCm: toDecimalString(payload.waistCm),
@@ -74,11 +84,54 @@ export async function upsertUserProfile(
     bodyFatPercent: toDecimalString(payload.bodyFatPercent),
     muscleMassKg: toDecimalString(payload.muscleMassKg),
     bodyWaterPercent: toDecimalString(payload.bodyWaterPercent),
+    targetWeightKg: toDecimalString(payload.targetWeightKg),
+    targetCalories: payload.targetCalories,
+    targetProteinG: toDecimalString(payload.targetProteinG),
+    targetFatG: toDecimalString(payload.targetFatG),
+    targetCarbsG: toDecimalString(payload.targetCarbsG),
+    targetWaterMl: payload.targetWaterMl,
+    targetSteps: payload.targetSteps,
+    bmrCalories: payload.bmrCalories,
+    tdeeCalories: payload.tdeeCalories,
   };
 
-  return prisma.userProfile.upsert({
-    where: { userId },
-    create: { userId, ...data },
-    update: data,
+  return prisma.$transaction(async (tx) => {
+    const profile = await tx.userProfile.upsert({
+      where: { userId },
+      create: { userId, ...data },
+      update: data,
+    });
+
+    // If body metrics provided, also append a measurement point (history).
+    const hasAnyMeasurement =
+      payload.weightKg != null ||
+      payload.waistCm != null ||
+      payload.hipsCm != null ||
+      payload.bodyFatPercent != null ||
+      payload.muscleMassKg != null;
+
+    if (hasAnyMeasurement) {
+      await tx.bodyMeasurement.create({
+        data: {
+          userId,
+          measuredAt: new Date(),
+          weightKg: toDecimalString(payload.weightKg),
+          waistCm: toDecimalString(payload.waistCm),
+          hipsCm: toDecimalString(payload.hipsCm),
+          bodyFatPercent: toDecimalString(payload.bodyFatPercent),
+          muscleMassKg: toDecimalString(payload.muscleMassKg),
+        },
+      });
+    }
+
+    const completeness = await getProfileCompleteness(userId);
+    if (profile.onboardingCompleted !== completeness.isComplete) {
+      return tx.userProfile.update({
+        where: { userId },
+        data: { onboardingCompleted: completeness.isComplete },
+      });
+    }
+
+    return profile;
   });
 }

@@ -27,7 +27,6 @@ export type AggregateUserProfile = {
 }
 
 export type UserProfileAvgAggregateOutputType = {
-  age: number | null
   heightCm: number | null
   weightKg: runtime.Decimal | null
   waistCm: runtime.Decimal | null
@@ -35,10 +34,21 @@ export type UserProfileAvgAggregateOutputType = {
   bodyFatPercent: runtime.Decimal | null
   muscleMassKg: runtime.Decimal | null
   bodyWaterPercent: runtime.Decimal | null
+  restingHeartRateBpm: number | null
+  bloodPressureSys: number | null
+  bloodPressureDia: number | null
+  targetWeightKg: runtime.Decimal | null
+  targetCalories: number | null
+  targetProteinG: runtime.Decimal | null
+  targetFatG: runtime.Decimal | null
+  targetCarbsG: runtime.Decimal | null
+  targetWaterMl: number | null
+  targetSteps: number | null
+  bmrCalories: number | null
+  tdeeCalories: number | null
 }
 
 export type UserProfileSumAggregateOutputType = {
-  age: number | null
   heightCm: number | null
   weightKg: runtime.Decimal | null
   waistCm: runtime.Decimal | null
@@ -46,23 +56,57 @@ export type UserProfileSumAggregateOutputType = {
   bodyFatPercent: runtime.Decimal | null
   muscleMassKg: runtime.Decimal | null
   bodyWaterPercent: runtime.Decimal | null
+  restingHeartRateBpm: number | null
+  bloodPressureSys: number | null
+  bloodPressureDia: number | null
+  targetWeightKg: runtime.Decimal | null
+  targetCalories: number | null
+  targetProteinG: runtime.Decimal | null
+  targetFatG: runtime.Decimal | null
+  targetCarbsG: runtime.Decimal | null
+  targetWaterMl: number | null
+  targetSteps: number | null
+  bmrCalories: number | null
+  tdeeCalories: number | null
 }
 
 export type UserProfileMinAggregateOutputType = {
   id: string | null
   userId: string | null
-  age: number | null
+  birthDate: Date | null
   sex: string | null
   heightCm: number | null
+  activityLevel: string | null
   weightKg: runtime.Decimal | null
   waistCm: runtime.Decimal | null
   hipsCm: runtime.Decimal | null
   bodyFatPercent: runtime.Decimal | null
   muscleMassKg: runtime.Decimal | null
   bodyWaterPercent: runtime.Decimal | null
-  activityLevel: string | null
+  countryCode: string | null
+  timezone: string | null
+  bloodType: string | null
+  rhFactor: string | null
+  restingHeartRateBpm: number | null
+  bloodPressureSys: number | null
+  bloodPressureDia: number | null
+  smokingStatus: string | null
+  alcoholUse: string | null
   conditions: string | null
+  allergies: string | null
+  intolerances: string | null
+  dietType: string | null
   goals: string | null
+  targetWeightKg: runtime.Decimal | null
+  targetCalories: number | null
+  targetProteinG: runtime.Decimal | null
+  targetFatG: runtime.Decimal | null
+  targetCarbsG: runtime.Decimal | null
+  targetWaterMl: number | null
+  targetSteps: number | null
+  bmrCalories: number | null
+  tdeeCalories: number | null
+  onboardingCompleted: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -70,18 +114,40 @@ export type UserProfileMinAggregateOutputType = {
 export type UserProfileMaxAggregateOutputType = {
   id: string | null
   userId: string | null
-  age: number | null
+  birthDate: Date | null
   sex: string | null
   heightCm: number | null
+  activityLevel: string | null
   weightKg: runtime.Decimal | null
   waistCm: runtime.Decimal | null
   hipsCm: runtime.Decimal | null
   bodyFatPercent: runtime.Decimal | null
   muscleMassKg: runtime.Decimal | null
   bodyWaterPercent: runtime.Decimal | null
-  activityLevel: string | null
+  countryCode: string | null
+  timezone: string | null
+  bloodType: string | null
+  rhFactor: string | null
+  restingHeartRateBpm: number | null
+  bloodPressureSys: number | null
+  bloodPressureDia: number | null
+  smokingStatus: string | null
+  alcoholUse: string | null
   conditions: string | null
+  allergies: string | null
+  intolerances: string | null
+  dietType: string | null
   goals: string | null
+  targetWeightKg: runtime.Decimal | null
+  targetCalories: number | null
+  targetProteinG: runtime.Decimal | null
+  targetFatG: runtime.Decimal | null
+  targetCarbsG: runtime.Decimal | null
+  targetWaterMl: number | null
+  targetSteps: number | null
+  bmrCalories: number | null
+  tdeeCalories: number | null
+  onboardingCompleted: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -89,18 +155,40 @@ export type UserProfileMaxAggregateOutputType = {
 export type UserProfileCountAggregateOutputType = {
   id: number
   userId: number
-  age: number
+  birthDate: number
   sex: number
   heightCm: number
+  activityLevel: number
   weightKg: number
   waistCm: number
   hipsCm: number
   bodyFatPercent: number
   muscleMassKg: number
   bodyWaterPercent: number
-  activityLevel: number
+  countryCode: number
+  timezone: number
+  bloodType: number
+  rhFactor: number
+  restingHeartRateBpm: number
+  bloodPressureSys: number
+  bloodPressureDia: number
+  smokingStatus: number
+  alcoholUse: number
   conditions: number
+  allergies: number
+  intolerances: number
+  dietType: number
   goals: number
+  targetWeightKg: number
+  targetCalories: number
+  targetProteinG: number
+  targetFatG: number
+  targetCarbsG: number
+  targetWaterMl: number
+  targetSteps: number
+  bmrCalories: number
+  tdeeCalories: number
+  onboardingCompleted: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -108,7 +196,6 @@ export type UserProfileCountAggregateOutputType = {
 
 
 export type UserProfileAvgAggregateInputType = {
-  age?: true
   heightCm?: true
   weightKg?: true
   waistCm?: true
@@ -116,10 +203,21 @@ export type UserProfileAvgAggregateInputType = {
   bodyFatPercent?: true
   muscleMassKg?: true
   bodyWaterPercent?: true
+  restingHeartRateBpm?: true
+  bloodPressureSys?: true
+  bloodPressureDia?: true
+  targetWeightKg?: true
+  targetCalories?: true
+  targetProteinG?: true
+  targetFatG?: true
+  targetCarbsG?: true
+  targetWaterMl?: true
+  targetSteps?: true
+  bmrCalories?: true
+  tdeeCalories?: true
 }
 
 export type UserProfileSumAggregateInputType = {
-  age?: true
   heightCm?: true
   weightKg?: true
   waistCm?: true
@@ -127,23 +225,57 @@ export type UserProfileSumAggregateInputType = {
   bodyFatPercent?: true
   muscleMassKg?: true
   bodyWaterPercent?: true
+  restingHeartRateBpm?: true
+  bloodPressureSys?: true
+  bloodPressureDia?: true
+  targetWeightKg?: true
+  targetCalories?: true
+  targetProteinG?: true
+  targetFatG?: true
+  targetCarbsG?: true
+  targetWaterMl?: true
+  targetSteps?: true
+  bmrCalories?: true
+  tdeeCalories?: true
 }
 
 export type UserProfileMinAggregateInputType = {
   id?: true
   userId?: true
-  age?: true
+  birthDate?: true
   sex?: true
   heightCm?: true
+  activityLevel?: true
   weightKg?: true
   waistCm?: true
   hipsCm?: true
   bodyFatPercent?: true
   muscleMassKg?: true
   bodyWaterPercent?: true
-  activityLevel?: true
+  countryCode?: true
+  timezone?: true
+  bloodType?: true
+  rhFactor?: true
+  restingHeartRateBpm?: true
+  bloodPressureSys?: true
+  bloodPressureDia?: true
+  smokingStatus?: true
+  alcoholUse?: true
   conditions?: true
+  allergies?: true
+  intolerances?: true
+  dietType?: true
   goals?: true
+  targetWeightKg?: true
+  targetCalories?: true
+  targetProteinG?: true
+  targetFatG?: true
+  targetCarbsG?: true
+  targetWaterMl?: true
+  targetSteps?: true
+  bmrCalories?: true
+  tdeeCalories?: true
+  onboardingCompleted?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -151,18 +283,40 @@ export type UserProfileMinAggregateInputType = {
 export type UserProfileMaxAggregateInputType = {
   id?: true
   userId?: true
-  age?: true
+  birthDate?: true
   sex?: true
   heightCm?: true
+  activityLevel?: true
   weightKg?: true
   waistCm?: true
   hipsCm?: true
   bodyFatPercent?: true
   muscleMassKg?: true
   bodyWaterPercent?: true
-  activityLevel?: true
+  countryCode?: true
+  timezone?: true
+  bloodType?: true
+  rhFactor?: true
+  restingHeartRateBpm?: true
+  bloodPressureSys?: true
+  bloodPressureDia?: true
+  smokingStatus?: true
+  alcoholUse?: true
   conditions?: true
+  allergies?: true
+  intolerances?: true
+  dietType?: true
   goals?: true
+  targetWeightKg?: true
+  targetCalories?: true
+  targetProteinG?: true
+  targetFatG?: true
+  targetCarbsG?: true
+  targetWaterMl?: true
+  targetSteps?: true
+  bmrCalories?: true
+  tdeeCalories?: true
+  onboardingCompleted?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -170,18 +324,40 @@ export type UserProfileMaxAggregateInputType = {
 export type UserProfileCountAggregateInputType = {
   id?: true
   userId?: true
-  age?: true
+  birthDate?: true
   sex?: true
   heightCm?: true
+  activityLevel?: true
   weightKg?: true
   waistCm?: true
   hipsCm?: true
   bodyFatPercent?: true
   muscleMassKg?: true
   bodyWaterPercent?: true
-  activityLevel?: true
+  countryCode?: true
+  timezone?: true
+  bloodType?: true
+  rhFactor?: true
+  restingHeartRateBpm?: true
+  bloodPressureSys?: true
+  bloodPressureDia?: true
+  smokingStatus?: true
+  alcoholUse?: true
   conditions?: true
+  allergies?: true
+  intolerances?: true
+  dietType?: true
   goals?: true
+  targetWeightKg?: true
+  targetCalories?: true
+  targetProteinG?: true
+  targetFatG?: true
+  targetCarbsG?: true
+  targetWaterMl?: true
+  targetSteps?: true
+  bmrCalories?: true
+  tdeeCalories?: true
+  onboardingCompleted?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -276,18 +452,40 @@ export type UserProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type UserProfileGroupByOutputType = {
   id: string
   userId: string
-  age: number | null
+  birthDate: Date | null
   sex: string | null
   heightCm: number | null
+  activityLevel: string | null
   weightKg: runtime.Decimal | null
   waistCm: runtime.Decimal | null
   hipsCm: runtime.Decimal | null
   bodyFatPercent: runtime.Decimal | null
   muscleMassKg: runtime.Decimal | null
   bodyWaterPercent: runtime.Decimal | null
-  activityLevel: string | null
+  countryCode: string | null
+  timezone: string | null
+  bloodType: string | null
+  rhFactor: string | null
+  restingHeartRateBpm: number | null
+  bloodPressureSys: number | null
+  bloodPressureDia: number | null
+  smokingStatus: string | null
+  alcoholUse: string | null
   conditions: string | null
+  allergies: string | null
+  intolerances: string | null
+  dietType: string | null
   goals: string | null
+  targetWeightKg: runtime.Decimal | null
+  targetCalories: number | null
+  targetProteinG: runtime.Decimal | null
+  targetFatG: runtime.Decimal | null
+  targetCarbsG: runtime.Decimal | null
+  targetWaterMl: number | null
+  targetSteps: number | null
+  bmrCalories: number | null
+  tdeeCalories: number | null
+  onboardingCompleted: boolean
   createdAt: Date
   updatedAt: Date
   _count: UserProfileCountAggregateOutputType | null
@@ -318,18 +516,40 @@ export type UserProfileWhereInput = {
   NOT?: Prisma.UserProfileWhereInput | Prisma.UserProfileWhereInput[]
   id?: Prisma.StringFilter<"UserProfile"> | string
   userId?: Prisma.StringFilter<"UserProfile"> | string
-  age?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  birthDate?: Prisma.DateTimeNullableFilter<"UserProfile"> | Date | string | null
   sex?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   heightCm?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  activityLevel?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   weightKg?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  countryCode?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  timezone?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  bloodType?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  rhFactor?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  restingHeartRateBpm?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  bloodPressureSys?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  bloodPressureDia?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  smokingStatus?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  alcoholUse?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   conditions?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  allergies?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  intolerances?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  dietType?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   goals?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  targetWeightKg?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  targetProteinG?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  targetSteps?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  bmrCalories?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  tdeeCalories?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  onboardingCompleted?: Prisma.BoolFilter<"UserProfile"> | boolean
   createdAt?: Prisma.DateTimeFilter<"UserProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UserProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -338,18 +558,40 @@ export type UserProfileWhereInput = {
 export type UserProfileOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  age?: Prisma.SortOrderInput | Prisma.SortOrder
+  birthDate?: Prisma.SortOrderInput | Prisma.SortOrder
   sex?: Prisma.SortOrderInput | Prisma.SortOrder
   heightCm?: Prisma.SortOrderInput | Prisma.SortOrder
+  activityLevel?: Prisma.SortOrderInput | Prisma.SortOrder
   weightKg?: Prisma.SortOrderInput | Prisma.SortOrder
   waistCm?: Prisma.SortOrderInput | Prisma.SortOrder
   hipsCm?: Prisma.SortOrderInput | Prisma.SortOrder
   bodyFatPercent?: Prisma.SortOrderInput | Prisma.SortOrder
   muscleMassKg?: Prisma.SortOrderInput | Prisma.SortOrder
   bodyWaterPercent?: Prisma.SortOrderInput | Prisma.SortOrder
-  activityLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  countryCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  timezone?: Prisma.SortOrderInput | Prisma.SortOrder
+  bloodType?: Prisma.SortOrderInput | Prisma.SortOrder
+  rhFactor?: Prisma.SortOrderInput | Prisma.SortOrder
+  restingHeartRateBpm?: Prisma.SortOrderInput | Prisma.SortOrder
+  bloodPressureSys?: Prisma.SortOrderInput | Prisma.SortOrder
+  bloodPressureDia?: Prisma.SortOrderInput | Prisma.SortOrder
+  smokingStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  alcoholUse?: Prisma.SortOrderInput | Prisma.SortOrder
   conditions?: Prisma.SortOrderInput | Prisma.SortOrder
+  allergies?: Prisma.SortOrderInput | Prisma.SortOrder
+  intolerances?: Prisma.SortOrderInput | Prisma.SortOrder
+  dietType?: Prisma.SortOrderInput | Prisma.SortOrder
   goals?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetWeightKg?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetCalories?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetProteinG?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetFatG?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetCarbsG?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetWaterMl?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetSteps?: Prisma.SortOrderInput | Prisma.SortOrder
+  bmrCalories?: Prisma.SortOrderInput | Prisma.SortOrder
+  tdeeCalories?: Prisma.SortOrderInput | Prisma.SortOrder
+  onboardingCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -361,18 +603,40 @@ export type UserProfileWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.UserProfileWhereInput | Prisma.UserProfileWhereInput[]
   OR?: Prisma.UserProfileWhereInput[]
   NOT?: Prisma.UserProfileWhereInput | Prisma.UserProfileWhereInput[]
-  age?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  birthDate?: Prisma.DateTimeNullableFilter<"UserProfile"> | Date | string | null
   sex?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   heightCm?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  activityLevel?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   weightKg?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  countryCode?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  timezone?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  bloodType?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  rhFactor?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  restingHeartRateBpm?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  bloodPressureSys?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  bloodPressureDia?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  smokingStatus?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  alcoholUse?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   conditions?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  allergies?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  intolerances?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  dietType?: Prisma.StringNullableFilter<"UserProfile"> | string | null
   goals?: Prisma.StringNullableFilter<"UserProfile"> | string | null
+  targetWeightKg?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  targetProteinG?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: Prisma.DecimalNullableFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  targetSteps?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  bmrCalories?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  tdeeCalories?: Prisma.IntNullableFilter<"UserProfile"> | number | null
+  onboardingCompleted?: Prisma.BoolFilter<"UserProfile"> | boolean
   createdAt?: Prisma.DateTimeFilter<"UserProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"UserProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -381,18 +645,40 @@ export type UserProfileWhereUniqueInput = Prisma.AtLeast<{
 export type UserProfileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  age?: Prisma.SortOrderInput | Prisma.SortOrder
+  birthDate?: Prisma.SortOrderInput | Prisma.SortOrder
   sex?: Prisma.SortOrderInput | Prisma.SortOrder
   heightCm?: Prisma.SortOrderInput | Prisma.SortOrder
+  activityLevel?: Prisma.SortOrderInput | Prisma.SortOrder
   weightKg?: Prisma.SortOrderInput | Prisma.SortOrder
   waistCm?: Prisma.SortOrderInput | Prisma.SortOrder
   hipsCm?: Prisma.SortOrderInput | Prisma.SortOrder
   bodyFatPercent?: Prisma.SortOrderInput | Prisma.SortOrder
   muscleMassKg?: Prisma.SortOrderInput | Prisma.SortOrder
   bodyWaterPercent?: Prisma.SortOrderInput | Prisma.SortOrder
-  activityLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  countryCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  timezone?: Prisma.SortOrderInput | Prisma.SortOrder
+  bloodType?: Prisma.SortOrderInput | Prisma.SortOrder
+  rhFactor?: Prisma.SortOrderInput | Prisma.SortOrder
+  restingHeartRateBpm?: Prisma.SortOrderInput | Prisma.SortOrder
+  bloodPressureSys?: Prisma.SortOrderInput | Prisma.SortOrder
+  bloodPressureDia?: Prisma.SortOrderInput | Prisma.SortOrder
+  smokingStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  alcoholUse?: Prisma.SortOrderInput | Prisma.SortOrder
   conditions?: Prisma.SortOrderInput | Prisma.SortOrder
+  allergies?: Prisma.SortOrderInput | Prisma.SortOrder
+  intolerances?: Prisma.SortOrderInput | Prisma.SortOrder
+  dietType?: Prisma.SortOrderInput | Prisma.SortOrder
   goals?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetWeightKg?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetCalories?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetProteinG?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetFatG?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetCarbsG?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetWaterMl?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetSteps?: Prisma.SortOrderInput | Prisma.SortOrder
+  bmrCalories?: Prisma.SortOrderInput | Prisma.SortOrder
+  tdeeCalories?: Prisma.SortOrderInput | Prisma.SortOrder
+  onboardingCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserProfileCountOrderByAggregateInput
@@ -408,36 +694,80 @@ export type UserProfileScalarWhereWithAggregatesInput = {
   NOT?: Prisma.UserProfileScalarWhereWithAggregatesInput | Prisma.UserProfileScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"UserProfile"> | string
   userId?: Prisma.StringWithAggregatesFilter<"UserProfile"> | string
-  age?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+  birthDate?: Prisma.DateTimeNullableWithAggregatesFilter<"UserProfile"> | Date | string | null
   sex?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
   heightCm?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+  activityLevel?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
   weightKg?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  countryCode?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  timezone?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  bloodType?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  rhFactor?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  restingHeartRateBpm?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+  bloodPressureSys?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+  bloodPressureDia?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+  smokingStatus?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  alcoholUse?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
   conditions?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  allergies?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  intolerances?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  dietType?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
   goals?: Prisma.StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+  targetWeightKg?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+  targetProteinG?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: Prisma.DecimalNullableWithAggregatesFilter<"UserProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+  targetSteps?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+  bmrCalories?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+  tdeeCalories?: Prisma.IntNullableWithAggregatesFilter<"UserProfile"> | number | null
+  onboardingCompleted?: Prisma.BoolWithAggregatesFilter<"UserProfile"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"UserProfile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"UserProfile"> | Date | string
 }
 
 export type UserProfileCreateInput = {
   id?: string
-  age?: number | null
+  birthDate?: Date | string | null
   sex?: string | null
   heightCm?: number | null
+  activityLevel?: string | null
   weightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: string | null
+  countryCode?: string | null
+  timezone?: string | null
+  bloodType?: string | null
+  rhFactor?: string | null
+  restingHeartRateBpm?: number | null
+  bloodPressureSys?: number | null
+  bloodPressureDia?: number | null
+  smokingStatus?: string | null
+  alcoholUse?: string | null
   conditions?: string | null
+  allergies?: string | null
+  intolerances?: string | null
+  dietType?: string | null
   goals?: string | null
+  targetWeightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: number | null
+  targetProteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: number | null
+  targetSteps?: number | null
+  bmrCalories?: number | null
+  tdeeCalories?: number | null
+  onboardingCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProfileInput
@@ -446,36 +776,80 @@ export type UserProfileCreateInput = {
 export type UserProfileUncheckedCreateInput = {
   id?: string
   userId: string
-  age?: number | null
+  birthDate?: Date | string | null
   sex?: string | null
   heightCm?: number | null
+  activityLevel?: string | null
   weightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: string | null
+  countryCode?: string | null
+  timezone?: string | null
+  bloodType?: string | null
+  rhFactor?: string | null
+  restingHeartRateBpm?: number | null
+  bloodPressureSys?: number | null
+  bloodPressureDia?: number | null
+  smokingStatus?: string | null
+  alcoholUse?: string | null
   conditions?: string | null
+  allergies?: string | null
+  intolerances?: string | null
+  dietType?: string | null
   goals?: string | null
+  targetWeightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: number | null
+  targetProteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: number | null
+  targetSteps?: number | null
+  bmrCalories?: number | null
+  tdeeCalories?: number | null
+  onboardingCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type UserProfileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   weightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bloodType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rhFactor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  restingHeartRateBpm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bloodPressureSys?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bloodPressureDia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  smokingStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alcoholUse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   conditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  allergies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intolerances?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dietType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetWeightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  targetProteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  targetSteps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bmrCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tdeeCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
@@ -484,18 +858,40 @@ export type UserProfileUpdateInput = {
 export type UserProfileUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   weightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bloodType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rhFactor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  restingHeartRateBpm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bloodPressureSys?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bloodPressureDia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  smokingStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alcoholUse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   conditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  allergies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intolerances?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dietType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetWeightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  targetProteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  targetSteps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bmrCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tdeeCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -503,36 +899,80 @@ export type UserProfileUncheckedUpdateInput = {
 export type UserProfileCreateManyInput = {
   id?: string
   userId: string
-  age?: number | null
+  birthDate?: Date | string | null
   sex?: string | null
   heightCm?: number | null
+  activityLevel?: string | null
   weightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: string | null
+  countryCode?: string | null
+  timezone?: string | null
+  bloodType?: string | null
+  rhFactor?: string | null
+  restingHeartRateBpm?: number | null
+  bloodPressureSys?: number | null
+  bloodPressureDia?: number | null
+  smokingStatus?: string | null
+  alcoholUse?: string | null
   conditions?: string | null
+  allergies?: string | null
+  intolerances?: string | null
+  dietType?: string | null
   goals?: string | null
+  targetWeightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: number | null
+  targetProteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: number | null
+  targetSteps?: number | null
+  bmrCalories?: number | null
+  tdeeCalories?: number | null
+  onboardingCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type UserProfileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   weightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bloodType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rhFactor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  restingHeartRateBpm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bloodPressureSys?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bloodPressureDia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  smokingStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alcoholUse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   conditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  allergies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intolerances?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dietType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetWeightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  targetProteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  targetSteps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bmrCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tdeeCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -540,18 +980,40 @@ export type UserProfileUpdateManyMutationInput = {
 export type UserProfileUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   weightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bloodType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rhFactor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  restingHeartRateBpm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bloodPressureSys?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bloodPressureDia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  smokingStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alcoholUse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   conditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  allergies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intolerances?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dietType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetWeightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  targetProteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  targetSteps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bmrCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tdeeCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -564,24 +1026,45 @@ export type UserProfileNullableScalarRelationFilter = {
 export type UserProfileCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  age?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
   sex?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
+  activityLevel?: Prisma.SortOrder
   weightKg?: Prisma.SortOrder
   waistCm?: Prisma.SortOrder
   hipsCm?: Prisma.SortOrder
   bodyFatPercent?: Prisma.SortOrder
   muscleMassKg?: Prisma.SortOrder
   bodyWaterPercent?: Prisma.SortOrder
-  activityLevel?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
+  bloodType?: Prisma.SortOrder
+  rhFactor?: Prisma.SortOrder
+  restingHeartRateBpm?: Prisma.SortOrder
+  bloodPressureSys?: Prisma.SortOrder
+  bloodPressureDia?: Prisma.SortOrder
+  smokingStatus?: Prisma.SortOrder
+  alcoholUse?: Prisma.SortOrder
   conditions?: Prisma.SortOrder
+  allergies?: Prisma.SortOrder
+  intolerances?: Prisma.SortOrder
+  dietType?: Prisma.SortOrder
   goals?: Prisma.SortOrder
+  targetWeightKg?: Prisma.SortOrder
+  targetCalories?: Prisma.SortOrder
+  targetProteinG?: Prisma.SortOrder
+  targetFatG?: Prisma.SortOrder
+  targetCarbsG?: Prisma.SortOrder
+  targetWaterMl?: Prisma.SortOrder
+  targetSteps?: Prisma.SortOrder
+  bmrCalories?: Prisma.SortOrder
+  tdeeCalories?: Prisma.SortOrder
+  onboardingCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type UserProfileAvgOrderByAggregateInput = {
-  age?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
   weightKg?: Prisma.SortOrder
   waistCm?: Prisma.SortOrder
@@ -589,23 +1072,57 @@ export type UserProfileAvgOrderByAggregateInput = {
   bodyFatPercent?: Prisma.SortOrder
   muscleMassKg?: Prisma.SortOrder
   bodyWaterPercent?: Prisma.SortOrder
+  restingHeartRateBpm?: Prisma.SortOrder
+  bloodPressureSys?: Prisma.SortOrder
+  bloodPressureDia?: Prisma.SortOrder
+  targetWeightKg?: Prisma.SortOrder
+  targetCalories?: Prisma.SortOrder
+  targetProteinG?: Prisma.SortOrder
+  targetFatG?: Prisma.SortOrder
+  targetCarbsG?: Prisma.SortOrder
+  targetWaterMl?: Prisma.SortOrder
+  targetSteps?: Prisma.SortOrder
+  bmrCalories?: Prisma.SortOrder
+  tdeeCalories?: Prisma.SortOrder
 }
 
 export type UserProfileMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  age?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
   sex?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
+  activityLevel?: Prisma.SortOrder
   weightKg?: Prisma.SortOrder
   waistCm?: Prisma.SortOrder
   hipsCm?: Prisma.SortOrder
   bodyFatPercent?: Prisma.SortOrder
   muscleMassKg?: Prisma.SortOrder
   bodyWaterPercent?: Prisma.SortOrder
-  activityLevel?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
+  bloodType?: Prisma.SortOrder
+  rhFactor?: Prisma.SortOrder
+  restingHeartRateBpm?: Prisma.SortOrder
+  bloodPressureSys?: Prisma.SortOrder
+  bloodPressureDia?: Prisma.SortOrder
+  smokingStatus?: Prisma.SortOrder
+  alcoholUse?: Prisma.SortOrder
   conditions?: Prisma.SortOrder
+  allergies?: Prisma.SortOrder
+  intolerances?: Prisma.SortOrder
+  dietType?: Prisma.SortOrder
   goals?: Prisma.SortOrder
+  targetWeightKg?: Prisma.SortOrder
+  targetCalories?: Prisma.SortOrder
+  targetProteinG?: Prisma.SortOrder
+  targetFatG?: Prisma.SortOrder
+  targetCarbsG?: Prisma.SortOrder
+  targetWaterMl?: Prisma.SortOrder
+  targetSteps?: Prisma.SortOrder
+  bmrCalories?: Prisma.SortOrder
+  tdeeCalories?: Prisma.SortOrder
+  onboardingCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -613,24 +1130,45 @@ export type UserProfileMaxOrderByAggregateInput = {
 export type UserProfileMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  age?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
   sex?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
+  activityLevel?: Prisma.SortOrder
   weightKg?: Prisma.SortOrder
   waistCm?: Prisma.SortOrder
   hipsCm?: Prisma.SortOrder
   bodyFatPercent?: Prisma.SortOrder
   muscleMassKg?: Prisma.SortOrder
   bodyWaterPercent?: Prisma.SortOrder
-  activityLevel?: Prisma.SortOrder
+  countryCode?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
+  bloodType?: Prisma.SortOrder
+  rhFactor?: Prisma.SortOrder
+  restingHeartRateBpm?: Prisma.SortOrder
+  bloodPressureSys?: Prisma.SortOrder
+  bloodPressureDia?: Prisma.SortOrder
+  smokingStatus?: Prisma.SortOrder
+  alcoholUse?: Prisma.SortOrder
   conditions?: Prisma.SortOrder
+  allergies?: Prisma.SortOrder
+  intolerances?: Prisma.SortOrder
+  dietType?: Prisma.SortOrder
   goals?: Prisma.SortOrder
+  targetWeightKg?: Prisma.SortOrder
+  targetCalories?: Prisma.SortOrder
+  targetProteinG?: Prisma.SortOrder
+  targetFatG?: Prisma.SortOrder
+  targetCarbsG?: Prisma.SortOrder
+  targetWaterMl?: Prisma.SortOrder
+  targetSteps?: Prisma.SortOrder
+  bmrCalories?: Prisma.SortOrder
+  tdeeCalories?: Prisma.SortOrder
+  onboardingCompleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type UserProfileSumOrderByAggregateInput = {
-  age?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
   weightKg?: Prisma.SortOrder
   waistCm?: Prisma.SortOrder
@@ -638,6 +1176,18 @@ export type UserProfileSumOrderByAggregateInput = {
   bodyFatPercent?: Prisma.SortOrder
   muscleMassKg?: Prisma.SortOrder
   bodyWaterPercent?: Prisma.SortOrder
+  restingHeartRateBpm?: Prisma.SortOrder
+  bloodPressureSys?: Prisma.SortOrder
+  bloodPressureDia?: Prisma.SortOrder
+  targetWeightKg?: Prisma.SortOrder
+  targetCalories?: Prisma.SortOrder
+  targetProteinG?: Prisma.SortOrder
+  targetFatG?: Prisma.SortOrder
+  targetCarbsG?: Prisma.SortOrder
+  targetWaterMl?: Prisma.SortOrder
+  targetSteps?: Prisma.SortOrder
+  bmrCalories?: Prisma.SortOrder
+  tdeeCalories?: Prisma.SortOrder
 }
 
 export type UserProfileCreateNestedOneWithoutUserInput = {
@@ -672,6 +1222,10 @@ export type UserProfileUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserProfileUpdateToOneWithWhereWithoutUserInput, Prisma.UserProfileUpdateWithoutUserInput>, Prisma.UserProfileUncheckedUpdateWithoutUserInput>
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type NullableIntFieldUpdateOperationsInput = {
   set?: number | null
   increment?: number
@@ -688,38 +1242,86 @@ export type NullableDecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type UserProfileCreateWithoutUserInput = {
   id?: string
-  age?: number | null
+  birthDate?: Date | string | null
   sex?: string | null
   heightCm?: number | null
+  activityLevel?: string | null
   weightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: string | null
+  countryCode?: string | null
+  timezone?: string | null
+  bloodType?: string | null
+  rhFactor?: string | null
+  restingHeartRateBpm?: number | null
+  bloodPressureSys?: number | null
+  bloodPressureDia?: number | null
+  smokingStatus?: string | null
+  alcoholUse?: string | null
   conditions?: string | null
+  allergies?: string | null
+  intolerances?: string | null
+  dietType?: string | null
   goals?: string | null
+  targetWeightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: number | null
+  targetProteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: number | null
+  targetSteps?: number | null
+  bmrCalories?: number | null
+  tdeeCalories?: number | null
+  onboardingCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type UserProfileUncheckedCreateWithoutUserInput = {
   id?: string
-  age?: number | null
+  birthDate?: Date | string | null
   sex?: string | null
   heightCm?: number | null
+  activityLevel?: string | null
   weightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: string | null
+  countryCode?: string | null
+  timezone?: string | null
+  bloodType?: string | null
+  rhFactor?: string | null
+  restingHeartRateBpm?: number | null
+  bloodPressureSys?: number | null
+  bloodPressureDia?: number | null
+  smokingStatus?: string | null
+  alcoholUse?: string | null
   conditions?: string | null
+  allergies?: string | null
+  intolerances?: string | null
+  dietType?: string | null
   goals?: string | null
+  targetWeightKg?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: number | null
+  targetProteinG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: number | null
+  targetSteps?: number | null
+  bmrCalories?: number | null
+  tdeeCalories?: number | null
+  onboardingCompleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -742,36 +1344,80 @@ export type UserProfileUpdateToOneWithWhereWithoutUserInput = {
 
 export type UserProfileUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   weightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bloodType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rhFactor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  restingHeartRateBpm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bloodPressureSys?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bloodPressureDia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  smokingStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alcoholUse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   conditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  allergies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intolerances?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dietType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetWeightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  targetProteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  targetSteps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bmrCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tdeeCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserProfileUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sex?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   weightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   waistCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   hipsCm?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyFatPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   muscleMassKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   bodyWaterPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  activityLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bloodType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rhFactor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  restingHeartRateBpm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bloodPressureSys?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bloodPressureDia?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  smokingStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  alcoholUse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   conditions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  allergies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  intolerances?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dietType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goals?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetWeightKg?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  targetProteinG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetFatG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetCarbsG?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWaterMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  targetSteps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bmrCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tdeeCalories?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  onboardingCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -781,18 +1427,40 @@ export type UserProfileUncheckedUpdateWithoutUserInput = {
 export type UserProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  age?: boolean
+  birthDate?: boolean
   sex?: boolean
   heightCm?: boolean
+  activityLevel?: boolean
   weightKg?: boolean
   waistCm?: boolean
   hipsCm?: boolean
   bodyFatPercent?: boolean
   muscleMassKg?: boolean
   bodyWaterPercent?: boolean
-  activityLevel?: boolean
+  countryCode?: boolean
+  timezone?: boolean
+  bloodType?: boolean
+  rhFactor?: boolean
+  restingHeartRateBpm?: boolean
+  bloodPressureSys?: boolean
+  bloodPressureDia?: boolean
+  smokingStatus?: boolean
+  alcoholUse?: boolean
   conditions?: boolean
+  allergies?: boolean
+  intolerances?: boolean
+  dietType?: boolean
   goals?: boolean
+  targetWeightKg?: boolean
+  targetCalories?: boolean
+  targetProteinG?: boolean
+  targetFatG?: boolean
+  targetCarbsG?: boolean
+  targetWaterMl?: boolean
+  targetSteps?: boolean
+  bmrCalories?: boolean
+  tdeeCalories?: boolean
+  onboardingCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -801,18 +1469,40 @@ export type UserProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 export type UserProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  age?: boolean
+  birthDate?: boolean
   sex?: boolean
   heightCm?: boolean
+  activityLevel?: boolean
   weightKg?: boolean
   waistCm?: boolean
   hipsCm?: boolean
   bodyFatPercent?: boolean
   muscleMassKg?: boolean
   bodyWaterPercent?: boolean
-  activityLevel?: boolean
+  countryCode?: boolean
+  timezone?: boolean
+  bloodType?: boolean
+  rhFactor?: boolean
+  restingHeartRateBpm?: boolean
+  bloodPressureSys?: boolean
+  bloodPressureDia?: boolean
+  smokingStatus?: boolean
+  alcoholUse?: boolean
   conditions?: boolean
+  allergies?: boolean
+  intolerances?: boolean
+  dietType?: boolean
   goals?: boolean
+  targetWeightKg?: boolean
+  targetCalories?: boolean
+  targetProteinG?: boolean
+  targetFatG?: boolean
+  targetCarbsG?: boolean
+  targetWaterMl?: boolean
+  targetSteps?: boolean
+  bmrCalories?: boolean
+  tdeeCalories?: boolean
+  onboardingCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -821,18 +1511,40 @@ export type UserProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
 export type UserProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  age?: boolean
+  birthDate?: boolean
   sex?: boolean
   heightCm?: boolean
+  activityLevel?: boolean
   weightKg?: boolean
   waistCm?: boolean
   hipsCm?: boolean
   bodyFatPercent?: boolean
   muscleMassKg?: boolean
   bodyWaterPercent?: boolean
-  activityLevel?: boolean
+  countryCode?: boolean
+  timezone?: boolean
+  bloodType?: boolean
+  rhFactor?: boolean
+  restingHeartRateBpm?: boolean
+  bloodPressureSys?: boolean
+  bloodPressureDia?: boolean
+  smokingStatus?: boolean
+  alcoholUse?: boolean
   conditions?: boolean
+  allergies?: boolean
+  intolerances?: boolean
+  dietType?: boolean
   goals?: boolean
+  targetWeightKg?: boolean
+  targetCalories?: boolean
+  targetProteinG?: boolean
+  targetFatG?: boolean
+  targetCarbsG?: boolean
+  targetWaterMl?: boolean
+  targetSteps?: boolean
+  bmrCalories?: boolean
+  tdeeCalories?: boolean
+  onboardingCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -841,23 +1553,45 @@ export type UserProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type UserProfileSelectScalar = {
   id?: boolean
   userId?: boolean
-  age?: boolean
+  birthDate?: boolean
   sex?: boolean
   heightCm?: boolean
+  activityLevel?: boolean
   weightKg?: boolean
   waistCm?: boolean
   hipsCm?: boolean
   bodyFatPercent?: boolean
   muscleMassKg?: boolean
   bodyWaterPercent?: boolean
-  activityLevel?: boolean
+  countryCode?: boolean
+  timezone?: boolean
+  bloodType?: boolean
+  rhFactor?: boolean
+  restingHeartRateBpm?: boolean
+  bloodPressureSys?: boolean
+  bloodPressureDia?: boolean
+  smokingStatus?: boolean
+  alcoholUse?: boolean
   conditions?: boolean
+  allergies?: boolean
+  intolerances?: boolean
+  dietType?: boolean
   goals?: boolean
+  targetWeightKg?: boolean
+  targetCalories?: boolean
+  targetProteinG?: boolean
+  targetFatG?: boolean
+  targetCarbsG?: boolean
+  targetWaterMl?: boolean
+  targetSteps?: boolean
+  bmrCalories?: boolean
+  tdeeCalories?: boolean
+  onboardingCompleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "age" | "sex" | "heightCm" | "weightKg" | "waistCm" | "hipsCm" | "bodyFatPercent" | "muscleMassKg" | "bodyWaterPercent" | "activityLevel" | "conditions" | "goals" | "createdAt" | "updatedAt", ExtArgs["result"]["userProfile"]>
+export type UserProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "birthDate" | "sex" | "heightCm" | "activityLevel" | "weightKg" | "waistCm" | "hipsCm" | "bodyFatPercent" | "muscleMassKg" | "bodyWaterPercent" | "countryCode" | "timezone" | "bloodType" | "rhFactor" | "restingHeartRateBpm" | "bloodPressureSys" | "bloodPressureDia" | "smokingStatus" | "alcoholUse" | "conditions" | "allergies" | "intolerances" | "dietType" | "goals" | "targetWeightKg" | "targetCalories" | "targetProteinG" | "targetFatG" | "targetCarbsG" | "targetWaterMl" | "targetSteps" | "bmrCalories" | "tdeeCalories" | "onboardingCompleted" | "createdAt" | "updatedAt", ExtArgs["result"]["userProfile"]>
 export type UserProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -876,18 +1610,40 @@ export type $UserProfilePayload<ExtArgs extends runtime.Types.Extensions.Interna
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
-    age: number | null
+    birthDate: Date | null
     sex: string | null
     heightCm: number | null
+    activityLevel: string | null
     weightKg: runtime.Decimal | null
     waistCm: runtime.Decimal | null
     hipsCm: runtime.Decimal | null
     bodyFatPercent: runtime.Decimal | null
     muscleMassKg: runtime.Decimal | null
     bodyWaterPercent: runtime.Decimal | null
-    activityLevel: string | null
+    countryCode: string | null
+    timezone: string | null
+    bloodType: string | null
+    rhFactor: string | null
+    restingHeartRateBpm: number | null
+    bloodPressureSys: number | null
+    bloodPressureDia: number | null
+    smokingStatus: string | null
+    alcoholUse: string | null
     conditions: string | null
+    allergies: string | null
+    intolerances: string | null
+    dietType: string | null
     goals: string | null
+    targetWeightKg: runtime.Decimal | null
+    targetCalories: number | null
+    targetProteinG: runtime.Decimal | null
+    targetFatG: runtime.Decimal | null
+    targetCarbsG: runtime.Decimal | null
+    targetWaterMl: number | null
+    targetSteps: number | null
+    bmrCalories: number | null
+    tdeeCalories: number | null
+    onboardingCompleted: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["userProfile"]>
@@ -1316,18 +2072,40 @@ export interface Prisma__UserProfileClient<T, Null = never, ExtArgs extends runt
 export interface UserProfileFieldRefs {
   readonly id: Prisma.FieldRef<"UserProfile", 'String'>
   readonly userId: Prisma.FieldRef<"UserProfile", 'String'>
-  readonly age: Prisma.FieldRef<"UserProfile", 'Int'>
+  readonly birthDate: Prisma.FieldRef<"UserProfile", 'DateTime'>
   readonly sex: Prisma.FieldRef<"UserProfile", 'String'>
   readonly heightCm: Prisma.FieldRef<"UserProfile", 'Int'>
+  readonly activityLevel: Prisma.FieldRef<"UserProfile", 'String'>
   readonly weightKg: Prisma.FieldRef<"UserProfile", 'Decimal'>
   readonly waistCm: Prisma.FieldRef<"UserProfile", 'Decimal'>
   readonly hipsCm: Prisma.FieldRef<"UserProfile", 'Decimal'>
   readonly bodyFatPercent: Prisma.FieldRef<"UserProfile", 'Decimal'>
   readonly muscleMassKg: Prisma.FieldRef<"UserProfile", 'Decimal'>
   readonly bodyWaterPercent: Prisma.FieldRef<"UserProfile", 'Decimal'>
-  readonly activityLevel: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly countryCode: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly timezone: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly bloodType: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly rhFactor: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly restingHeartRateBpm: Prisma.FieldRef<"UserProfile", 'Int'>
+  readonly bloodPressureSys: Prisma.FieldRef<"UserProfile", 'Int'>
+  readonly bloodPressureDia: Prisma.FieldRef<"UserProfile", 'Int'>
+  readonly smokingStatus: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly alcoholUse: Prisma.FieldRef<"UserProfile", 'String'>
   readonly conditions: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly allergies: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly intolerances: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly dietType: Prisma.FieldRef<"UserProfile", 'String'>
   readonly goals: Prisma.FieldRef<"UserProfile", 'String'>
+  readonly targetWeightKg: Prisma.FieldRef<"UserProfile", 'Decimal'>
+  readonly targetCalories: Prisma.FieldRef<"UserProfile", 'Int'>
+  readonly targetProteinG: Prisma.FieldRef<"UserProfile", 'Decimal'>
+  readonly targetFatG: Prisma.FieldRef<"UserProfile", 'Decimal'>
+  readonly targetCarbsG: Prisma.FieldRef<"UserProfile", 'Decimal'>
+  readonly targetWaterMl: Prisma.FieldRef<"UserProfile", 'Int'>
+  readonly targetSteps: Prisma.FieldRef<"UserProfile", 'Int'>
+  readonly bmrCalories: Prisma.FieldRef<"UserProfile", 'Int'>
+  readonly tdeeCalories: Prisma.FieldRef<"UserProfile", 'Int'>
+  readonly onboardingCompleted: Prisma.FieldRef<"UserProfile", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"UserProfile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"UserProfile", 'DateTime'>
 }

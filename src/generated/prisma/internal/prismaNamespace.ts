@@ -386,6 +386,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   User: 'User',
   UserProfile: 'UserProfile',
+  BodyMeasurement: 'BodyMeasurement',
+  MedicationPlan: 'MedicationPlan',
   DailyLog: 'DailyLog',
   Meal: 'Meal',
   IntakeItem: 'IntakeItem',
@@ -409,7 +411,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "userProfile" | "dailyLog" | "meal" | "intakeItem" | "sleepLog" | "activityLog" | "labResult" | "fileAsset" | "dailySummary"
+    modelProps: "user" | "userProfile" | "bodyMeasurement" | "medicationPlan" | "dailyLog" | "meal" | "intakeItem" | "sleepLog" | "activityLog" | "labResult" | "fileAsset" | "dailySummary"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -558,6 +560,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserProfileCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserProfileCountAggregateOutputType> | number
+        }
+      }
+    }
+    BodyMeasurement: {
+      payload: Prisma.$BodyMeasurementPayload<ExtArgs>
+      fields: Prisma.BodyMeasurementFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BodyMeasurementFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BodyMeasurementPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BodyMeasurementFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BodyMeasurementPayload>
+        }
+        findFirst: {
+          args: Prisma.BodyMeasurementFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BodyMeasurementPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BodyMeasurementFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BodyMeasurementPayload>
+        }
+        findMany: {
+          args: Prisma.BodyMeasurementFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BodyMeasurementPayload>[]
+        }
+        create: {
+          args: Prisma.BodyMeasurementCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BodyMeasurementPayload>
+        }
+        createMany: {
+          args: Prisma.BodyMeasurementCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BodyMeasurementCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BodyMeasurementPayload>[]
+        }
+        delete: {
+          args: Prisma.BodyMeasurementDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BodyMeasurementPayload>
+        }
+        update: {
+          args: Prisma.BodyMeasurementUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BodyMeasurementPayload>
+        }
+        deleteMany: {
+          args: Prisma.BodyMeasurementDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BodyMeasurementUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BodyMeasurementUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BodyMeasurementPayload>[]
+        }
+        upsert: {
+          args: Prisma.BodyMeasurementUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BodyMeasurementPayload>
+        }
+        aggregate: {
+          args: Prisma.BodyMeasurementAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBodyMeasurement>
+        }
+        groupBy: {
+          args: Prisma.BodyMeasurementGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BodyMeasurementGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BodyMeasurementCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BodyMeasurementCountAggregateOutputType> | number
+        }
+      }
+    }
+    MedicationPlan: {
+      payload: Prisma.$MedicationPlanPayload<ExtArgs>
+      fields: Prisma.MedicationPlanFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MedicationPlanFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedicationPlanPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MedicationPlanFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedicationPlanPayload>
+        }
+        findFirst: {
+          args: Prisma.MedicationPlanFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedicationPlanPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MedicationPlanFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedicationPlanPayload>
+        }
+        findMany: {
+          args: Prisma.MedicationPlanFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedicationPlanPayload>[]
+        }
+        create: {
+          args: Prisma.MedicationPlanCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedicationPlanPayload>
+        }
+        createMany: {
+          args: Prisma.MedicationPlanCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MedicationPlanCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedicationPlanPayload>[]
+        }
+        delete: {
+          args: Prisma.MedicationPlanDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedicationPlanPayload>
+        }
+        update: {
+          args: Prisma.MedicationPlanUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedicationPlanPayload>
+        }
+        deleteMany: {
+          args: Prisma.MedicationPlanDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MedicationPlanUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MedicationPlanUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedicationPlanPayload>[]
+        }
+        upsert: {
+          args: Prisma.MedicationPlanUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedicationPlanPayload>
+        }
+        aggregate: {
+          args: Prisma.MedicationPlanAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMedicationPlan>
+        }
+        groupBy: {
+          args: Prisma.MedicationPlanGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MedicationPlanGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MedicationPlanCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MedicationPlanCountAggregateOutputType> | number
         }
       }
     }
@@ -1206,23 +1356,76 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const UserProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  age: 'age',
+  birthDate: 'birthDate',
   sex: 'sex',
   heightCm: 'heightCm',
+  activityLevel: 'activityLevel',
   weightKg: 'weightKg',
   waistCm: 'waistCm',
   hipsCm: 'hipsCm',
   bodyFatPercent: 'bodyFatPercent',
   muscleMassKg: 'muscleMassKg',
   bodyWaterPercent: 'bodyWaterPercent',
-  activityLevel: 'activityLevel',
+  countryCode: 'countryCode',
+  timezone: 'timezone',
+  bloodType: 'bloodType',
+  rhFactor: 'rhFactor',
+  restingHeartRateBpm: 'restingHeartRateBpm',
+  bloodPressureSys: 'bloodPressureSys',
+  bloodPressureDia: 'bloodPressureDia',
+  smokingStatus: 'smokingStatus',
+  alcoholUse: 'alcoholUse',
   conditions: 'conditions',
+  allergies: 'allergies',
+  intolerances: 'intolerances',
+  dietType: 'dietType',
   goals: 'goals',
+  targetWeightKg: 'targetWeightKg',
+  targetCalories: 'targetCalories',
+  targetProteinG: 'targetProteinG',
+  targetFatG: 'targetFatG',
+  targetCarbsG: 'targetCarbsG',
+  targetWaterMl: 'targetWaterMl',
+  targetSteps: 'targetSteps',
+  bmrCalories: 'bmrCalories',
+  tdeeCalories: 'tdeeCalories',
+  onboardingCompleted: 'onboardingCompleted',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
+
+
+export const BodyMeasurementScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  measuredAt: 'measuredAt',
+  weightKg: 'weightKg',
+  waistCm: 'waistCm',
+  hipsCm: 'hipsCm',
+  bodyFatPercent: 'bodyFatPercent',
+  muscleMassKg: 'muscleMassKg',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BodyMeasurementScalarFieldEnum = (typeof BodyMeasurementScalarFieldEnum)[keyof typeof BodyMeasurementScalarFieldEnum]
+
+
+export const MedicationPlanScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  dose: 'dose',
+  schedule: 'schedule',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MedicationPlanScalarFieldEnum = (typeof MedicationPlanScalarFieldEnum)[keyof typeof MedicationPlanScalarFieldEnum]
 
 
 export const DailyLogScalarFieldEnum = {
@@ -1277,6 +1480,10 @@ export const SleepLogScalarFieldEnum = {
   start: 'start',
   end: 'end',
   quality: 'quality',
+  durationMin: 'durationMin',
+  deepMin: 'deepMin',
+  remMin: 'remMin',
+  awakeMin: 'awakeMin',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1290,6 +1497,9 @@ export const ActivityLogScalarFieldEnum = {
   type: 'type',
   durationMin: 'durationMin',
   intensity: 'intensity',
+  steps: 'steps',
+  distanceM: 'distanceM',
+  calories: 'calories',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1552,6 +1762,8 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   userProfile?: Prisma.UserProfileOmit
+  bodyMeasurement?: Prisma.BodyMeasurementOmit
+  medicationPlan?: Prisma.MedicationPlanOmit
   dailyLog?: Prisma.DailyLogOmit
   meal?: Prisma.MealOmit
   intakeItem?: Prisma.IntakeItemOmit

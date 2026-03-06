@@ -10,6 +10,8 @@
  */
 export type * from './models/User'
 export type * from './models/UserProfile'
+export type * from './models/BodyMeasurement'
+export type * from './models/MedicationPlan'
 export type * from './models/DailyLog'
 export type * from './models/Meal'
 export type * from './models/IntakeItem'

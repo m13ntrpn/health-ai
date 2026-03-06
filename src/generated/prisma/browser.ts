@@ -28,6 +28,16 @@ export type User = Prisma.UserModel
  */
 export type UserProfile = Prisma.UserProfileModel
 /**
+ * Model BodyMeasurement
+ * 
+ */
+export type BodyMeasurement = Prisma.BodyMeasurementModel
+/**
+ * Model MedicationPlan
+ * 
+ */
+export type MedicationPlan = Prisma.MedicationPlanModel
+/**
  * Model DailyLog
  * 
  */

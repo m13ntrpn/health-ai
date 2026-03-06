@@ -537,10 +537,6 @@ export type DailyLogUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.DailyLogScalarWhereInput | Prisma.DailyLogScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type DailyLogCreateNestedOneWithoutMealsInput = {
   create?: Prisma.XOR<Prisma.DailyLogCreateWithoutMealsInput, Prisma.DailyLogUncheckedCreateWithoutMealsInput>
   connectOrCreate?: Prisma.DailyLogCreateOrConnectWithoutMealsInput

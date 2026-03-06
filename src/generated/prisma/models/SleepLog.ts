@@ -20,8 +20,24 @@ export type SleepLogModel = runtime.Types.Result.DefaultSelection<Prisma.$SleepL
 
 export type AggregateSleepLog = {
   _count: SleepLogCountAggregateOutputType | null
+  _avg: SleepLogAvgAggregateOutputType | null
+  _sum: SleepLogSumAggregateOutputType | null
   _min: SleepLogMinAggregateOutputType | null
   _max: SleepLogMaxAggregateOutputType | null
+}
+
+export type SleepLogAvgAggregateOutputType = {
+  durationMin: number | null
+  deepMin: number | null
+  remMin: number | null
+  awakeMin: number | null
+}
+
+export type SleepLogSumAggregateOutputType = {
+  durationMin: number | null
+  deepMin: number | null
+  remMin: number | null
+  awakeMin: number | null
 }
 
 export type SleepLogMinAggregateOutputType = {
@@ -30,6 +46,10 @@ export type SleepLogMinAggregateOutputType = {
   start: Date | null
   end: Date | null
   quality: string | null
+  durationMin: number | null
+  deepMin: number | null
+  remMin: number | null
+  awakeMin: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -40,6 +60,10 @@ export type SleepLogMaxAggregateOutputType = {
   start: Date | null
   end: Date | null
   quality: string | null
+  durationMin: number | null
+  deepMin: number | null
+  remMin: number | null
+  awakeMin: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,11 +74,29 @@ export type SleepLogCountAggregateOutputType = {
   start: number
   end: number
   quality: number
+  durationMin: number
+  deepMin: number
+  remMin: number
+  awakeMin: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
+
+export type SleepLogAvgAggregateInputType = {
+  durationMin?: true
+  deepMin?: true
+  remMin?: true
+  awakeMin?: true
+}
+
+export type SleepLogSumAggregateInputType = {
+  durationMin?: true
+  deepMin?: true
+  remMin?: true
+  awakeMin?: true
+}
 
 export type SleepLogMinAggregateInputType = {
   id?: true
@@ -62,6 +104,10 @@ export type SleepLogMinAggregateInputType = {
   start?: true
   end?: true
   quality?: true
+  durationMin?: true
+  deepMin?: true
+  remMin?: true
+  awakeMin?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -72,6 +118,10 @@ export type SleepLogMaxAggregateInputType = {
   start?: true
   end?: true
   quality?: true
+  durationMin?: true
+  deepMin?: true
+  remMin?: true
+  awakeMin?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -82,6 +132,10 @@ export type SleepLogCountAggregateInputType = {
   start?: true
   end?: true
   quality?: true
+  durationMin?: true
+  deepMin?: true
+  remMin?: true
+  awakeMin?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -125,6 +179,18 @@ export type SleepLogAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inter
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: SleepLogAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: SleepLogSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: SleepLogMinAggregateInputType
@@ -155,6 +221,8 @@ export type SleepLogGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   _count?: SleepLogCountAggregateInputType | true
+  _avg?: SleepLogAvgAggregateInputType
+  _sum?: SleepLogSumAggregateInputType
   _min?: SleepLogMinAggregateInputType
   _max?: SleepLogMaxAggregateInputType
 }
@@ -165,9 +233,15 @@ export type SleepLogGroupByOutputType = {
   start: Date | null
   end: Date | null
   quality: string | null
+  durationMin: number | null
+  deepMin: number | null
+  remMin: number | null
+  awakeMin: number | null
   createdAt: Date
   updatedAt: Date
   _count: SleepLogCountAggregateOutputType | null
+  _avg: SleepLogAvgAggregateOutputType | null
+  _sum: SleepLogSumAggregateOutputType | null
   _min: SleepLogMinAggregateOutputType | null
   _max: SleepLogMaxAggregateOutputType | null
 }
@@ -196,6 +270,10 @@ export type SleepLogWhereInput = {
   start?: Prisma.DateTimeNullableFilter<"SleepLog"> | Date | string | null
   end?: Prisma.DateTimeNullableFilter<"SleepLog"> | Date | string | null
   quality?: Prisma.StringNullableFilter<"SleepLog"> | string | null
+  durationMin?: Prisma.IntNullableFilter<"SleepLog"> | number | null
+  deepMin?: Prisma.IntNullableFilter<"SleepLog"> | number | null
+  remMin?: Prisma.IntNullableFilter<"SleepLog"> | number | null
+  awakeMin?: Prisma.IntNullableFilter<"SleepLog"> | number | null
   createdAt?: Prisma.DateTimeFilter<"SleepLog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SleepLog"> | Date | string
   dailyLog?: Prisma.XOR<Prisma.DailyLogScalarRelationFilter, Prisma.DailyLogWhereInput>
@@ -207,6 +285,10 @@ export type SleepLogOrderByWithRelationInput = {
   start?: Prisma.SortOrderInput | Prisma.SortOrder
   end?: Prisma.SortOrderInput | Prisma.SortOrder
   quality?: Prisma.SortOrderInput | Prisma.SortOrder
+  durationMin?: Prisma.SortOrderInput | Prisma.SortOrder
+  deepMin?: Prisma.SortOrderInput | Prisma.SortOrder
+  remMin?: Prisma.SortOrderInput | Prisma.SortOrder
+  awakeMin?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   dailyLog?: Prisma.DailyLogOrderByWithRelationInput
@@ -221,6 +303,10 @@ export type SleepLogWhereUniqueInput = Prisma.AtLeast<{
   start?: Prisma.DateTimeNullableFilter<"SleepLog"> | Date | string | null
   end?: Prisma.DateTimeNullableFilter<"SleepLog"> | Date | string | null
   quality?: Prisma.StringNullableFilter<"SleepLog"> | string | null
+  durationMin?: Prisma.IntNullableFilter<"SleepLog"> | number | null
+  deepMin?: Prisma.IntNullableFilter<"SleepLog"> | number | null
+  remMin?: Prisma.IntNullableFilter<"SleepLog"> | number | null
+  awakeMin?: Prisma.IntNullableFilter<"SleepLog"> | number | null
   createdAt?: Prisma.DateTimeFilter<"SleepLog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SleepLog"> | Date | string
   dailyLog?: Prisma.XOR<Prisma.DailyLogScalarRelationFilter, Prisma.DailyLogWhereInput>
@@ -232,11 +318,17 @@ export type SleepLogOrderByWithAggregationInput = {
   start?: Prisma.SortOrderInput | Prisma.SortOrder
   end?: Prisma.SortOrderInput | Prisma.SortOrder
   quality?: Prisma.SortOrderInput | Prisma.SortOrder
+  durationMin?: Prisma.SortOrderInput | Prisma.SortOrder
+  deepMin?: Prisma.SortOrderInput | Prisma.SortOrder
+  remMin?: Prisma.SortOrderInput | Prisma.SortOrder
+  awakeMin?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.SleepLogCountOrderByAggregateInput
+  _avg?: Prisma.SleepLogAvgOrderByAggregateInput
   _max?: Prisma.SleepLogMaxOrderByAggregateInput
   _min?: Prisma.SleepLogMinOrderByAggregateInput
+  _sum?: Prisma.SleepLogSumOrderByAggregateInput
 }
 
 export type SleepLogScalarWhereWithAggregatesInput = {
@@ -248,6 +340,10 @@ export type SleepLogScalarWhereWithAggregatesInput = {
   start?: Prisma.DateTimeNullableWithAggregatesFilter<"SleepLog"> | Date | string | null
   end?: Prisma.DateTimeNullableWithAggregatesFilter<"SleepLog"> | Date | string | null
   quality?: Prisma.StringNullableWithAggregatesFilter<"SleepLog"> | string | null
+  durationMin?: Prisma.IntNullableWithAggregatesFilter<"SleepLog"> | number | null
+  deepMin?: Prisma.IntNullableWithAggregatesFilter<"SleepLog"> | number | null
+  remMin?: Prisma.IntNullableWithAggregatesFilter<"SleepLog"> | number | null
+  awakeMin?: Prisma.IntNullableWithAggregatesFilter<"SleepLog"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"SleepLog"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"SleepLog"> | Date | string
 }
@@ -257,6 +353,10 @@ export type SleepLogCreateInput = {
   start?: Date | string | null
   end?: Date | string | null
   quality?: string | null
+  durationMin?: number | null
+  deepMin?: number | null
+  remMin?: number | null
+  awakeMin?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   dailyLog: Prisma.DailyLogCreateNestedOneWithoutSleepLogsInput
@@ -268,6 +368,10 @@ export type SleepLogUncheckedCreateInput = {
   start?: Date | string | null
   end?: Date | string | null
   quality?: string | null
+  durationMin?: number | null
+  deepMin?: number | null
+  remMin?: number | null
+  awakeMin?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -277,6 +381,10 @@ export type SleepLogUpdateInput = {
   start?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deepMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  remMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  awakeMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dailyLog?: Prisma.DailyLogUpdateOneRequiredWithoutSleepLogsNestedInput
@@ -288,6 +396,10 @@ export type SleepLogUncheckedUpdateInput = {
   start?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deepMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  remMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  awakeMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -298,6 +410,10 @@ export type SleepLogCreateManyInput = {
   start?: Date | string | null
   end?: Date | string | null
   quality?: string | null
+  durationMin?: number | null
+  deepMin?: number | null
+  remMin?: number | null
+  awakeMin?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -307,6 +423,10 @@ export type SleepLogUpdateManyMutationInput = {
   start?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deepMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  remMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  awakeMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -317,6 +437,10 @@ export type SleepLogUncheckedUpdateManyInput = {
   start?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deepMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  remMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  awakeMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -337,8 +461,19 @@ export type SleepLogCountOrderByAggregateInput = {
   start?: Prisma.SortOrder
   end?: Prisma.SortOrder
   quality?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
+  deepMin?: Prisma.SortOrder
+  remMin?: Prisma.SortOrder
+  awakeMin?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type SleepLogAvgOrderByAggregateInput = {
+  durationMin?: Prisma.SortOrder
+  deepMin?: Prisma.SortOrder
+  remMin?: Prisma.SortOrder
+  awakeMin?: Prisma.SortOrder
 }
 
 export type SleepLogMaxOrderByAggregateInput = {
@@ -347,6 +482,10 @@ export type SleepLogMaxOrderByAggregateInput = {
   start?: Prisma.SortOrder
   end?: Prisma.SortOrder
   quality?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
+  deepMin?: Prisma.SortOrder
+  remMin?: Prisma.SortOrder
+  awakeMin?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -357,8 +496,19 @@ export type SleepLogMinOrderByAggregateInput = {
   start?: Prisma.SortOrder
   end?: Prisma.SortOrder
   quality?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
+  deepMin?: Prisma.SortOrder
+  remMin?: Prisma.SortOrder
+  awakeMin?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type SleepLogSumOrderByAggregateInput = {
+  durationMin?: Prisma.SortOrder
+  deepMin?: Prisma.SortOrder
+  remMin?: Prisma.SortOrder
+  awakeMin?: Prisma.SortOrder
 }
 
 export type SleepLogCreateNestedManyWithoutDailyLogInput = {
@@ -408,6 +558,10 @@ export type SleepLogCreateWithoutDailyLogInput = {
   start?: Date | string | null
   end?: Date | string | null
   quality?: string | null
+  durationMin?: number | null
+  deepMin?: number | null
+  remMin?: number | null
+  awakeMin?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -417,6 +571,10 @@ export type SleepLogUncheckedCreateWithoutDailyLogInput = {
   start?: Date | string | null
   end?: Date | string | null
   quality?: string | null
+  durationMin?: number | null
+  deepMin?: number | null
+  remMin?: number | null
+  awakeMin?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -456,6 +614,10 @@ export type SleepLogScalarWhereInput = {
   start?: Prisma.DateTimeNullableFilter<"SleepLog"> | Date | string | null
   end?: Prisma.DateTimeNullableFilter<"SleepLog"> | Date | string | null
   quality?: Prisma.StringNullableFilter<"SleepLog"> | string | null
+  durationMin?: Prisma.IntNullableFilter<"SleepLog"> | number | null
+  deepMin?: Prisma.IntNullableFilter<"SleepLog"> | number | null
+  remMin?: Prisma.IntNullableFilter<"SleepLog"> | number | null
+  awakeMin?: Prisma.IntNullableFilter<"SleepLog"> | number | null
   createdAt?: Prisma.DateTimeFilter<"SleepLog"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SleepLog"> | Date | string
 }
@@ -465,6 +627,10 @@ export type SleepLogCreateManyDailyLogInput = {
   start?: Date | string | null
   end?: Date | string | null
   quality?: string | null
+  durationMin?: number | null
+  deepMin?: number | null
+  remMin?: number | null
+  awakeMin?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -474,6 +640,10 @@ export type SleepLogUpdateWithoutDailyLogInput = {
   start?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deepMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  remMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  awakeMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -483,6 +653,10 @@ export type SleepLogUncheckedUpdateWithoutDailyLogInput = {
   start?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deepMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  remMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  awakeMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -492,6 +666,10 @@ export type SleepLogUncheckedUpdateManyWithoutDailyLogInput = {
   start?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  deepMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  remMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  awakeMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -504,6 +682,10 @@ export type SleepLogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   start?: boolean
   end?: boolean
   quality?: boolean
+  durationMin?: boolean
+  deepMin?: boolean
+  remMin?: boolean
+  awakeMin?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   dailyLog?: boolean | Prisma.DailyLogDefaultArgs<ExtArgs>
@@ -515,6 +697,10 @@ export type SleepLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   start?: boolean
   end?: boolean
   quality?: boolean
+  durationMin?: boolean
+  deepMin?: boolean
+  remMin?: boolean
+  awakeMin?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   dailyLog?: boolean | Prisma.DailyLogDefaultArgs<ExtArgs>
@@ -526,6 +712,10 @@ export type SleepLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   start?: boolean
   end?: boolean
   quality?: boolean
+  durationMin?: boolean
+  deepMin?: boolean
+  remMin?: boolean
+  awakeMin?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   dailyLog?: boolean | Prisma.DailyLogDefaultArgs<ExtArgs>
@@ -537,11 +727,15 @@ export type SleepLogSelectScalar = {
   start?: boolean
   end?: boolean
   quality?: boolean
+  durationMin?: boolean
+  deepMin?: boolean
+  remMin?: boolean
+  awakeMin?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type SleepLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dailyLogId" | "start" | "end" | "quality" | "createdAt" | "updatedAt", ExtArgs["result"]["sleepLog"]>
+export type SleepLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dailyLogId" | "start" | "end" | "quality" | "durationMin" | "deepMin" | "remMin" | "awakeMin" | "createdAt" | "updatedAt", ExtArgs["result"]["sleepLog"]>
 export type SleepLogInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   dailyLog?: boolean | Prisma.DailyLogDefaultArgs<ExtArgs>
 }
@@ -563,6 +757,10 @@ export type $SleepLogPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     start: Date | null
     end: Date | null
     quality: string | null
+    durationMin: number | null
+    deepMin: number | null
+    remMin: number | null
+    awakeMin: number | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["sleepLog"]>
@@ -994,6 +1192,10 @@ export interface SleepLogFieldRefs {
   readonly start: Prisma.FieldRef<"SleepLog", 'DateTime'>
   readonly end: Prisma.FieldRef<"SleepLog", 'DateTime'>
   readonly quality: Prisma.FieldRef<"SleepLog", 'String'>
+  readonly durationMin: Prisma.FieldRef<"SleepLog", 'Int'>
+  readonly deepMin: Prisma.FieldRef<"SleepLog", 'Int'>
+  readonly remMin: Prisma.FieldRef<"SleepLog", 'Int'>
+  readonly awakeMin: Prisma.FieldRef<"SleepLog", 'Int'>
   readonly createdAt: Prisma.FieldRef<"SleepLog", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"SleepLog", 'DateTime'>
 }
