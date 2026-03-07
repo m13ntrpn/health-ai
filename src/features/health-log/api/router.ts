@@ -13,6 +13,7 @@ import {
 } from "@/features/health-log/schemas/dailyLog";
 import { ensureUserByTelegramId } from "@/features/telegram-user/services/ensureUserByTelegramId";
 import { getReportContext } from "@/features/health-log/services/reportService";
+import { assertAllowedTelegramUser } from "@/shared/lib/allowedTelegramUsers";
 
 const paginationSchema = z.object({
   limit: z.number().int().min(1).max(100).default(20),
@@ -103,6 +104,7 @@ export const healthLogRouter = router({
     )
     .query(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return getDailyLogByDate(user.id, input.date);
     }),
@@ -117,6 +119,7 @@ export const healthLogRouter = router({
     )
     .query(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return listDailyLogs({
         userId: user.id,
@@ -135,6 +138,7 @@ export const healthLogRouter = router({
     )
     .mutation(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return upsertDailyLog(user.id, input.date, input.payload);
     }),
@@ -149,6 +153,7 @@ export const healthLogRouter = router({
     )
     .query(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return getSimpleSummary({
         userId: user.id,
@@ -167,6 +172,7 @@ export const healthLogRouter = router({
     )
     .mutation(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return getReportContext({
         userId: user.id,

@@ -7,6 +7,7 @@ import {
   listBodyMeasurements,
 } from "@/features/body-measurement/services/bodyMeasurementService";
 import { bodyMeasurementPayloadSchema } from "@/features/body-measurement/schemas/bodyMeasurement";
+import { assertAllowedTelegramUser } from "@/shared/lib/allowedTelegramUsers";
 
 const telegramUserIdSchema = z.string().min(1, "telegramUserId is required");
 
@@ -29,6 +30,7 @@ export const bodyMeasurementRouter = router({
     )
     .mutation(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return addBodyMeasurement(user.id, input.payload);
     }),
@@ -43,6 +45,7 @@ export const bodyMeasurementRouter = router({
     )
     .query(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return listBodyMeasurements(user.id, input.limit, input.cursor);
     }),

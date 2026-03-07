@@ -7,6 +7,7 @@ import {
   listMedicationPlans,
 } from "@/features/medication-plan/services/medicationPlanService";
 import { medicationPlanPayloadSchema } from "@/features/medication-plan/schemas/medicationPlan";
+import { assertAllowedTelegramUser } from "@/shared/lib/allowedTelegramUsers";
 
 const telegramUserIdSchema = z.string().min(1, "telegramUserId is required");
 
@@ -29,6 +30,7 @@ export const medicationPlanRouter = router({
     )
     .mutation(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return addMedicationPlan(user.id, input.payload);
     }),
@@ -43,6 +45,7 @@ export const medicationPlanRouter = router({
     )
     .query(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return listMedicationPlans(user.id, input.limit, input.cursor);
     }),

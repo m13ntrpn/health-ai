@@ -4,6 +4,7 @@ import { router, publicProcedure } from "@/server/api/trpc";
 import { ensureUserByTelegramId } from "@/features/telegram-user/services/ensureUserByTelegramId";
 import { getUserProfile, upsertUserProfile, getProfileCompleteness } from "@/features/telegram-user/services/userProfileService";
 import { userProfilePayloadSchema } from "@/features/telegram-user/schemas/userProfile";
+import { assertAllowedTelegramUser } from "@/shared/lib/allowedTelegramUsers";
 
 const telegramUserIdSchema = z.string().min(1, "telegramUserId is required");
 
@@ -21,6 +22,7 @@ export const userRouter = router({
     .input(z.object({ telegramUserId: telegramUserIdSchema }))
     .query(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return getUserProfile(user.id);
     }),
@@ -34,6 +36,7 @@ export const userRouter = router({
     )
     .mutation(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return upsertUserProfile(user.id, input.payload);
     }),
@@ -45,6 +48,7 @@ export const userRouter = router({
     .input(z.object({ telegramUserId: telegramUserIdSchema }))
     .query(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return getProfileCompleteness(user.id);
     }),

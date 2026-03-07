@@ -4,6 +4,7 @@ import { router, publicProcedure } from "@/server/api/trpc";
 import { labResultPayloadSchema } from "@/features/lab-result/schemas/labResult";
 import { addLabResult, listLabResults } from "@/features/lab-result/services/labResultService";
 import { ensureUserByTelegramId } from "@/features/telegram-user/services/ensureUserByTelegramId";
+import { assertAllowedTelegramUser } from "@/shared/lib/allowedTelegramUsers";
 
 const telegramUserIdSchema = z.string().min(1, "telegramUserId is required");
 
@@ -26,6 +27,7 @@ export const labResultRouter = router({
     )
     .mutation(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return addLabResult(user.id, input.payload);
     }),
@@ -40,6 +42,7 @@ export const labResultRouter = router({
     )
     .query(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return listLabResults(user.id, input.limit, input.cursor);
     }),

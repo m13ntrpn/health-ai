@@ -7,6 +7,7 @@ import {
   listLabPanels,
 } from "@/features/lab-panel/services/labPanelService";
 import { labPanelPayloadSchema } from "@/features/lab-panel/schemas/labPanel";
+import { assertAllowedTelegramUser } from "@/shared/lib/allowedTelegramUsers";
 
 const telegramUserIdSchema = z.string().min(1, "telegramUserId is required");
 
@@ -29,6 +30,7 @@ export const labPanelRouter = router({
     )
     .mutation(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return addLabPanel(user.id, input.payload);
     }),
@@ -43,6 +45,7 @@ export const labPanelRouter = router({
     )
     .query(async ({ ctx, input }) => {
       assertServiceAuth(ctx);
+      assertAllowedTelegramUser(input.telegramUserId);
       const user = await ensureUserByTelegramId(input.telegramUserId);
       return listLabPanels(user.id, input.limit, input.cursor);
     }),
