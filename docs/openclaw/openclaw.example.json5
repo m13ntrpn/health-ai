@@ -1,0 +1,67 @@
+// ~/.openclaw/openclaw.json
+// Главный конфиг OpenClaw Gateway для агента nadin.
+// Скопируй в ~/.openclaw/openclaw.json и подставь реальные значения.
+// Документация: https://docs.openclaw.ai/gateway/configuration
+{
+  // ── Переменные окружения ───────────────────────────────────────────────────
+  // Все секреты — через переменные, не хардкодить в конфиге.
+  // Можно также хранить в ~/.openclaw/.env
+  env: {
+    // OpenRouter API key (LLM-провайдер)
+    OPENROUTER_API_KEY: "${OPENROUTER_API_KEY}",
+    // nadin-health API (твой сервер с Next.js)
+    NADIN_HEALTH_API_URL: "${NADIN_HEALTH_API_URL}",          // например: https://itresolver.ru
+    NADIN_HEALTH_SERVICE_TOKEN: "${NADIN_HEALTH_SERVICE_TOKEN}", // значение SERVICE_API_TOKEN из nadin-health .env
+    // Telegram bot token
+    TELEGRAM_BOT_TOKEN: "${TELEGRAM_BOT_TOKEN}",
+  },
+
+  // ── Модель ────────────────────────────────────────────────────────────────
+  agents: {
+    defaults: {
+      // Укажи workspace агента. Сюда кладём SOUL.md, AGENTS.md, skills/.
+      workspace: "~/.openclaw/workspace",
+
+      model: {
+        // Через OpenRouter можно использовать любую модель.
+        // Хорошие варианты для health-ассистента:
+        primary: "anthropic/claude-opus-4-5",
+        // fallbacks: ["openai/gpt-4o"],
+      },
+    },
+  },
+
+  // ── Telegram-канал ────────────────────────────────────────────────────────
+  channels: {
+    telegram: {
+      enabled: true,
+      // Токен из @BotFather
+      botToken: "${TELEGRAM_BOT_TOKEN}",
+
+      // dmPolicy: "allowlist" — только пользователи из allowFrom могут писать боту.
+      // Это ПЕРВАЯ линия защиты (ещё одна — в nadin-health API через ALLOWED_TELEGRAM_USER_IDS).
+      dmPolicy: "allowlist",
+
+      // ← Вставь сюда два реальных числовых Telegram ID.
+      // Формат: "tg:<id>" или просто "<id>" (числовая строка).
+      // Узнать свой ID: напиши @userinfobot или проверь openclaw logs --follow.
+      allowFrom: [
+        "tg:ПЕРВЫЙ_TELEGRAM_ID",   // замени на реальный, например "tg:123456789"
+        "tg:ВТОРОЙ_TELEGRAM_ID",   // замени на реальный, например "tg:987654321"
+      ],
+
+      // Группы не нужны (бот только для личных сообщений)
+      // groups: {},
+    },
+  },
+
+  // ── Сессии ────────────────────────────────────────────────────────────────
+  session: {
+    // Каждый Telegram-пользователь — отдельная сессия
+    dmScope: "per-channel-peer",
+    reset: {
+      // Не сбрасывать сессии автоматически (история нужна)
+      mode: "off",
+    },
+  },
+}

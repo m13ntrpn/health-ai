@@ -1,51 +1,209 @@
-# Агент nadin для OpenClaw
+# Агент Надин для OpenClaw
 
-Документация и референсный код для настройки агента **nadin** в OpenClaw, работающего с API nadin-health.
+Настройка AI-ассистента по здоровью в OpenClaw с подключением к nadin-health API.
 
-## Архитектура
+---
+
+## Как работает OpenClaw (важно понять сразу)
+
+OpenClaw — **не фреймворк для написания кода**. Это готовый AI-агент рантайм.
+Ты не пишешь pipeline, не реализуешь intent detection, не вызываешь LLM вручную.
+
+**OpenClaw делает всё это сам:**
+- Получает сообщение из Telegram
+- Передаёт в LLM (через OpenRouter): системный промпт + история + сообщение + доступные скиллы
+- LLM сам решает что ответить и какие инструменты вызвать
+- OpenClaw выполняет инструменты (Shell-скрипты, curl и т.д.), возвращает результат в LLM
+- LLM формирует финальный ответ → Telegram
+
+**Твоя задача**: написать markdown-файлы, которые объясняют агенту КТО он и ЧТО умеет делать.
+
+---
+
+## Итоговая структура файлов на сервере
 
 ```
-Telegram → Agent (OpenClaw) → Intent detection → Parser → Memory → Tool router → nadin-health API → Context builder → LLM → Response validator → Telegram
+~/.openclaw/
+├── openclaw.json          ← главный конфиг (токен, whitelist, модель, env vars)
+├── .env                   ← секреты (API ключи, токены)
+└── workspace/             ← рабочее пространство агента
+    ├── AGENTS.md          ← инструкции поведения (что делать при запуске)
+    ├── SOUL.md            ← кто агент, личность, системный промпт
+    ├── MEMORY.md          ← долгосрочная память (создаётся агентом)
+    ├── memory/            ← ежедневные записи (создаётся агентом)
+    └── skills/
+        └── nadin-health/
+            ├── SKILL.md   ← описание API (агент читает и знает как вызывать)
+            └── nadin.sh   ← bash-скрипт для curl-запросов к API
 ```
 
-## Создание агента в OpenClaw
+Все файлы из папки `workspace/` этого репозитория нужно скопировать в `~/.openclaw/workspace/` на сервере.
 
-1. Создай нового агента с именем **nadin** (в интерфейсе или конфиге OpenClaw).
-2. Задай переменные окружения:
-   - `NADIN_HEALTH_API_URL` — базовый URL API (например `https://itresolver.ru`, без завершающего слеша).
-   - `NADIN_HEALTH_SERVICE_TOKEN` — значение `SERVICE_API_TOKEN` из nadin-health.
-3. Скопируй код из папки `docs/openclaw/` в проект OpenClaw (см. структуру ниже).
-4. Подключи pipeline из `agent.ts` к обработчику входящих сообщений Telegram.
+---
 
-## Структура файлов (куда копировать в репозитории OpenClaw)
+## Пошаговая настройка
 
-| Файл в docs/openclaw | Назначение |
-|----------------------|------------|
-| [toolRouter.ts](toolRouter.ts) | Карта действий → tRPC-процедуры, исполнитель запросов к API |
-| [intentDetector.ts](intentDetector.ts) | Определение намерения пользователя перед вызовом API |
-| [parser.ts](parser.ts) | Извлечение структурированных данных из свободного текста |
-| [memory.ts](memory.ts) | Краткосрочная память чата (таблица chat_memory) |
-| [userFacts.ts](userFacts.ts) | Долгосрочные факты о пользователе (таблица user_facts) |
-| [contextBuilder.ts](contextBuilder.ts) | Преобразование ответов API в компактный текст для LLM |
-| [responseValidator.ts](responseValidator.ts) | Проверка ответа на выдуманные факты перед отправкой |
-| [agent.ts](agent.ts) | Полный pipeline: intent → parser → memory → tool → context → LLM → validator |
-| [knowledge/healthGuidelines.ts](knowledge/healthGuidelines.ts) | Справочные рекомендации по здоровью |
-| [prompts/](prompts/) | Системный, чат-, лог- и анализ-промпты |
+### Шаг 1. Конфиг gateway
 
-## База данных (на стороне OpenClaw)
+Скопируй `openclaw.example.json5` → `~/.openclaw/openclaw.json` и отредактируй:
 
-Нужны две таблицы:
+```json5
+{
+  env: {
+    OPENROUTER_API_KEY: "sk-or-...",
+    NADIN_HEALTH_API_URL: "https://твой-домен.ru",
+    NADIN_HEALTH_SERVICE_TOKEN: "токен из nadin-health .env (SERVICE_API_TOKEN)",
+    TELEGRAM_BOT_TOKEN: "токен из @BotFather",
+  },
+  agents: {
+    defaults: {
+      workspace: "~/.openclaw/workspace",
+      model: { primary: "anthropic/claude-opus-4-5" },
+    },
+  },
+  channels: {
+    telegram: {
+      enabled: true,
+      botToken: "${TELEGRAM_BOT_TOKEN}",
+      dmPolicy: "allowlist",
+      allowFrom: ["tg:ТВОЙ_TELEGRAM_ID", "tg:ВТОРОЙ_TELEGRAM_ID"],
+    },
+  },
+}
+```
 
-- **chat_memory** — `telegram_user_id`, `role`, `content`, `created_at`.
-- **user_facts** — `telegram_user_id`, `key`, `value`.
+`allowFrom` — это первая линия защиты. Только эти два пользователя могут писать боту.
+Вторая линия — `ALLOWED_TELEGRAM_USER_IDS` в nadin-health .env (блокирует на уровне API).
 
-Готовый SQL: [schema.sql](schema.sql).
+Узнать свой Telegram ID: напиши боту, запусти `openclaw logs --follow`, найди `from.id`.
 
-## Быстрая настройка через чат
+### Шаг 2. Скопировать workspace
 
-Если OpenClaw поддерживает настройку через диалог, можно вставить в чат содержимое файла **[AGENT-SETUP-INSTRUCTIONS.md](AGENT-SETUP-INSTRUCTIONS.md)** — там одна общая инструкция для создания и настройки агента nadin.
+```bash
+# Создать директорию если нет
+mkdir -p ~/.openclaw/workspace/skills/nadin-health
 
-## Связь с nadin-health
+# Скопировать файлы (из корня этого репозитория)
+cp docs/openclaw/workspace/SOUL.md ~/.openclaw/workspace/
+cp docs/openclaw/workspace/AGENTS.md ~/.openclaw/workspace/
+cp docs/openclaw/workspace/skills/nadin-health/SKILL.md ~/.openclaw/workspace/skills/nadin-health/
+cp docs/openclaw/workspace/skills/nadin-health/nadin.sh ~/.openclaw/workspace/skills/nadin-health/
 
-- Описание API, заголовков и всех tools: [../OPENCLAW-SETUP.md](../OPENCLAW-SETUP.md).
-- Проверка API: `curl -s https://<домен>/api/health` → `{"ok":true}`.
+# Сделать скрипт исполняемым
+chmod +x ~/.openclaw/workspace/skills/nadin-health/nadin.sh
+```
+
+### Шаг 3. Запуск и одобрение пользователей
+
+```bash
+# Запустить gateway
+openclaw gateway
+
+# Проверить статус
+openclaw health
+
+# Если dmPolicy: "pairing" — одобрить пользователей вручную:
+openclaw pairing list telegram
+openclaw pairing approve telegram <CODE>
+
+# Если dmPolicy: "allowlist" — пользователи из allowFrom принимаются автоматически.
+```
+
+### Шаг 4. Проверка API
+
+```bash
+# Проверить доступность nadin-health
+curl -s https://твой-домен.ru/api/health
+# ожидается: {"ok":true}
+
+# Тестовый вызов API
+curl -s -X POST "https://твой-домен.ru/api/trpc/user.isProfileComplete" \
+  -H "Content-Type: application/json" \
+  -H "X-Service-Token: ТОЙ_ТОКЕН" \
+  -d '{"json":{"telegramUserId":"123456789"}}'
+```
+
+---
+
+## Как работает вызов API из агента
+
+LLM видит SKILL.md и знает, что для работы с данными здоровья нужно запустить:
+```bash
+bash {baseDir}/nadin.sh <procedure> '<json>'
+```
+
+Например, чтобы сохранить воду за день, агент выполнит:
+```bash
+bash ~/.openclaw/workspace/skills/nadin-health/nadin.sh \
+  healthLog.upsertDailyLogForTelegramUser \
+  '{"telegramUserId":"123456789","date":"2026-03-06","payload":{"waterMl":2000}}'
+```
+
+Скрипт `nadin.sh` оборачивает это в правильный curl-запрос к tRPC API.
+
+---
+
+## Алгоритм (что происходит при каждом сообщении)
+
+```
+Пользователь пишет в Telegram
+    ↓
+OpenClaw принимает сообщение
+    ↓
+Отправляет в LLM:
+  • SOUL.md (системный промпт — личность, правила)
+  • AGENTS.md (инструкции)
+  • Список доступных скиллов (SKILL.md)
+  • История разговора (автоматически)
+  • Новое сообщение
+    ↓
+LLM принимает решение:
+  • Если нужно сохранить или получить данные → вызывает nadin-health skill
+  • Если общий вопрос → отвечает напрямую
+    ↓
+Если вызван skill → OpenClaw выполняет nadin.sh
+    ↓
+Результат → LLM формирует ответ
+    ↓
+OpenClaw отправляет ответ в Telegram
+```
+
+---
+
+## Хранение данных
+
+| Тип данных | Где хранится |
+|---|---|
+| Питание, сон, активность, замеры, анализы | nadin-health API (PostgreSQL) |
+| История диалога (краткосрочная) | OpenClaw автоматически (в памяти сессии) |
+| Имя, цели, предпочтения (долгосрочная) | `~/.openclaw/workspace/MEMORY.md` |
+| Ежедневные заметки | `~/.openclaw/workspace/memory/YYYY-MM-DD.md` |
+
+Агент сам пишет и читает MEMORY.md и memory/. Не нужна отдельная БД для агента.
+
+---
+
+## Файлы в этом репозитории
+
+| Файл | Назначение | Куда копировать |
+|---|---|---|
+| `openclaw.example.json5` | Пример конфига gateway | `~/.openclaw/openclaw.json` |
+| `workspace/SOUL.md` | Личность агента (системный промпт) | `~/.openclaw/workspace/SOUL.md` |
+| `workspace/AGENTS.md` | Инструкции поведения | `~/.openclaw/workspace/AGENTS.md` |
+| `workspace/skills/nadin-health/SKILL.md` | Описание API для LLM | `~/.openclaw/workspace/skills/nadin-health/SKILL.md` |
+| `workspace/skills/nadin-health/nadin.sh` | Curl-обёртка для API | `~/.openclaw/workspace/skills/nadin-health/nadin.sh` |
+| `OPENCLAW-SETUP.md` | Полная документация API (все процедуры) | Справочник, не копировать |
+| `*.ts` в корне | Референсный код для **кастомной** реализации | Не для OpenClaw |
+
+---
+
+## Полезные команды OpenClaw
+
+```bash
+openclaw gateway          # запустить gateway
+openclaw health           # проверить статус
+openclaw logs --follow    # живые логи (смотреть from.id в Telegram updates)
+openclaw config get       # показать текущий конфиг
+openclaw doctor           # диагностика проблем
+openclaw doctor --fix     # автоматически исправить проблемы конфига
+```
