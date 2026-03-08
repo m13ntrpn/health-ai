@@ -9,6 +9,7 @@ import type {
   ActivityLogPayload,
 } from "@/features/health-log/schemas/dailyLog";
 
+
 type LogWithRelations = {
   id: string;
   userId: string;
@@ -51,7 +52,7 @@ function logToPayload(log: LogWithRelations): DailyLogPayload {
     isCompleted: log.isCompleted ?? false,
     waterMl: log.waterMl ?? undefined,
     meals: log.meals?.map((m) => ({
-      type: m.type ?? undefined,
+      type: (m.type ?? undefined) as MealPayload["type"],
       time: m.time ?? undefined,
       description: m.description ?? undefined,
       calories: m.calories ?? undefined,
@@ -63,7 +64,7 @@ function logToPayload(log: LogWithRelations): DailyLogPayload {
       name: i.name,
       dose: i.dose ?? undefined,
       time: i.time ?? undefined,
-      category: i.category ?? undefined,
+      category: (i.category ?? undefined) as IntakeItemPayload["category"],
     })) ?? [],
     sleepLogs: log.sleepLogs?.map((s) => ({
       start: s.start ?? undefined,
@@ -73,7 +74,7 @@ function logToPayload(log: LogWithRelations): DailyLogPayload {
     activityLogs: log.activityLogs?.map((a) => ({
       type: a.type ?? undefined,
       durationMin: a.durationMin ?? undefined,
-      intensity: a.intensity ?? undefined,
+      intensity: (a.intensity ?? undefined) as ActivityLogPayload["intensity"],
     })) ?? [],
   };
 }
@@ -129,7 +130,7 @@ function MealsSection({
                 <label className="block text-xs text-neutral-500 mb-0.5">Type</label>
                 <select
                   value={meal.type ?? "other"}
-                  onChange={(e) => updateMeal(i, { type: e.target.value })}
+                  onChange={(e) => updateMeal(i, { type: e.target.value as MealPayload["type"] })}
                   className={selectCls}
                 >
                   {["breakfast", "lunch", "dinner", "snack", "other"].map((t) => (
@@ -291,7 +292,7 @@ function ActivitySection({
                 <label className="block text-xs text-neutral-500 mb-0.5">Intensity</label>
                 <select
                   value={activity.intensity ?? "medium"}
-                  onChange={(e) => updateActivity(i, { intensity: e.target.value })}
+                  onChange={(e) => updateActivity(i, { intensity: e.target.value as ActivityLogPayload["intensity"] })}
                   className={selectCls}
                 >
                   {["low", "medium", "high"].map((lvl) => (
@@ -358,7 +359,7 @@ function IntakesSection({
                 <label className="block text-xs text-neutral-500 mb-0.5">Category</label>
                 <select
                   value={intake.category ?? "other"}
-                  onChange={(e) => updateIntake(i, { category: e.target.value })}
+                  onChange={(e) => updateIntake(i, { category: e.target.value as IntakeItemPayload["category"] })}
                   className={selectCls}
                 >
                   {["vitamin", "medicine", "other"].map((cat) => (
