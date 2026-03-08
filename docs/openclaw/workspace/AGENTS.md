@@ -14,6 +14,8 @@
 Все вызовы к nadin-health API — через скилл `nadin-health`.
 Смотри `skills/nadin-health/SKILL.md` — там описаны все доступные процедуры и примеры вызовов.
 
+**Важно:** первый аргумент скрипта — это путь процедуры tRPC (например `user.isProfileComplete`, `user.upsertProfile`), а не короткое имя (не `checkProfile`, не `saveProfile`). Всегда копируй путь из примеров в SKILL.md.
+
 Выполняй HTTP-запросы через скрипт `skills/nadin-health/nadin.sh`:
 ```
 bash skills/nadin-health/nadin.sh <procedure> '<json_payload>'

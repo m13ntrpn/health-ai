@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.2",
+    "lastTouchedAt": "2026-03-07T21:43:01.406Z",
+    "description": "OpenClaw config for nadin health agent. Setup: see docs/openclaw/README.md"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-07T21:43:01.382Z",
+    "lastRunVersion": "2026.3.2",
+    "lastRunCommand": "configure",
+    "lastRunMode": "local"
+  },
+  "env": {
+    "OPENROUTER_API_KEY": "${OPENROUTER_API_KEY}",
+    "NADIN_HEALTH_API_URL": "${NADIN_HEALTH_API_URL}",
+    "NADIN_HEALTH_SERVICE_TOKEN": "${NADIN_HEALTH_SERVICE_TOKEN}",
+    "TELEGRAM_BOT_TOKEN": "${TELEGRAM_BOT_TOKEN}"
+  },
+  "agents": {
+    "defaults": {
+      "workspace": "/home/openclaw/.openclaw/workspace",
+      "model": {
+        "primary": "openrouter/anthropic/claude-haiku-3-5",
+        "fallbacks": ["openrouter/openai/gpt-4o-mini"]
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "${TELEGRAM_BOT_TOKEN}",
+      "dmPolicy": "allowlist",
+      "allowFrom": ["tg:ПЕРВЫЙ_TELEGRAM_ID", "tg:ВТОРОЙ_TELEGRAM_ID"]
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer",
+    "reset": {
+      "mode": "off"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "f63d5c7822b572cea664e069a862eb010725dec84add8261"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  }
+}
