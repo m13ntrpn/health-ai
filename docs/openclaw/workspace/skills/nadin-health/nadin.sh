@@ -31,11 +31,35 @@ if [[ -z "$TOKEN" ]]; then
   exit 1
 fi
 
-# tRPC ожидает тело вида { "json": <payload> }
-BODY="{\"json\": ${PAYLOAD}}"
+# tRPC: query → GET с input в query-параметре, mutation → POST с телом { "json": payload }
+# Процедуры-запросы (query):
+QUERIES="user.getProfile user.isProfileComplete healthLog.getDailyLog healthLog.listDailyLogs healthLog.summary healthLog.getDailyLogForTelegramUser healthLog.listDailyLogsForTelegramUser healthLog.summaryForTelegramUser bodyMeasurement.listForTelegramUser medicationPlan.listForTelegramUser labResult.listForTelegramUser labPanel.listForTelegramUser"
 
-curl -s -X POST \
-  "${API_URL%/}/api/trpc/${PROCEDURE}" \
-  -H "Content-Type: application/json" \
-  -H "X-Service-Token: ${TOKEN}" \
-  -d "$BODY"
+IS_QUERY=0
+for q in $QUERIES; do
+  if [[ "$PROCEDURE" == "$q" ]]; then
+    IS_QUERY=1
+    break
+  fi
+done
+
+BASE_URL="${API_URL%/}/api/trpc/${PROCEDURE}"
+
+if [[ "$IS_QUERY" -eq 1 ]]; then
+  # tRPC query: input передаётся как URL-параметр ?input={"json":{...}}
+  INPUT_PARAM="{\"json\": ${PAYLOAD}}"
+  # URL-encode через python (доступен на любом Linux)
+  ENCODED=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$INPUT_PARAM")
+  curl -s -X GET \
+    "${BASE_URL}?input=${ENCODED}" \
+    -H "Content-Type: application/json" \
+    -H "X-Service-Token: ${TOKEN}"
+else
+  # tRPC mutation: тело вида { "json": payload }
+  BODY="{\"json\": ${PAYLOAD}}"
+  curl -s -X POST \
+    "${BASE_URL}" \
+    -H "Content-Type: application/json" \
+    -H "X-Service-Token: ${TOKEN}" \
+    -d "$BODY"
+fi
