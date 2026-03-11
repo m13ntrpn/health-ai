@@ -93,10 +93,11 @@ bash {baseDir}/nadin.sh healthLog.upsertDailyLogForTelegramUser '{
 ---
 
 ## 4. getDailyLog
+`date` **обязателен**. Никогда не оставляй его пустым или `undefined`: для запросов «сегодня/вчера» всегда подставляй конкретную дату в формате `YYYY-MM-DD`.
 ```
 bash {baseDir}/nadin.sh healthLog.getDailyLogForTelegramUser '{"telegramUserId":"<ID>","date":"YYYY-MM-DD"}'
 ```
-`date` **обязателен**. Никогда не оставляй его пустым или `undefined`: для запросов «сегодня/вчера» всегда подставляй конкретную дату в формате `YYYY-MM-DD`.
+
 
 ---
 
@@ -108,15 +109,17 @@ bash {baseDir}/nadin.sh healthLog.listDailyLogsForTelegramUser '{"telegramUserId
 ---
 
 ## 6. getSummary
+`fromDate` и `toDate` **обязательны** и всегда должны быть строками `YYYY-MM-DD` (не `today`, не `undefined`).
 ```
 bash {baseDir}/nadin.sh healthLog.summaryForTelegramUser '{"telegramUserId":"<ID>","fromDate":"YYYY-MM-DD","toDate":"YYYY-MM-DD"}'
 ```
 Ответ: `{ "totalCalories": ..., "completedDaysCount": ..., "daysWithLogsCount": ... }`
-`fromDate` и `toDate` **обязательны** и всегда должны быть строками `YYYY-MM-DD` (не `today`, не `undefined`).
+
 
 ---
 
 ## 7. getReport
+`fromDate` и `toDate` **обязательны** и всегда должны быть строками `YYYY-MM-DD` (не `today`, не `undefined`).
 ```
 bash {baseDir}/nadin.sh healthLog.reportForTelegramUser '{"telegramUserId":"<ID>","fromDate":"YYYY-MM-DD","toDate":"YYYY-MM-DD"}'
 ```
