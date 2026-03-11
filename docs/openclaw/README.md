@@ -203,6 +203,52 @@ OpenClaw отправляет ответ в Telegram
 
 ---
 
+## Модель LLM для второго агента (openclaw.json)
+
+Когда у тебя **два агента** (например main + nadin-food-vision), модель задаётся **для каждого агента отдельно** в `agents.list`. Каждый элемент списка может содержать поле `model` — оно переопределяет `agents.defaults.model` только для этого агента.
+
+**Структура:** в конфиге должен быть массив `agents.list` с объектами агентов. У каждого объекта указываются `id`, `workspace` и при необходимости `model`.
+
+**Формат `model`:**
+- **Строка** — одна модель: `"provider/model"` (например `"openrouter/anthropic/claude-sonnet-4-5"`).
+- **Объект** — основная модель и запасные: `{ "primary": "provider/model", "fallbacks": ["provider/model2"] }`.
+
+Пример для main (текст) и nadin-food-vision (фото) с OpenRouter:
+
+```json
+"agents": {
+  "list": [
+    {
+      "id": "main",
+      "default": true,
+      "workspace": "~/.openclaw/workspace",
+      "model": {
+        "primary": "openrouter/deepseek/deepseek-v3.2",
+        "fallbacks": ["openrouter/openai/gpt-4o-2024-11-20"]
+      }
+    },
+    {
+      "id": "nadin-food-vision",
+      "workspace": "~/.openclaw/workspace-nadin-food-vision",
+      "model": {
+        "primary": "openrouter/openai/gpt-4o-2024-11-20"
+      }
+    }
+  ],
+  "defaults": {
+    "compaction": { "mode": "safeguard" },
+    "maxConcurrent": 4
+  }
+}
+```
+
+- **main** использует `openrouter/deepseek/deepseek-v3.2` (и fallback при ошибке).
+- **nadin-food-vision** использует `openrouter/openai/gpt-4o-2024-11-20` (хорошая поддержка изображений).
+
+Если `agents.list` задан, то для агентов, у которых в объекте **нет** поля `model`, берётся `agents.defaults.model`. Имена моделей — как в каталоге OpenRouter (или другого провайдера); ключ API задаётся в `env` (например `OPENROUTER_API_KEY`).
+
+---
+
 ## Агент по фото (еда, анализы, приложения)
 
 Два варианта: один агент обрабатывает всё или отдельный агент **nadin-food-vision** только для фото (сложная модель для изображений, простая для текста). Пошаговая настройка, перенаправление из основного SOUL в nadin-food-vision и описание файлов — см. [AGENT-FOOD-PHOTO.md](AGENT-FOOD-PHOTO.md).
@@ -215,6 +261,8 @@ OpenClaw отправляет ответ в Telegram
 openclaw gateway          # запустить gateway
 openclaw health           # проверить статус
 openclaw logs --follow    # живые логи (смотреть from.id в Telegram updates)
+openclaw context list     # посмотреть, какие файлы и история сейчас в контексте
+openclaw context detail   # подробный разбор контекста по файлам и tool-результатам
 openclaw config get       # показать текущий конфиг
 openclaw doctor           # диагностика проблем
 openclaw doctor --fix     # автоматически исправить проблемы конфига
