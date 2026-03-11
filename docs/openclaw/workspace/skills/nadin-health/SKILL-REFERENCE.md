@@ -36,7 +36,7 @@ bash {baseDir}/nadin.sh user.upsertProfile '{
 
 ---
 
-## 3. saveDailyLog
+## 3. saveDailyLog (ВАЖНО: всегда обновляй весь день)
 ```
 bash {baseDir}/nadin.sh healthLog.upsertDailyLogForTelegramUser '{
   "telegramUserId": "<ID>",
@@ -78,10 +78,17 @@ bash {baseDir}/nadin.sh healthLog.upsertDailyLogForTelegramUser '{
         "category": "vitamin|medicine|other"
       }
     ]
-  }
 }'
 ```
-Все поля payload опциональны — передавай только то, что упомянул пользователь.
+**КРИТИЧНО:** эта процедура **перезаписывает весь дневник дня**.  
+Перед каждым вызовом:
+
+1. Сначала попробуй получить существующий лог за день:
+   `healthLog.getDailyLogForTelegramUser (telegramUserId + date)`.
+2. На основе ответа обнови объект: добавь/измени приём пищи, воду, сон и т.п., **не теряя уже существующие `meals`, `waterMl`, `sleepLogs`, `activityLogs`, `intakes`**.
+3. Вызови `healthLog.upsertDailyLogForTelegramUser` с **полным объединённым объектом за день**, а не только с дельтой.
+
+Если лог за день отсутствует — создай новый `payload` с нуля.
 
 ---
 

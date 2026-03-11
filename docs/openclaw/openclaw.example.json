@@ -26,13 +26,12 @@
         ]
       },
       "compaction": {
-        "mode": "safeguard",
-        "maxMessages": 20,
-        "maxToolResults": 5
+        "mode": "safeguard"
       },
       "contextPruning": {
-        "mode": "on",
-        "maxToolResultChars": 4000
+        "mode": "cache-ttl",
+        "ttl": "1h",
+        "softTrim": { "maxChars": 4000, "headChars": 1500, "tailChars": 1500 }
       },
       "maxConcurrent": 4,
       "subagents": {
@@ -66,9 +65,12 @@
   },
   "session": {
     "dmScope": "per-channel-peer",
+    "historyLimit": 80,
     "reset": {
-      "mode": "off"
-    }
+      "mode": "daily",
+      "atHour": 4
+    },
+    "resetTriggers": ["/new", "/reset"]
   },
   "gateway": {
     "port": 18789,
