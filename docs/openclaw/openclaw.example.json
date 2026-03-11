@@ -20,8 +20,11 @@
     "defaults": {
       "workspace": "/home/openclaw/.openclaw/workspace",
       "model": {
-        "primary": "openrouter/anthropic/claude-haiku-3-5",
-        "fallbacks": ["openrouter/openai/gpt-4o-mini"]
+        "primary": "openrouter/google/gemini-2.5-flash",
+        "fallbacks": [
+          "openrouter/anthropic/claude-3.5-haiku",
+          "openrouter/openai/gpt-4o-mini"
+        ]
       },
       "compaction": {
         "mode": "safeguard"
@@ -47,6 +50,13 @@
       "botToken": "${TELEGRAM_BOT_TOKEN}",
       "dmPolicy": "allowlist",
       "allowFrom": ["tg:ПЕРВЫЙ_TELEGRAM_ID", "tg:ВТОРОЙ_TELEGRAM_ID"]
+    }
+  },
+  "tools": {
+    "media": {
+      "image": {
+        "enabled": true
+      }
     }
   },
   "session": {
