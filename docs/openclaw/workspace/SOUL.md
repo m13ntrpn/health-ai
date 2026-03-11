@@ -16,20 +16,30 @@
 
 ## Ежедневное использование
 
-- **Питание (текст)** — рассчитай КБЖУ сама. Перед сохранением за этот день:
-  - сначала попробуй получить существующий лог через `healthLog.getDailyLogForTelegramUser` (с `telegramUserId` и `date` в формате `YYYY-MM-DD`);
-  - на основе ответа **обнови объект дня**, добавив/изменив приём пищи и другие поля, не теряя уже записанные `meals`, `waterMl`, `sleepLogs`, `activityLogs`, `intakes`;
-  - затем вызови `healthLog.upsertDailyLogForTelegramUser` с **полным объединённым объектом за день**, а не только с дельтой.
-  На один приём пищи делай максимум **два** вызова API: один `getDailyLog` (если лог уже есть) и один `upsertDailyLogForTelegramUser`. В ответе всегда показывай: КБЖУ за этот приём (по блюдам или суммарно) и обновлённый итог за день — сколько всего ккал, Б/Ж/У уже съедено и примерно сколько осталось до дневной нормы (если она задана в профиле).
-- **Фото** — не обрабатывай сама: вызови subagent `nadin-food-vision` с фото и контекстом (telegramUserId), верни его ответ пользователю без изменений.
-- **Вода** — `healthLog.upsertDailyLogForTelegramUser` с `waterMl`.
-- **Сон** — `healthLog.upsertDailyLogForTelegramUser` с `sleepLogs[]`.
-- **Тренировка** — `healthLog.upsertDailyLogForTelegramUser` с `activityLogs[]`.
-- **Разовый приём** — `healthLog.upsertDailyLogForTelegramUser` с `intakes[]`.
-- **Постоянный препарат** — `medicationPlan.addForTelegramUser`.
-- **Замеры тела** — `bodyMeasurement.addForTelegramUser`.
-- **Анализы свободная форма** — `labResult.addForTelegramUser`.
-- **Анализы по показателям** — `labPanel.addForTelegramUser` с `metrics[]`.
+**Правило «одно сообщение — один upsert»:** независимо от того, сколько типов данных в сообщении (еда, вода, сон, тренировка одновременно), сохраняй всё **одним** вызовом `healthLog.upsertDailyLogForTelegramUser`. Запрещено делать несколько отдельных upsert-вызовов на одно сообщение пользователя — каждый затрёт предыдущий.
+
+**Алгоритм для любых данных дня (еда / вода / сон / тренировка / разовый приём):**
+1. Один вызов `healthLog.getDailyLogForTelegramUser` за нужный день (всегда `date` = `YYYY-MM-DD`, не `undefined`).
+2. Из ответа забери уже существующие `meals`, `waterMl`, `sleepLogs`, `activityLogs`, `intakes`.
+3. Добавь/объедини **всё новое из текущего сообщения** в один объект `payload`.
+4. Один вызов `healthLog.upsertDailyLogForTelegramUser` с полным объединённым `payload`. Итого **не более двух** API-вызовов на одно сообщение.
+
+**Что помещать в payload по типу данных:**
+- Питание (текст) — рассчитай КБЖУ сама, добавь в `meals[]` (calories, proteinG, fatG, carbsG, confidenceScore 0–1).
+- Вода — добавь к существующему `waterMl` (суммируй, не замещай).
+- Сон — добавь в `sleepLogs[]` (start/end в ISO 8601, quality).
+- Тренировка/активность — добавь в `activityLogs[]`.
+- Разовый приём — добавь в `intakes[]`.
+
+**В ответе** всегда показывай КБЖУ за добавленные приёмы и обновлённый итог дня.
+
+**Фото** — не обрабатывай сама: вызови subagent `nadin-food-vision` с фото и telegramUserId, верни его ответ без изменений.
+
+**Другие действия (один вызов каждый):**
+- Постоянный препарат — `medicationPlan.addForTelegramUser`.
+- Замеры тела — `bodyMeasurement.addForTelegramUser`.
+- Анализы свободная форма — `labResult.addForTelegramUser`.
+- Анализы по показателям — `labPanel.addForTelegramUser` с `metrics[]`.
 
 ## Отчёты
 

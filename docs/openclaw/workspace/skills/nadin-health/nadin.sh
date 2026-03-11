@@ -3,18 +3,42 @@
 #
 # Использование:
 #   bash nadin.sh <procedure_path> '<json_object>'
+#   echo '<json_object>' | bash nadin.sh <procedure_path>
+#   bash nadin.sh <procedure_path> - < payload.json
 #
 # Примеры:
 #   bash nadin.sh user.isProfileComplete '{"telegramUserId":"123456789"}'
 #   bash nadin.sh healthLog.upsertDailyLogForTelegramUser '{"telegramUserId":"123456789","date":"2026-03-06","payload":{"waterMl":2000}}'
+#
+# Для больших payload (много блюд, сложный JSON) — передавай через stdin:
+#   cat <<'EOF' | bash nadin.sh healthLog.upsertDailyLogForTelegramUser
+#   {"telegramUserId":"123","date":"2026-03-11","payload":{"meals":[...]}}
+#   EOF
 
 set -euo pipefail
 
 PROCEDURE="${1:-}"
-PAYLOAD="${2:-}"
 
-if [[ -z "$PROCEDURE" || -z "$PAYLOAD" ]]; then
-  echo '{"error":"Usage: nadin.sh <procedure> <json_payload>"}' >&2
+if [[ -z "$PROCEDURE" ]]; then
+  echo '{"error":"Usage: nadin.sh <procedure> [json_payload|-]"}' >&2
+  exit 1
+fi
+
+# Читаем payload: из stdin если второй аргумент отсутствует или равен "-"
+if [[ "${2:-}" == "-" || -z "${2:-}" ]]; then
+  PAYLOAD="$(cat)"
+else
+  PAYLOAD="${2}"
+fi
+
+if [[ -z "$PAYLOAD" ]]; then
+  echo '{"error":"Payload is empty"}' >&2
+  exit 1
+fi
+
+# Валидация JSON перед отправкой
+if ! python3 -c "import json,sys; json.loads(sys.argv[1])" "$PAYLOAD" 2>/dev/null; then
+  echo '{"error":"Invalid JSON payload"}' >&2
   exit 1
 fi
 
@@ -32,7 +56,6 @@ if [[ -z "$TOKEN" ]]; then
 fi
 
 # tRPC: query → GET с input в query-параметре, mutation → POST с телом { "json": payload }
-# Процедуры-запросы (query):
 QUERIES="user.getProfile user.isProfileComplete healthLog.getDailyLog healthLog.listDailyLogs healthLog.summary healthLog.getDailyLogForTelegramUser healthLog.listDailyLogsForTelegramUser healthLog.summaryForTelegramUser bodyMeasurement.listForTelegramUser medicationPlan.listForTelegramUser labResult.listForTelegramUser labPanel.listForTelegramUser"
 
 IS_QUERY=0
@@ -45,19 +68,25 @@ done
 
 BASE_URL="${API_URL%/}/api/trpc/${PROCEDURE}"
 
-
 if [[ "$IS_QUERY" -eq 1 ]]; then
   # tRPC query: input передаётся как URL-параметр ?input={"json":{...}}
-  INPUT_PARAM="{\"json\": ${PAYLOAD}}"
-  # URL-encode через python (доступен на любом Linux)
-  ENCODED=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$INPUT_PARAM")
+  ENCODED=$(python3 -c "
+import json, urllib.parse, sys
+payload = json.loads(sys.argv[1])
+wrapped = json.dumps({'json': payload})
+print(urllib.parse.quote(wrapped))
+" "$PAYLOAD")
   curl -s -X GET \
     "${BASE_URL}?input=${ENCODED}" \
     -H "Content-Type: application/json" \
     -H "X-Service-Token: ${TOKEN}"
 else
-  # tRPC mutation: тело вида { "json": payload }
-  BODY="{\"json\": ${PAYLOAD}}"
+  # tRPC mutation: тело вида { "json": payload }, собираем через python чтобы избежать проблем экранирования
+  BODY=$(python3 -c "
+import json, sys
+payload = json.loads(sys.argv[1])
+print(json.dumps({'json': payload}))
+" "$PAYLOAD")
   curl -s -X POST \
     "${BASE_URL}" \
     -H "Content-Type: application/json" \
