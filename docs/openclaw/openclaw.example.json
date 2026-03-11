@@ -26,7 +26,13 @@
         ]
       },
       "compaction": {
-        "mode": "safeguard"
+        "mode": "safeguard",
+        "maxMessages": 20,
+        "maxToolResults": 5
+      },
+      "contextPruning": {
+        "mode": "on",
+        "maxToolResultChars": 4000
       },
       "maxConcurrent": 4,
       "subagents": {

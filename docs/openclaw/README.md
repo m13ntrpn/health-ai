@@ -89,7 +89,9 @@ mkdir -p ~/.openclaw/workspace/skills/nadin-health
 cp docs/openclaw/workspace/SOUL.md ~/.openclaw/workspace/
 cp docs/openclaw/workspace/AGENTS.md ~/.openclaw/workspace/
 cp docs/openclaw/workspace/skills/nadin-health/SKILL.md ~/.openclaw/workspace/skills/nadin-health/
+cp docs/openclaw/workspace/skills/nadin-health/SKILL-REFERENCE.md ~/.openclaw/workspace/skills/nadin-health/
 cp docs/openclaw/workspace/skills/nadin-health/nadin.sh ~/.openclaw/workspace/skills/nadin-health/
+cp docs/openclaw/workspace/HEARTBEAT.md ~/.openclaw/workspace/
 
 # Сделать скрипт исполняемым
 chmod +x ~/.openclaw/workspace/skills/nadin-health/nadin.sh
@@ -194,8 +196,10 @@ OpenClaw отправляет ответ в Telegram
 | `.env.example` | Шаблон переменных окружения | скопировать в `~/.openclaw/.env` и заполнить |
 | `workspace/SOUL.md` | Личность агента (системный промпт) | `~/.openclaw/workspace/SOUL.md` |
 | `workspace/AGENTS.md` | Инструкции поведения | `~/.openclaw/workspace/AGENTS.md` |
-| `workspace/skills/nadin-health/SKILL.md` | Описание API для LLM | `~/.openclaw/workspace/skills/nadin-health/SKILL.md` |
+| `workspace/skills/nadin-health/SKILL.md` | Таблица процедур (без тяжёлых примеров) | `~/.openclaw/workspace/skills/nadin-health/SKILL.md` |
+| `workspace/skills/nadin-health/SKILL-REFERENCE.md` | Полные payload-примеры (читается on-demand) | `~/.openclaw/workspace/skills/nadin-health/SKILL-REFERENCE.md` |
 | `workspace/skills/nadin-health/nadin.sh` | Curl-обёртка для API | `~/.openclaw/workspace/skills/nadin-health/nadin.sh` |
+| `workspace/HEARTBEAT.md` | Пустой файл — отключает лишние heartbeat-обороты | `~/.openclaw/workspace/HEARTBEAT.md` |
 | `workspace-nadin-food-vision/SOUL.md` | Промпт агента по фото (вариант с отдельным агентом) | `~/.openclaw/workspace-nadin-food-vision/SOUL.md` |
 | `workspace-nadin-food-vision/AGENTS.md` | Инструкции для агента по фото | `~/.openclaw/workspace-nadin-food-vision/AGENTS.md` |
 | `OPENCLAW-SETUP.md` | Полная документация API (все процедуры) | Справочник, не копировать |
