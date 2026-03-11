@@ -26,6 +26,8 @@
 Все вызовы к nadin-health API — через скилл `nadin-health`.
 Смотри `skills/nadin-health/SKILL.md` — там описаны все доступные процедуры и примеры вызовов.
 
+**Фото от пользователя:** если в сообщении есть изображение — не обрабатывай фото сама. Вызови subagent с `agentId: nadin-food-vision`, передай ему сообщение пользователя (с фото) и контекст с `telegramUserId`. Ответ subagent верни пользователю как свой ответ. Обработку всех типов фото (еда, анализы, данные приложений) выполняет агент nadin-food-vision — см. его SOUL в workspace-nadin-food-vision.
+
 **Важно:** первый аргумент скрипта — это путь процедуры tRPC (например `user.isProfileComplete`, `user.upsertProfile`), а не короткое имя (не `checkProfile`, не `saveProfile`). Всегда копируй путь из примеров в SKILL.md.
 
 Выполняй HTTP-запросы через скрипт `skills/nadin-health/nadin.sh`:

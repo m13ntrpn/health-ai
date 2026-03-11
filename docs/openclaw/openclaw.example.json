@@ -20,10 +20,9 @@
     "defaults": {
       "workspace": "/home/openclaw/.openclaw/workspace",
       "model": {
-        "primary": "openrouter/google/gemini-2.5-flash",
+        "primary": "openrouter/deepseek/deepseek-v3.2",
         "fallbacks": [
-          "openrouter/anthropic/claude-3.5-haiku",
-          "openrouter/openai/gpt-4o-mini"
+          "openrouter/openai/gpt-4o-2024-11-20"
         ]
       },
       "compaction": {

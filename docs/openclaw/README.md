@@ -196,8 +196,16 @@ OpenClaw отправляет ответ в Telegram
 | `workspace/AGENTS.md` | Инструкции поведения | `~/.openclaw/workspace/AGENTS.md` |
 | `workspace/skills/nadin-health/SKILL.md` | Описание API для LLM | `~/.openclaw/workspace/skills/nadin-health/SKILL.md` |
 | `workspace/skills/nadin-health/nadin.sh` | Curl-обёртка для API | `~/.openclaw/workspace/skills/nadin-health/nadin.sh` |
+| `workspace-nadin-food-vision/SOUL.md` | Промпт агента по фото (вариант с отдельным агентом) | `~/.openclaw/workspace-nadin-food-vision/SOUL.md` |
+| `workspace-nadin-food-vision/AGENTS.md` | Инструкции для агента по фото | `~/.openclaw/workspace-nadin-food-vision/AGENTS.md` |
 | `OPENCLAW-SETUP.md` | Полная документация API (все процедуры) | Справочник, не копировать |
 | `*.ts` в корне | Референсный код для **кастомной** реализации | Не для OpenClaw |
+
+---
+
+## Агент по фото (еда, анализы, приложения)
+
+Два варианта: один агент обрабатывает всё или отдельный агент **nadin-food-vision** только для фото (сложная модель для изображений, простая для текста). Пошаговая настройка, перенаправление из основного SOUL в nadin-food-vision и описание файлов — см. [AGENT-FOOD-PHOTO.md](AGENT-FOOD-PHOTO.md).
 
 ---
 
