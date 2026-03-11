@@ -45,6 +45,40 @@ done
 
 BASE_URL="${API_URL%/}/api/trpc/${PROCEDURE}"
 
+# Нормализация дат для healthLog.* (подстраховка от пустых значений)
+if [[ "$PROCEDURE" == "healthLog.getDailyLogForTelegramUser" ]]; then
+  PAYLOAD="$(python3 <<'PY' <<<"$PAYLOAD"
+import json, sys, datetime
+raw = sys.stdin.read()
+try:
+    data = json.loads(raw)
+except Exception:
+    print(raw)
+    sys.exit(0)
+if not data.get("date"):
+    data["date"] = datetime.date.today().isoformat()
+print(json.dumps(data, ensure_ascii=False))
+PY
+)"
+elif [[ "$PROCEDURE" == "healthLog.summaryForTelegramUser" ]]; then
+  PAYLOAD="$(python3 <<'PY' <<<"$PAYLOAD"
+import json, sys, datetime
+raw = sys.stdin.read()
+try:
+    data = json.loads(raw)
+except Exception:
+    print(raw)
+    sys.exit(0)
+today = datetime.date.today().isoformat()
+if not data.get("fromDate"):
+    data["fromDate"] = today
+if not data.get("toDate"):
+    data["toDate"] = today
+print(json.dumps(data, ensure_ascii=False))
+PY
+)"
+fi
+
 if [[ "$IS_QUERY" -eq 1 ]]; then
   # tRPC query: input передаётся как URL-параметр ?input={"json":{...}}
   INPUT_PARAM="{\"json\": ${PAYLOAD}}"
