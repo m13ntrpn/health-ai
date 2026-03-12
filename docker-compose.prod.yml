@@ -11,8 +11,9 @@ services:
     # Not exposed to host — only accessible inside Docker network
 
   migrate:
-    image: nadin-health:latest
-    command: npx prisma migrate deploy
+    build:
+      context: .
+      target: migrate
     environment:
       DATABASE_URL: ${DATABASE_URL}
     depends_on:
